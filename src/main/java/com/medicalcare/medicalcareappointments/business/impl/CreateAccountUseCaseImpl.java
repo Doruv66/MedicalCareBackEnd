@@ -63,12 +63,6 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .dateOfBirth(userRequest.getDateOfBirth())
                         .build();
             }
-            default -> AccountEntity.builder()
-                    .Email(request.getEmail())
-                    .password(request.getPassword())
-                    .username(request.getPassword())
-                    .accountType(request.getAccountType())
-                    .build();
         };
         return accountRepository.save(newAccount);
     }
