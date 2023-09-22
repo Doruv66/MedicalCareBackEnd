@@ -12,7 +12,6 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateAccountRequest {
-    private Long accountId;
 
     @NotBlank
     private String username;

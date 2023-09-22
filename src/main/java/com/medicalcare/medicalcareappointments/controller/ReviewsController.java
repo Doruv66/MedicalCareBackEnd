@@ -52,8 +52,7 @@ public class ReviewsController {
     @PutMapping("{id}")
     public ResponseEntity<Void> updateReview(@PathVariable(value = "id") final long id,
                                              @RequestBody @Valid UpdateReviewRequest request){
-        request.setReviewId(id);
-        updateReviewUseCase.updateReview(request);
+        updateReviewUseCase.updateReview(request, id);
         return ResponseEntity.noContent().build();
     }
 }

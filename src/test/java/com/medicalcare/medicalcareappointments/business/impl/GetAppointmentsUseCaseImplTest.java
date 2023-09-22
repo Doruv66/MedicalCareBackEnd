@@ -1,11 +1,16 @@
 package com.medicalcare.medicalcareappointments.business.impl;
 
+import com.medicalcare.medicalcareappointments.business.GetAppointmentsUseCase;
 import com.medicalcare.medicalcareappointments.domain.Appointment;
 import com.medicalcare.medicalcareappointments.domain.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.GetAppointmentsResponse;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,19 +20,18 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class GetAppointmentsUseCaseImplTest {
+
+
+    @Mock
+    private AppointmentRepository appointmentRepositoryMock;
+    @InjectMocks
+    private GetAppointmentsUseCaseImpl getAppointmentsUseCase;
 
     @Test
     void getAppointments_shouldReturnAllAppointmentsConverted() {
-        AppointmentRepository appointmentRepositoryMock = mock(AppointmentRepository.class);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        String date = "26-09-2019";
-        Date actualDate =null;
-        try {
-            actualDate = formatter.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        Date actualDate = new Date(2010, 11 ,20);
 
         AppointmentEntity appointment1Entity = AppointmentEntity.builder()
                 .appointmentId(1L)
@@ -46,7 +50,6 @@ class GetAppointmentsUseCaseImplTest {
         when(appointmentRepositoryMock.findAll())
                 .thenReturn(List.of(appointment1Entity, appointment2Entity));
 
-        GetAppointmentsUseCaseImpl getAppointmentsUseCase = new GetAppointmentsUseCaseImpl(appointmentRepositoryMock);
         GetAppointmentsResponse actualResult = getAppointmentsUseCase.getAppointments();
 
         Appointment appointment1 = Appointment.builder()
@@ -63,13 +66,13 @@ class GetAppointmentsUseCaseImplTest {
                 .doctorId(5L)
                 .dateTime(actualDate)
                 .build();
+
         GetAppointmentsResponse expectedResult = GetAppointmentsResponse.builder()
                 .appointments(List.of(appointment1,appointment2))
                 .build();
+
         assertEquals(actualResult, expectedResult);
 
         verify(appointmentRepositoryMock).findAll();
-
-
     }
 }

@@ -9,7 +9,6 @@ import java.util.Date;
 @Data
 @Builder
 public class UpdateAppointmentRequest {
-    private Long appointmentId;
     @NotNull
     private Date dateTime;
     @NotNull

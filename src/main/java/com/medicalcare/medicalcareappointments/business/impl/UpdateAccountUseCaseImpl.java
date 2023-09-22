@@ -23,8 +23,8 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
     private final AccountRepository accountRepository;
 
     @Override
-    public void updateAccount(UpdateAccountRequest request) {
-        Optional<AccountEntity> accountOptional = accountRepository.findById(request.getAccountId());
+    public void updateAccount(UpdateAccountRequest request, long id) {
+        Optional<AccountEntity> accountOptional = accountRepository.findById(id);
         if(accountOptional.isEmpty()){
             throw new InvalidAccountException("ACCOUNT_IS_INVALID");
         }
@@ -38,7 +38,6 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
             case Admin -> {
                 UpdateAdminRequest adminRequest = (UpdateAdminRequest) request;
                 AdminEntity admin = (AdminEntity) account;
-                admin.setAccountId(adminRequest.getAccountId());
                 admin.setAccountType(adminRequest.getAccountType());
                 admin.setEmail(adminRequest.getEmail());
                 admin.setPassword(adminRequest.getPassword());
@@ -47,7 +46,6 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
             case Doctor -> {
                 UpdateDoctorRequest doctorRequest = (UpdateDoctorRequest) request;
                 DoctorEntity doctor = (DoctorEntity) account;
-                doctor.setAccountId(doctorRequest.getAccountId());
                 doctor.setAccountType(doctorRequest.getAccountType());
                 doctor.setEmail(doctorRequest.getEmail());
                 doctor.setPassword(doctorRequest.getPassword());
@@ -60,7 +58,6 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
             case User -> {
                 UpdateUserRequest userRequest = (UpdateUserRequest) request;
                 UserEntity user = (UserEntity) account;
-                user.setAccountId(userRequest.getAccountId());
                 user.setAccountType(userRequest.getAccountType());
                 user.setEmail(userRequest.getEmail());
                 user.setPassword(userRequest.getPassword());
@@ -69,7 +66,6 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 user.setDateOfBirth(userRequest.getDateOfBirth());
             }
             default -> {
-                account.setAccountId(request.getAccountId());
                 account.setAccountType(request.getAccountType());
                 account.setEmail(request.getEmail());
                 account.setPassword(request.getPassword());

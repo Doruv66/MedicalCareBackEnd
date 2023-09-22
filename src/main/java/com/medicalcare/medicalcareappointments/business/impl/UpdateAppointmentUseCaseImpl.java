@@ -17,8 +17,8 @@ public class UpdateAppointmentUseCaseImpl implements UpdateAppointmentUseCase {
     private final AppointmentRepository appointmentRepository;
 
     @Override
-    public void updateAppointment(UpdateAppointmentRequest request) {
-        Optional<AppointmentEntity> appointmentOptional = appointmentRepository.findById(request.getAppointmentId());
+    public void updateAppointment(UpdateAppointmentRequest request, long id) {
+        Optional<AppointmentEntity> appointmentOptional = appointmentRepository.findById(id);
         if(appointmentOptional.isEmpty()){
             throw new InvalidAppointmentException("APPOINTMENT_IS_INVALID");
         }
@@ -27,7 +27,6 @@ public class UpdateAppointmentUseCaseImpl implements UpdateAppointmentUseCase {
     }
 
     private void updateFields(UpdateAppointmentRequest request, AppointmentEntity appointment){
-        appointment.setAppointmentId(request.getAppointmentId());
         appointment.setAppointmentStatus(request.getAppointmentStatus());
         appointment.setDateTime(request.getDateTime());
         appointment.setUserId(request.getUserId());

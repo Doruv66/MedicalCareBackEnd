@@ -64,24 +64,21 @@ public class AccountsController {
     @PutMapping("update-user/{id}")
     public ResponseEntity<Void> updateUser(@PathVariable(value = "id") long id,
                                               @RequestBody @Valid UpdateUserRequest request){
-        request.setAccountId(id);
-        updateAccountUseCase.updateAccount(request);
+        updateAccountUseCase.updateAccount(request, id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("update-doctor/{id}")
     public ResponseEntity<Void> updateDoctor(@PathVariable(value = "id") long id,
                                               @RequestBody @Valid UpdateDoctorRequest request){
-        request.setAccountId(id);
-        updateAccountUseCase.updateAccount(request);
+        updateAccountUseCase.updateAccount(request, id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("update-admin/{id}")
     public ResponseEntity<Void> updateAccount(@PathVariable(value = "id") long id,
                                               @RequestBody @Valid UpdateAdminRequest request){
-        request.setAccountId(id);
-        updateAccountUseCase.updateAccount(request);
+        updateAccountUseCase.updateAccount(request, id);
         return ResponseEntity.noContent().build();
     }
 }

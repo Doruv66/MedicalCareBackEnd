@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateReviewRequest {
 
-    private Long reviewId;
-
     @NotNull
     private int rating;
 

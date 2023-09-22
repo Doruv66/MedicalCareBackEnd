@@ -18,8 +18,8 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
     private final ReviewRepository reviewRepository;
 
     @Override
-    public void updateReview(UpdateReviewRequest request) {
-        Optional<ReviewEntity> optionalReview = reviewRepository.findById(request.getReviewId());
+    public void updateReview(UpdateReviewRequest request, long id) {
+        Optional<ReviewEntity> optionalReview = reviewRepository.findById(id);
         if(optionalReview.isEmpty()){
             throw new InvalidReviewException("REVIEW_IS_INVALID");
         }
@@ -28,7 +28,6 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
     }
 
     private void updateFields(UpdateReviewRequest request, ReviewEntity review){
-        review.setReviewId(request.getReviewId());
         review.setComment(request.getComment());
         review.setRating(request.getRating());
         review.setDoctorId(request.getDoctorId());
