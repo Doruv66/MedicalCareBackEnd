@@ -22,8 +22,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class GetAppointmentsUseCaseImplTest {
-
-
     @Mock
     private AppointmentRepository appointmentRepositoryMock;
     @InjectMocks
