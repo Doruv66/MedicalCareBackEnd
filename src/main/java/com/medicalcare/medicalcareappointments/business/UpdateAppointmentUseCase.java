@@ -1,7 +1,8 @@
 package com.medicalcare.medicalcareappointments.business;
 
 import com.medicalcare.medicalcareappointments.domain.UpdateAppointmentRequest;
+import com.medicalcare.medicalcareappointments.domain.UpdateAppointmentResponse;
 
 public interface UpdateAppointmentUseCase {
-    void updateAppointment(UpdateAppointmentRequest request, long id);
+    UpdateAppointmentResponse updateAppointment(UpdateAppointmentRequest request, long id);
 }

@@ -1,13 +1,10 @@
 package com.medicalcare.medicalcareappointments.business.impl;
 
 import com.medicalcare.medicalcareappointments.business.UpdateAccountUseCase;
-import com.medicalcare.medicalcareappointments.domain.UpdateAccountRequest;
+import com.medicalcare.medicalcareappointments.domain.*;
 import com.medicalcare.medicalcareappointments.exception.InvalidAccountException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
-import com.medicalcare.medicalcareappointments.domain.UpdateDoctorRequest;
-import com.medicalcare.medicalcareappointments.domain.UpdateUserRequest;
-import com.medicalcare.medicalcareappointments.domain.UpdateAdminRequest;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
@@ -23,7 +20,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
     private final AccountRepository accountRepository;
 
     @Override
-    public void updateAccount(UpdateAccountRequest request, long id) {
+    public UpdateAccountResponse updateAccount(UpdateAccountRequest request, long id) {
         Optional<AccountEntity> accountOptional = accountRepository.findById(id);
         if(accountOptional.isEmpty()){
             throw new InvalidAccountException("ACCOUNT_IS_INVALID");
@@ -31,6 +28,10 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
 
         AccountEntity account = accountOptional.get();
         updateFields(request, account);
+
+        return UpdateAccountResponse.builder()
+                .id(account.getAccountId())
+                .build();
     }
 
     private void updateFields(UpdateAccountRequest request, AccountEntity account){

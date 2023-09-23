@@ -62,23 +62,23 @@ public class AccountsController {
     }
 
     @PutMapping("update-user/{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable(value = "id") long id,
+    public ResponseEntity<UpdateAccountResponse> updateUser(@PathVariable(value = "id") long id,
                                               @RequestBody @Valid UpdateUserRequest request){
-        updateAccountUseCase.updateAccount(request, id);
-        return ResponseEntity.noContent().build();
+        UpdateAccountResponse response = updateAccountUseCase.updateAccount(request, id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping("update-doctor/{id}")
-    public ResponseEntity<Void> updateDoctor(@PathVariable(value = "id") long id,
+    public ResponseEntity<UpdateAccountResponse> updateDoctor(@PathVariable(value = "id") long id,
                                               @RequestBody @Valid UpdateDoctorRequest request){
-        updateAccountUseCase.updateAccount(request, id);
-        return ResponseEntity.noContent().build();
+        UpdateAccountResponse response = updateAccountUseCase.updateAccount(request, id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @PutMapping("update-admin/{id}")
-    public ResponseEntity<Void> updateAccount(@PathVariable(value = "id") long id,
+    public ResponseEntity<UpdateAccountResponse> updateAccount(@PathVariable(value = "id") long id,
                                               @RequestBody @Valid UpdateAdminRequest request){
-        updateAccountUseCase.updateAccount(request, id);
-        return ResponseEntity.noContent().build();
+        UpdateAccountResponse response = updateAccountUseCase.updateAccount(request, id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

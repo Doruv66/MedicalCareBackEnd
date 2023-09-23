@@ -52,9 +52,9 @@ public class AppointmentsController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateAppointment(@PathVariable(value = "id") final long id,
+    public ResponseEntity<UpdateAppointmentResponse> updateAppointment(@PathVariable(value = "id") final long id,
                                                   @RequestBody @Valid UpdateAppointmentRequest request){
-        updateAppointmentUseCase.updateAppointment(request, id);
-        return ResponseEntity.noContent().build();
+        UpdateAppointmentResponse response = updateAppointmentUseCase.updateAppointment(request, id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

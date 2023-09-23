@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @AllArgsConstructor
-public class CreateReviewResponse {
+@NoArgsConstructor
+public class UpdateReviewResponse {
     private long id;
 }

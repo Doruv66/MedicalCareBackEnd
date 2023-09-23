@@ -50,9 +50,9 @@ public class ReviewsController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateReview(@PathVariable(value = "id") final long id,
+    public ResponseEntity<UpdateReviewResponse> updateReview(@PathVariable(value = "id") final long id,
                                              @RequestBody @Valid UpdateReviewRequest request){
-        updateReviewUseCase.updateReview(request, id);
-        return ResponseEntity.noContent().build();
+        UpdateReviewResponse response = updateReviewUseCase.updateReview(request, id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

@@ -45,7 +45,5 @@ class GetReviewUseCaseImplTest {
                 .build();
 
         assertEquals(actualResult, expectedResult);
-
     }
-
 }

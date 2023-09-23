@@ -1,7 +1,8 @@
 package com.medicalcare.medicalcareappointments.business;
 
 import com.medicalcare.medicalcareappointments.domain.UpdateReviewRequest;
+import com.medicalcare.medicalcareappointments.domain.UpdateReviewResponse;
 
 public interface UpdateReviewUseCase {
-    void updateReview(UpdateReviewRequest request, long id);
+    UpdateReviewResponse updateReview(UpdateReviewRequest request, long id);
 }
