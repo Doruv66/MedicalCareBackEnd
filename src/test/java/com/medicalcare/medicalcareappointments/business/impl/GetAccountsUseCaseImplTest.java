@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -73,6 +74,7 @@ class GetAccountsUseCaseImplTest {
         GetAccountsResponse expectedResult = GetAccountsResponse.builder().accounts(List.of(user1, user2)).build();
 
         assertEquals(actualResult, expectedResult);
+        verify(accountRepositoryMock).findAll();
     }
 
 
