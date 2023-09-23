@@ -1,7 +1,8 @@
 package com.medicalcare.medicalcareappointments.business.impl;
 
-import com.medicalcare.medicalcareappointments.domain.Appointment;
-import com.medicalcare.medicalcareappointments.domain.AppointmentStatus;
+import com.medicalcare.medicalcareappointments.business.impl.appointment.GetAppointmentUseCaseImpl;
+import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
+import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class GetAppointmentUseCaseImplTest {
     private AppointmentRepository appointmentRepositoryMock;
 
     @InjectMocks
-    private  GetAppointmentUseCaseImpl getAppointmentUseCase;
+    private GetAppointmentUseCaseImpl getAppointmentUseCase;
 
     @Test
     void getAppointment_shouldReturnConvertedAppointment() {

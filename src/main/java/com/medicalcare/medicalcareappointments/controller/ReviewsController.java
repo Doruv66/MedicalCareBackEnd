@@ -1,8 +1,7 @@
 package com.medicalcare.medicalcareappointments.controller;
 
 import com.medicalcare.medicalcareappointments.business.*;
-import com.medicalcare.medicalcareappointments.domain.*;
-import com.medicalcare.medicalcareappointments.exception.InvalidReviewException;
+import com.medicalcare.medicalcareappointments.domain.review.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

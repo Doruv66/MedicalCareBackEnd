@@ -1,9 +1,9 @@
 package com.medicalcare.medicalcareappointments.business.impl;
 
-import com.medicalcare.medicalcareappointments.business.GetAppointmentsUseCase;
-import com.medicalcare.medicalcareappointments.domain.Appointment;
-import com.medicalcare.medicalcareappointments.domain.AppointmentStatus;
-import com.medicalcare.medicalcareappointments.domain.GetAppointmentsResponse;
+import com.medicalcare.medicalcareappointments.business.impl.appointment.GetAppointmentsUseCaseImpl;
+import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
+import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
+import com.medicalcare.medicalcareappointments.domain.appointment.GetAppointmentsResponse;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 import org.junit.jupiter.api.Test;
@@ -12,8 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 

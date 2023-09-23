@@ -1,7 +1,8 @@
 package com.medicalcare.medicalcareappointments.business.impl;
 
-import com.medicalcare.medicalcareappointments.domain.GetReviewsResponse;
-import com.medicalcare.medicalcareappointments.domain.Review;
+import com.medicalcare.medicalcareappointments.business.impl.review.GetReviewsUseCaseImpl;
+import com.medicalcare.medicalcareappointments.domain.review.GetReviewsResponse;
+import com.medicalcare.medicalcareappointments.domain.review.Review;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
 import org.junit.jupiter.api.Test;

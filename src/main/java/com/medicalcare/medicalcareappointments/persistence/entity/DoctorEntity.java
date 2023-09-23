@@ -1,7 +1,5 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
-import com.medicalcare.medicalcareappointments.domain.TimeSlot;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;

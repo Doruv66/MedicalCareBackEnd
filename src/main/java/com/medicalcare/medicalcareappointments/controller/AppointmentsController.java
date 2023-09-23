@@ -5,7 +5,7 @@ import com.medicalcare.medicalcareappointments.business.CreateAppointmentUseCase
 import com.medicalcare.medicalcareappointments.business.DeleteAppointmentUseCase;
 import com.medicalcare.medicalcareappointments.business.GetAppointmentsUseCase;
 import com.medicalcare.medicalcareappointments.business.UpdateAppointmentUseCase;
-import com.medicalcare.medicalcareappointments.domain.*;
+import com.medicalcare.medicalcareappointments.domain.appointment.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

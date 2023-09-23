@@ -1,7 +1,7 @@
 package com.medicalcare.medicalcareappointments.configuration.db;
 
-import com.medicalcare.medicalcareappointments.domain.AccountType;
-import com.medicalcare.medicalcareappointments.domain.AppointmentStatus;
+import com.medicalcare.medicalcareappointments.domain.account.AccountType;
+import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;

@@ -1,8 +1,9 @@
 package com.medicalcare.medicalcareappointments.business.impl;
 
-import com.medicalcare.medicalcareappointments.domain.Account;
-import com.medicalcare.medicalcareappointments.domain.AccountType;
-import com.medicalcare.medicalcareappointments.domain.User;
+import com.medicalcare.medicalcareappointments.business.impl.account.GetAccountUseCaseImpl;
+import com.medicalcare.medicalcareappointments.domain.account.Account;
+import com.medicalcare.medicalcareappointments.domain.account.AccountType;
+import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;

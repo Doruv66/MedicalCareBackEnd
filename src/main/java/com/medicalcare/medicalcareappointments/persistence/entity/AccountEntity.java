@@ -1,8 +1,7 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
-import com.medicalcare.medicalcareappointments.domain.AccountType;
+import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

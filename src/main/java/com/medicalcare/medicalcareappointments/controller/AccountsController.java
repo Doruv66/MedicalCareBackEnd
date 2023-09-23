@@ -1,10 +1,9 @@
 package com.medicalcare.medicalcareappointments.controller;
 
 import com.medicalcare.medicalcareappointments.business.*;
-import com.medicalcare.medicalcareappointments.domain.*;
+import com.medicalcare.medicalcareappointments.domain.account.*;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +62,7 @@ public class AccountsController {
 
     @PutMapping("update-user/{id}")
     public ResponseEntity<UpdateAccountResponse> updateUser(@PathVariable(value = "id") long id,
-                                              @RequestBody @Valid UpdateUserRequest request){
+                                                            @RequestBody @Valid UpdateUserRequest request){
         UpdateAccountResponse response = updateAccountUseCase.updateAccount(request, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

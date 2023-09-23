@@ -1,8 +1,9 @@
 package com.medicalcare.medicalcareappointments.business.impl;
 
-import com.medicalcare.medicalcareappointments.domain.AccountType;
-import com.medicalcare.medicalcareappointments.domain.GetAccountsResponse;
-import com.medicalcare.medicalcareappointments.domain.User;
+import com.medicalcare.medicalcareappointments.business.impl.account.GetAccountsUseCaseImpl;
+import com.medicalcare.medicalcareappointments.domain.account.AccountType;
+import com.medicalcare.medicalcareappointments.domain.account.GetAccountsResponse;
+import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;

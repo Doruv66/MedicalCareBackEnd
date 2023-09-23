@@ -1,6 +1,6 @@
 package com.medicalcare.medicalcareappointments.business;
 
-import com.medicalcare.medicalcareappointments.domain.Appointment;
+import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
 
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
-import com.medicalcare.medicalcareappointments.domain.AppointmentStatus;
+import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import lombok.Builder;
 import lombok.Data;
 
