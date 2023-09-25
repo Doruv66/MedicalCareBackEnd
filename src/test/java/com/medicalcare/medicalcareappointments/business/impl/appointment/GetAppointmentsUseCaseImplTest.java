@@ -1,4 +1,4 @@
-package com.medicalcare.medicalcareappointments.business.impl;
+package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.impl.appointment.GetAppointmentsUseCaseImpl;
 import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;

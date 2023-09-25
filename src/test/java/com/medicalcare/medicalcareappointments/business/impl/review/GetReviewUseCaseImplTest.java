@@ -1,4 +1,4 @@
-package com.medicalcare.medicalcareappointments.business.impl;
+package com.medicalcare.medicalcareappointments.business.impl.review;
 
 import com.medicalcare.medicalcareappointments.business.impl.review.GetReviewUseCaseImpl;
 import com.medicalcare.medicalcareappointments.domain.review.Review;

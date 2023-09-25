@@ -1,4 +1,4 @@
-package com.medicalcare.medicalcareappointments.business.impl;
+package com.medicalcare.medicalcareappointments.business.impl.account;
 
 import com.medicalcare.medicalcareappointments.business.impl.account.GetAccountsUseCaseImpl;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
