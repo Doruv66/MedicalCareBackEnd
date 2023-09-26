@@ -27,12 +27,16 @@ class DeleteAppointmentUseCaseImplTest {
 
     @Test
     void deleteAppointment_shouldDeleteAppointment() {
+        //Arrange
         long appointmentId = 1L;
 
         when(appointmentRepositoryMock.findById(appointmentId)).thenReturn(Optional.ofNullable(AppointmentEntity.builder().appointmentStatus(AppointmentStatus.Confirmed).userId(2L).doctorId(1L).dateTime(new Date()).build()));
 
+        //Act
         deleteAppointmentUseCase.deleteAppointment(appointmentId);
 
+
+        //Assert
         verify(appointmentRepositoryMock, times(1)).findById(appointmentId);
 
         verify(appointmentRepositoryMock, times(1)).deleteById(appointmentId);
@@ -40,10 +44,12 @@ class DeleteAppointmentUseCaseImplTest {
 
     @Test
     void deleteAppointment_shouldThrowNotFoundException() {
+        //Arrange
         long appointmentId = 2L;
 
         when(appointmentRepositoryMock.findById(appointmentId)).thenReturn(Optional.empty());
 
+        //Act and Assert
         assertThrows(NotFoundAppointmentException.class, () -> deleteAppointmentUseCase.deleteAppointment(appointmentId));
 
         verify(appointmentRepositoryMock, times(1)).findById(appointmentId);

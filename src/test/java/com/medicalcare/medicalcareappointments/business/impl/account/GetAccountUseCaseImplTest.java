@@ -29,6 +29,7 @@ class GetAccountUseCaseImplTest {
 
     @Test
     void getAccount_shouldReturnConvertedAccount() {
+        //Arrange
         AccountEntity accountEntity = UserEntity.builder()
                 .accountId(1L)
                 .username("user")
@@ -42,8 +43,11 @@ class GetAccountUseCaseImplTest {
         when(accountRepositoryMock.findById(1L))
                 .thenReturn(Optional.ofNullable(accountEntity));
 
+        //Act
         Account actualResult = getAccountUseCase.getAccount(1L).get();
 
+
+        //Assert
         Account expectedResult = User.builder()
                 .accountId(1L)
                 .username("user")

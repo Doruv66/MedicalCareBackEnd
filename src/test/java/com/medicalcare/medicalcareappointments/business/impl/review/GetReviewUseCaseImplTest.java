@@ -25,6 +25,7 @@ class GetReviewUseCaseImplTest {
 
     @Test
     void getReview_shouldReturnConvertedReview() {
+        //Arrange
         ReviewEntity reviewEntity = ReviewEntity.builder()
                 .reviewId(1L)
                 .comment("nice appointment")
@@ -35,8 +36,10 @@ class GetReviewUseCaseImplTest {
         when(reviewRepositoryMock.findById(1L))
                 .thenReturn(Optional.ofNullable(reviewEntity));
 
+        //Act
         Review actualResult = getReviewUseCase.getReview(1L).get();
 
+        //Assert
         Review expectedResult = Review.builder()
                 .reviewId(1L)
                 .comment("nice appointment")

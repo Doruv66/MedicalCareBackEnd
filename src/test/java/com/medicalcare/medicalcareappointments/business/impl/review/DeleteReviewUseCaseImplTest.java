@@ -24,12 +24,15 @@ class DeleteReviewUseCaseImplTest {
 
     @Test
     void deleteReview_shouldDeleteTheReview() {
+        //Arrange
         long reviewId = 1L;
 
         when(reviewRepositoryMock.findById(reviewId)).thenReturn(Optional.ofNullable(ReviewEntity.builder().comment("bad appointment").doctorId(1L).rating(1).userId(2L).build()));
 
+        //Act
         deleteReviewUseCase.deleteReview(reviewId);
 
+        //Assert
         verify(reviewRepositoryMock, times(1)).findById(reviewId);
 
         verify(reviewRepositoryMock, times(1)).deleteById(reviewId);
@@ -37,10 +40,12 @@ class DeleteReviewUseCaseImplTest {
 
     @Test
     void deleteReview_shouldThrowNotFoundException() {
+        //Arrange
         long reviewId = 2L;
 
         when(reviewRepositoryMock.findById(reviewId)).thenReturn(Optional.empty());
 
+        //Act and Assert
         assertThrows(NotFoundReviewException.class, () -> deleteReviewUseCase.deleteReview(reviewId));
 
         verify(reviewRepositoryMock, times(1)).findById(reviewId);

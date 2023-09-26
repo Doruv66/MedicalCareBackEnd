@@ -4,6 +4,7 @@ import com.medicalcare.medicalcareappointments.business.UpdateAppointmentUseCase
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentResponse;
 import com.medicalcare.medicalcareappointments.exception.InvalidAppointmentException;
+import com.medicalcare.medicalcareappointments.exception.NotFoundAppointmentException;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class UpdateAppointmentUseCaseImpl implements UpdateAppointmentUseCase {
     public UpdateAppointmentResponse updateAppointment(UpdateAppointmentRequest request, long id) {
         Optional<AppointmentEntity> appointmentOptional = appointmentRepository.findById(id);
         if(appointmentOptional.isEmpty()){
-            throw new InvalidAppointmentException("APPOINTMENT_IS_INVALID");
+            throw new NotFoundAppointmentException("NOT_FOUND_APPOINTMENT");
         }
         AppointmentEntity appointment = appointmentOptional.get();
         updateFields(request, appointment);

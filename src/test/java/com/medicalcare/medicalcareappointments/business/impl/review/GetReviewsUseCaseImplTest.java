@@ -27,6 +27,7 @@ class GetReviewsUseCaseImplTest {
 
     @Test
     void getReviews_shouldReturnAllReviewsConverted() {
+        //Arrange
         ReviewEntity review1Entity = ReviewEntity.builder()
                 .comment("nice appointment")
                 .doctorId(1L)
@@ -43,8 +44,11 @@ class GetReviewsUseCaseImplTest {
         when(reviewRepositoryMock.findAll())
                 .thenReturn(List.of(review1Entity, review2Entity));
 
+        //Act
         GetReviewsResponse actualResult = getReviewsUseCase.getReviews();
 
+
+        //Assert
         Review review1 = Review.builder()
                 .comment("nice appointment")
                 .doctorId(1L)

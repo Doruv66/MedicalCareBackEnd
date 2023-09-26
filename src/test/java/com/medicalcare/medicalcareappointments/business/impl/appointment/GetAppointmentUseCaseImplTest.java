@@ -27,20 +27,26 @@ class GetAppointmentUseCaseImplTest {
 
     @Test
     void getAppointment_shouldReturnConvertedAppointment() {
+        //Arrange
+        long id = 1L;
         AppointmentEntity appointmentEntity = AppointmentEntity.builder()
-                .appointmentId(1L)
+                .appointmentId(id)
                 .appointmentStatus(AppointmentStatus.Pending)
                 .userId(2L).
                 doctorId(1L).
                 dateTime(new Date(2011, 11, 11))
                 .build();
-        when(appointmentRepositoryMock.findById(1L))
+        when(appointmentRepositoryMock.findById(id))
                 .thenReturn(Optional.ofNullable(appointmentEntity));
 
-        Appointment actualResult = getAppointmentUseCase.getAppointment(1L).get();
 
+        //Act
+        Appointment actualResult = getAppointmentUseCase.getAppointment(id).get();
+
+
+        //Assert
         Appointment expectedResult = Appointment.builder()
-                .appointmentId(1L)
+                .appointmentId(id)
                 .appointmentStatus(AppointmentStatus.Pending)
                 .userId(2L).
                 doctorId(1L).

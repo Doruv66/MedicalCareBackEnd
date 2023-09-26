@@ -27,40 +27,42 @@ class GetAppointmentsUseCaseImplTest {
 
     @Test
     void getAppointments_shouldReturnAllAppointmentsConverted() {
-        Date actualDate = new Date(2010, 11 ,20);
 
+        //Arrange
         AppointmentEntity appointment1Entity = AppointmentEntity.builder()
                 .appointmentId(1L)
                 .appointmentStatus(AppointmentStatus.Pending)
                 .userId(2L)
                 .doctorId(1L)
-                .dateTime(actualDate)
+                .dateTime(new Date(2010, 11 ,20))
                 .build();
         AppointmentEntity appointment2Entity = AppointmentEntity.builder()
                 .appointmentId(2L)
                 .appointmentStatus(AppointmentStatus.Pending)
                 .userId(3L)
                 .doctorId(5L)
-                .dateTime(actualDate)
+                .dateTime(new Date(2010, 11 ,20))
                 .build();
         when(appointmentRepositoryMock.findAll())
                 .thenReturn(List.of(appointment1Entity, appointment2Entity));
 
+        //Act
         GetAppointmentsResponse actualResult = getAppointmentsUseCase.getAppointments();
 
+        //Assert
         Appointment appointment1 = Appointment.builder()
                 .appointmentId(1L)
                 .appointmentStatus(AppointmentStatus.Pending)
                 .userId(2L)
                 .doctorId(1L)
-                .dateTime(actualDate)
+                .dateTime(new Date(2010, 11 ,20))
                 .build();
         Appointment appointment2 = Appointment.builder()
                 .appointmentId(2L)
                 .appointmentStatus(AppointmentStatus.Pending)
                 .userId(3L)
                 .doctorId(5L)
-                .dateTime(actualDate)
+                .dateTime(new Date(2010, 11 ,20))
                 .build();
 
         GetAppointmentsResponse expectedResult = GetAppointmentsResponse.builder()

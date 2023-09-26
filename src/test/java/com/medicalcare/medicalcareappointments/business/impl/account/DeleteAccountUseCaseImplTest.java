@@ -27,12 +27,15 @@ class DeleteAccountUseCaseImplTest {
 
     @Test
     void deleteAccount_shouldDeleteTheAccount() {
+        //Arrange
         long accountId = 1L;
 
         when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.ofNullable(UserEntity.builder().username("user").accountType(AccountType.User).Email("user@gmail.com").password("12345").firstName("user").lastName("resu").dateOfBirth(new Date()).build()));
 
+        //Act
         deleteAccountUseCase.deleteAccount(accountId);
 
+        //Assert
         verify(accountRepositoryMock, times(1)).findById(accountId);
 
         verify(accountRepositoryMock, times(1)).deleteById(accountId);
@@ -40,9 +43,12 @@ class DeleteAccountUseCaseImplTest {
 
     @Test
     void deleteAccount_shouldThrowNotFoundException() {
+        //Arrange
         long accountId = 2L;
 
         when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.empty());
+
+        //Act and Assert
 
         assertThrows(NotFoundAccountException.class, () -> deleteAccountUseCase.deleteAccount(accountId));
 

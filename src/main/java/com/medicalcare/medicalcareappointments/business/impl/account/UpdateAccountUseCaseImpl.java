@@ -1,9 +1,9 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
 import com.medicalcare.medicalcareappointments.business.UpdateAccountUseCase;
-import com.medicalcare.medicalcareappointments.business.impl.review.ReverseTimeSlotConverter;
+import com.medicalcare.medicalcareappointments.business.impl.appointment.ReverseTimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.account.*;
-import com.medicalcare.medicalcareappointments.exception.InvalidAccountException;
+import com.medicalcare.medicalcareappointments.exception.NotFoundAccountException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
@@ -24,7 +24,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
     public UpdateAccountResponse updateAccount(UpdateAccountRequest request, long id) {
         Optional<AccountEntity> accountOptional = accountRepository.findById(id);
         if(accountOptional.isEmpty()){
-            throw new InvalidAccountException("ACCOUNT_IS_INVALID");
+            throw new NotFoundAccountException("NOT_FOUND_ACCOUNT");
         }
 
         AccountEntity account = accountOptional.get();
@@ -41,6 +41,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 UpdateAdminRequest adminRequest = (UpdateAdminRequest) request;
                 AdminEntity admin = (AdminEntity) account;
                 admin.setAccountType(adminRequest.getAccountType());
+                admin.setUsername(adminRequest.getUsername());
                 admin.setEmail(adminRequest.getEmail());
                 admin.setPassword(adminRequest.getPassword());
                 admin.setPosition(adminRequest.getPosition());
@@ -49,6 +50,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 UpdateDoctorRequest doctorRequest = (UpdateDoctorRequest) request;
                 DoctorEntity doctor = (DoctorEntity) account;
                 doctor.setAccountType(doctorRequest.getAccountType());
+                doctor.setUsername(doctorRequest.getUsername());
                 doctor.setEmail(doctorRequest.getEmail());
                 doctor.setPassword(doctorRequest.getPassword());
                 doctor.setSpecialization(doctorRequest.getSpecialization());
@@ -61,6 +63,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 UpdateUserRequest userRequest = (UpdateUserRequest) request;
                 UserEntity user = (UserEntity) account;
                 user.setAccountType(userRequest.getAccountType());
+                user.setUsername(userRequest.getUsername());
                 user.setEmail(userRequest.getEmail());
                 user.setPassword(userRequest.getPassword());
                 user.setFirstName(userRequest.getFirstName());

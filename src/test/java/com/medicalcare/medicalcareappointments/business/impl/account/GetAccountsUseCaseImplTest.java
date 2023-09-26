@@ -29,6 +29,7 @@ class GetAccountsUseCaseImplTest {
 
     @Test
     void getAccounts_shouldReturnAllAccountsConverted() {
+        //Arrange
         UserEntity user1Enity = UserEntity.builder()
                 .username("user")
                 .accountType(AccountType.User)
@@ -51,8 +52,11 @@ class GetAccountsUseCaseImplTest {
         when(accountRepositoryMock.findAll())
                 .thenReturn(List.of(user1Enity, user2Enity));
 
+
+        //Act
         GetAccountsResponse actualResult = getAccountsUseCase.getAll();
 
+        //Assert
         User user1= User.builder()
                 .username("user")
                 .accountType(AccountType.User)
