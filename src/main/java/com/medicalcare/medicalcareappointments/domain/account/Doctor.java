@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Doctor extends Account {
     private String specialization;
+
     private List<TimeSlot> availableTimeSlots;
 }
 
