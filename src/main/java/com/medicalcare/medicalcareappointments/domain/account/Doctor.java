@@ -13,7 +13,9 @@ import java.util.List;
 @AllArgsConstructor
 public class Doctor extends Account {
     private String specialization;
-
+    private String photo;
+    private String name;
+    private String fname;
     private List<TimeSlot> availableTimeSlots;
 }
 

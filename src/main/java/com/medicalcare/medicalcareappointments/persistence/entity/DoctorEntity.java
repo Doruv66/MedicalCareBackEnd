@@ -11,5 +11,8 @@ import java.util.List;
 @SuperBuilder
 public class DoctorEntity extends AccountEntity{
     private String specialization;
+    private String photo;
+    private String name;
+    private String fname;
     private List<TimeSlotEntity> availableTimeSlots;
 }

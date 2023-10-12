@@ -51,6 +51,9 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 DoctorEntity doctor = (DoctorEntity) account;
                 doctor.setAccountType(doctorRequest.getAccountType());
                 doctor.setUsername(doctorRequest.getUsername());
+                doctor.setName(doctorRequest.getName());
+                doctor.setFname(doctorRequest.getFname());
+                doctor.setPhoto(doctorRequest.getPhoto());
                 doctor.setEmail(doctorRequest.getEmail());
                 doctor.setPassword(doctorRequest.getPassword());
                 doctor.setSpecialization(doctorRequest.getSpecialization());

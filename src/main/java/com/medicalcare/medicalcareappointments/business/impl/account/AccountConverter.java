@@ -44,6 +44,9 @@ final class AccountConverter {
                 DoctorEntity doctor = (DoctorEntity) acc;
                 return Doctor.builder()
                         .accountId(doctor.getAccountId())
+                        .photo(doctor.getPhoto())
+                        .name(doctor.getName())
+                        .fname(doctor.getFname())
                         .accountType(doctor.getAccountType())
                         .password(doctor.getPassword())
                         .Email(doctor.getEmail())

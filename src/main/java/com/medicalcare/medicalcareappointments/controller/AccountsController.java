@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/accounts")
+@CrossOrigin(origins = "http://localhost:5173")
 @AllArgsConstructor
 public class AccountsController {
     private final GetAccountUseCase getAccountUseCase;
@@ -19,9 +20,10 @@ public class AccountsController {
     private final DeleteAccountUseCase deleteAccountUseCase;
     private final CreateAccountUseCase createAccountUseCase;
     private final UpdateAccountUseCase updateAccountUseCase;
+    private final GetDoctorsUseCase getDoctorsUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<Account> getAccount(@PathVariable(value = "id") final long id){
+    public ResponseEntity<Account> getAccount(@PathVariable(value = "id") final long id) {
         final Optional<Account> accountOptional = getAccountUseCase.getAccount(id);
         if(accountOptional.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -29,8 +31,14 @@ public class AccountsController {
         return ResponseEntity.ok().body(accountOptional.get());
     }
 
+    @GetMapping("doctors")
+    public ResponseEntity<GetAccountsResponse> getDoctors() {
+        GetAccountsResponse response = getDoctorsUseCase.getDoctors();
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping
-    public ResponseEntity<GetAccountsResponse> getAccounts(){
+    public ResponseEntity<GetAccountsResponse> getAccounts() {
         GetAccountsResponse response = getAccountsUsecase.getAll();
         return ResponseEntity.ok(response);
     }
@@ -43,7 +51,7 @@ public class AccountsController {
 
 
     @PostMapping("create-doctor")
-    public ResponseEntity<CreateAccountResponse> createDoctor(@RequestBody @Valid CreateDoctorRequest request){
+    public ResponseEntity<CreateAccountResponse> createDoctor(@RequestBody @Valid CreateDoctorRequest request){  
         CreateAccountResponse response = createAccountUseCase.createAccount(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

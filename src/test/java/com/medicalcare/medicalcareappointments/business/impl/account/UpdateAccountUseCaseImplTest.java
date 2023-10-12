@@ -115,6 +115,9 @@ class UpdateAccountUseCaseImplTest {
                 .accountType(AccountType.Doctor)
                 .Email("vasileSofroni9@gmail.com")
                 .password("12345")
+                .photo("doctor.jpg")
+                .name("vasile")
+                .fname("sofroni")
                 .username("username")
                 .specialization("health")
                 .availableTimeSlots(new ArrayList<>())
@@ -124,6 +127,9 @@ class UpdateAccountUseCaseImplTest {
                 .accountType(AccountType.Doctor)
                 .username("alex123")
                 .password("12344")
+                .photo("doctor.jpg")
+                .name("vasile")
+                .fname("sofroni")
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
                 .Email("vasile@gmail.com")
@@ -137,6 +143,9 @@ class UpdateAccountUseCaseImplTest {
         //Assert
         assertEquals(id, response.getId());
         assertEquals(request.getAccountType(), existingDoctor.getAccountType());
+        assertEquals(request.getPhoto(), existingDoctor.getPhoto());
+        assertEquals(request.getName(), existingDoctor.getName());
+        assertEquals(request.getFname(), existingDoctor.getFname());
         assertEquals(request.getPassword(), existingDoctor.getPassword());
         assertEquals(request.getUsername(), existingDoctor.getUsername());
         assertEquals(request.getEmail(), existingDoctor.getEmail());

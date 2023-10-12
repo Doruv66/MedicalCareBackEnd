@@ -76,6 +76,9 @@ class AccountConverterTest {
                 .accountId(1L)
                 .accountType(AccountType.Doctor)
                 .Email("user@email.com")
+                .photo("doctor.jpg")
+                .name("vasile")
+                .fname("sofroni")
                 .username("username")
                 .password("password")
                 .availableTimeSlots(new ArrayList<>())
@@ -88,6 +91,9 @@ class AccountConverterTest {
         //Assert
         assertTrue(doctor instanceof Doctor);
         assertEquals(doctorEntity.getAccountId(), doctor.getAccountId());
+        assertEquals(doctorEntity.getPhoto(), ((Doctor) doctor).getPhoto());
+        assertEquals(doctorEntity.getName(), ((Doctor) doctor).getName());
+        assertEquals(doctorEntity.getFname(), ((Doctor) doctor).getFname());
         assertEquals(doctorEntity.getEmail(), doctor.getEmail());
         assertEquals(doctorEntity.getAccountType(), doctor.getAccountType());
         assertEquals(doctorEntity.getUsername(), doctor.getUsername());

@@ -24,7 +24,12 @@ public class DatabaseDataInitializer {
 
     @EventListener(ApplicationReadyEvent.class)
     public void populateWithDummyData() {
-        accountRepository.save(DoctorEntity.builder().username("doctor").accountType(AccountType.Doctor).availableTimeSlots(new ArrayList<>()).Email("doctor@gmail.com").password("12345").specialization("dentist").build());
+        accountRepository.save(DoctorEntity.builder().photo("doctor").name("Emily").fname("Johnson").username("doctor").accountType(AccountType.Doctor).availableTimeSlots(new ArrayList<>()).Email("doctor@gmail.com").password("12345").specialization("Cardiologist").build());
+        accountRepository.save(DoctorEntity.builder().photo("doctor1").name("Sarah").fname("Anderson").username("doctor").accountType(AccountType.Doctor).availableTimeSlots(new ArrayList<>()).Email("doctor@gmail.com").password("12345").specialization("Gynecologist").build());
+        accountRepository.save(DoctorEntity.builder().photo("doctor2").name("Michael").fname("Smith").username("doctor").accountType(AccountType.Doctor).availableTimeSlots(new ArrayList<>()).Email("doctor@gmail.com").password("12345").specialization("Dermatologist").build());
+        accountRepository.save(DoctorEntity.builder().photo("doctor").name("Emily").fname("Johnson").username("doctor").accountType(AccountType.Doctor).availableTimeSlots(new ArrayList<>()).Email("doctor@gmail.com").password("12345").specialization("Cardiologist").build());
+        accountRepository.save(DoctorEntity.builder().photo("doctor1").name("Sarah").fname("Anderson").username("doctor").accountType(AccountType.Doctor).availableTimeSlots(new ArrayList<>()).Email("doctor@gmail.com").password("12345").specialization("Gynecologist").build());
+        accountRepository.save(DoctorEntity.builder().photo("doctor2").name("Michael").fname("Smith").username("doctor").accountType(AccountType.Doctor).availableTimeSlots(new ArrayList<>()).Email("doctor@gmail.com").password("12345").specialization("Dermatologist").build());
         accountRepository.save(UserEntity.builder().username("user").accountType(AccountType.User).Email("user@gmail.com").password("12345").firstName("user").lastName("resu").dateOfBirth(new Date()).build());
         accountRepository.save(AdminEntity.builder().username("admin").accountType(AccountType.Admin).Email("admin@gmail.com").password("12345").position("boss").build());
         reviewRepository.save(ReviewEntity.builder().comment("nice appointment").doctorId(1L).rating(5).userId(2L).build());

@@ -19,6 +19,8 @@ public class CreateDoctorRequest extends CreateAccountRequest {
 
     @NotBlank
     private String specialization;
-
+    private String photo;
+    private String name;
+    private String fname;
     private List<TimeSlot> availableTimeSlots;
 }
