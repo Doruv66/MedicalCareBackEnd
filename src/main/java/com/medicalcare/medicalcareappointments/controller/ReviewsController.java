@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/reviews")
+@CrossOrigin(origins = "http://localhost:5173")
 @AllArgsConstructor
 public class ReviewsController {
 
@@ -20,6 +21,7 @@ public class ReviewsController {
     private final DeleteReviewUseCase deleteReviewUseCase;
     private final CreateReviewUseCase createReviewUseCase;
     private final UpdateReviewUseCase updateReviewUseCase;
+    private final GetAverageReviewUseCase getAverageReviewUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<Review> getReview(@PathVariable(value = "id") final long id) {
@@ -28,6 +30,12 @@ public class ReviewsController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(reviewOptional.get());
+    }
+
+    @GetMapping("doctor/{doctorid}")
+    public ResponseEntity<GetAverageReviewResponse> getAverageReview(@PathVariable(value = "doctorid") final long doctorid) {
+        GetAverageReviewResponse response = getAverageReviewUseCase.getAverageReview(doctorid);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
