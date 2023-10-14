@@ -29,6 +29,7 @@ class GetAccountsUseCaseImplTest {
 
     @Test
     void getAccounts_shouldReturnAllAccountsConverted() {
+
         //Arrange
         UserEntity user1Enity = UserEntity.builder()
                 .username("user")
