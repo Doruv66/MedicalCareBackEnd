@@ -47,6 +47,7 @@ final class AccountConverter {
                         .photo(doctor.getPhoto())
                         .name(doctor.getName())
                         .fname(doctor.getFname())
+                        .description(doctor.getDescription())
                         .accountType(doctor.getAccountType())
                         .password(doctor.getPassword())
                         .Email(doctor.getEmail())

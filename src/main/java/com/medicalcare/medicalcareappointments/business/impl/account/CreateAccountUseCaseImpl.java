@@ -43,6 +43,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .accountType(doctorRequest.getAccountType())
                         .username(doctorRequest.getUsername())
                         .photo(doctorRequest.getPhoto())
+                        .description(doctorRequest.getDescription())
                         .name(doctorRequest.getName())
                         .fname(doctorRequest.getFname())
                         .Email(doctorRequest.getEmail())

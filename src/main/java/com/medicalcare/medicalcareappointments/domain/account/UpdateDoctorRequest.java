@@ -21,5 +21,6 @@ public class UpdateDoctorRequest extends UpdateAccountRequest {
     private String photo;
     private String name;
     private String fname;
+    private String description;
     private List<TimeSlot> availableTimeSlots;
 }

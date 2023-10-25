@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -23,6 +25,9 @@ public class CreateReviewRequest {
 
     @NotNull
     private Long userId;
+
+    @NotNull
+    private Date date;
 
     @NotNull
     private Long doctorId;

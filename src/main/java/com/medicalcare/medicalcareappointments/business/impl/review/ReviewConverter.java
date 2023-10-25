@@ -12,6 +12,7 @@ final class ReviewConverter {
                 .reviewId(review.getReviewId())
                 .comment(review.getComment())
                 .rating(review.getRating())
+                .date(review.getDate())
                 .userId(review.getUserId())
                 .doctorId(review.getDoctorId())
                 .build();

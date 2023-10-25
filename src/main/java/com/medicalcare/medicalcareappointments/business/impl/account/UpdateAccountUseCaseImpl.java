@@ -53,6 +53,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 doctor.setUsername(doctorRequest.getUsername());
                 doctor.setName(doctorRequest.getName());
                 doctor.setFname(doctorRequest.getFname());
+                doctor.setDescription(doctorRequest.getDescription());
                 doctor.setPhoto(doctorRequest.getPhoto());
                 doctor.setEmail(doctorRequest.getEmail());
                 doctor.setPassword(doctorRequest.getPassword());

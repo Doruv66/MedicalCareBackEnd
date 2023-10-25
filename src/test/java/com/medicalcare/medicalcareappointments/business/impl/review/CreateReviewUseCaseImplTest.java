@@ -10,6 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -30,12 +33,14 @@ class CreateReviewUseCaseImplTest {
         CreateReviewRequest request = CreateReviewRequest.builder()
                 .rating(4)
                 .doctorId(3L)
+                .date(new Date(2011, 11, 11))
                 .userId(3L)
                 .comment("nice appointment")
                 .build();
         ReviewEntity review = ReviewEntity.builder()
                 .reviewId(id)
                 .comment("nice appointment")
+                .date(new Date(2011, 11, 11))
                 .rating(4)
                 .userId(3L)
                 .doctorId(3L)

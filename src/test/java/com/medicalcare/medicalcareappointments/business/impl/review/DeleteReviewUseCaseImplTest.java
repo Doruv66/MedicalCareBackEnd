@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +28,7 @@ class DeleteReviewUseCaseImplTest {
         //Arrange
         long reviewId = 1L;
 
-        when(reviewRepositoryMock.findById(reviewId)).thenReturn(Optional.ofNullable(ReviewEntity.builder().comment("bad appointment").doctorId(1L).rating(1).userId(2L).build()));
+        when(reviewRepositoryMock.findById(reviewId)).thenReturn(Optional.ofNullable(ReviewEntity.builder().comment("bad appointment").date(new Date(2011, 11, 11)).doctorId(1L).rating(1).userId(2L).build()));
 
         //Act
         deleteReviewUseCase.deleteReview(reviewId);

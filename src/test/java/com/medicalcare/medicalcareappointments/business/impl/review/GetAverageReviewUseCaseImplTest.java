@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,12 +32,14 @@ class GetAverageReviewUseCaseImplTest {
         ReviewEntity review1Entity = ReviewEntity.builder()
                 .comment("nice appointment")
                 .doctorId(1L)
+                .date(new Date(2011, 11, 11))
                 .rating(5)
                 .userId(2L)
                 .build();
         ReviewEntity review2Entity = ReviewEntity.builder()
                 .comment("nice appointment")
                 .doctorId(1L)
+                .date(new Date(2011, 11, 11))
                 .rating(4)
                 .userId(2L)
                 .build();

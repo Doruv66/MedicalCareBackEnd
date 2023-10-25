@@ -27,6 +27,7 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
         ReviewEntity newReview = ReviewEntity.builder()
                 .rating(request.getRating())
                 .comment(request.getComment())
+                .date(request.getDate())
                 .userId(request.getUserId())
                 .doctorId(request.getDoctorId())
                 .build();

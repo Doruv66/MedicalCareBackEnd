@@ -34,6 +34,7 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
     private void updateFields(UpdateReviewRequest request, ReviewEntity review){
         review.setComment(request.getComment());
         review.setRating(request.getRating());
+        review.setDate(request.getDate());
         review.setDoctorId(request.getDoctorId());
         review.setUserId(request.getUserId());
         reviewRepository.save(review);

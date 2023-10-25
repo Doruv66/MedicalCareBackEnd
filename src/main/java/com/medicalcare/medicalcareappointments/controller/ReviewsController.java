@@ -22,6 +22,7 @@ public class ReviewsController {
     private final CreateReviewUseCase createReviewUseCase;
     private final UpdateReviewUseCase updateReviewUseCase;
     private final GetAverageReviewUseCase getAverageReviewUseCase;
+    private final GetDoctorReviewsUseCase getDoctorReviewsUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<Review> getReview(@PathVariable(value = "id") final long id) {
@@ -30,6 +31,12 @@ public class ReviewsController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(reviewOptional.get());
+    }
+
+    @GetMapping("doctors/{doctorid}")
+    public ResponseEntity<GetReviewsResponse> getDoctorReveiws(@PathVariable(value = "doctorid") final long doctorid) {
+        GetReviewsResponse response = getDoctorReviewsUseCase.getDoctorReviews(doctorid);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("doctor/{doctorid}")

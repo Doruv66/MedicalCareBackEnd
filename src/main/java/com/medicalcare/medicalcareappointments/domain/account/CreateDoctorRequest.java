@@ -22,5 +22,6 @@ public class CreateDoctorRequest extends CreateAccountRequest {
     private String photo;
     private String name;
     private String fname;
+    private String description;
     private List<TimeSlot> availableTimeSlots;
 }

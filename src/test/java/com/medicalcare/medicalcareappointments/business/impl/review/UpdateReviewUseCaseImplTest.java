@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Date;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +29,7 @@ class UpdateReviewUseCaseImplTest {
     public void updateReview_shouldUpdateReview() {
         // Arrange
         long id = 1L;
-        UpdateReviewRequest request = new UpdateReviewRequest(5, "New comment", 1L, 2L);
+        UpdateReviewRequest request = new UpdateReviewRequest(5, "New comment", 1L,new Date(2011, 11, 11), 2L);
         ReviewEntity existingReview = ReviewEntity.builder().reviewId(1L).comment("nice appointment").doctorId(1L).rating(5).userId(2L).build();
 
         when(reviewRepositoryMock.findById(id)).thenReturn(Optional.of(existingReview));
@@ -39,6 +40,7 @@ class UpdateReviewUseCaseImplTest {
         // Assert
         assertEquals(id, response.getId());
         assertEquals(request.getComment(), existingReview.getComment());
+        assertEquals(request.getDate(), existingReview.getDate());
         assertEquals(request.getRating(), existingReview.getRating());
         assertEquals(request.getDoctorId(), existingReview.getDoctorId());
         assertEquals(request.getUserId(), existingReview.getUserId());
@@ -50,7 +52,7 @@ class UpdateReviewUseCaseImplTest {
     public void updateReview_shouldThrowNotFoundException() {
         // Arrange
         long id = 1L;
-        UpdateReviewRequest request = new UpdateReviewRequest(5, "nice appointment", 1L, 2L);
+        UpdateReviewRequest request = new UpdateReviewRequest(5, "nice appointment", 1L,new Date(2011, 11, 11), 2L);
 
         when(reviewRepositoryMock.findById(id)).thenReturn(Optional.empty());
 

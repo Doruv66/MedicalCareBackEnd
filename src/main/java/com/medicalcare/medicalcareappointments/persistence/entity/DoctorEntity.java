@@ -14,5 +14,6 @@ public class DoctorEntity extends AccountEntity{
     private String photo;
     private String name;
     private String fname;
+    private String description;
     private List<TimeSlotEntity> availableTimeSlots;
 }
