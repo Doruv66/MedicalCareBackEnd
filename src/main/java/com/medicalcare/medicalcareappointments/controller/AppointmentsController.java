@@ -16,6 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/appointments")
+@CrossOrigin(origins = "http://localhost:5173")
 @AllArgsConstructor
 public class AppointmentsController {
     private final GetAppointmentsUseCase getAppointmentsUseCase;
