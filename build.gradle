@@ -46,8 +46,6 @@ sonar {
 		property "sonar.projectKey", "MedicalCare"
 		property "sonar.projectName", "MedicalCare"
 		property "sonar.qualitygate.wait", true
-		property "sonar.host.url", "http://localhost:9000"
-		property "sonar.token", "sqp_1b20b40fe8410399f198a41e488f95213f4aab83"
 		property "sonar.coverage.jacoco.xmlReportPath", "${buildDir}/reports/jacoco.xml"
 	}
 }
@@ -55,10 +53,6 @@ sonar {
 test {
 	useJUnitPlatform()
 	finalizedBy jacocoTestReport // report is always generated after tests run
-	jacoco {
-		destinationFile = layout.buildDirectory.file('jacoco/jacocoTest.exec').get().asFile
-		classDumpDir = layout.buildDirectory.dir('jacoco/classpathdumps').get().asFile
-	}// report is always generated after tests run
 }
 jacocoTestReport {
 	dependsOn test // tests are required to run before generating the report
