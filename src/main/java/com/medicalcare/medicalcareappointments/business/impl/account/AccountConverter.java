@@ -1,14 +1,10 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
-import com.medicalcare.medicalcareappointments.business.impl.appointment.TimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.Admin;
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
 import com.medicalcare.medicalcareappointments.domain.account.User;
-import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.*;
 
 final class AccountConverter {
 

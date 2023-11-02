@@ -1,6 +1,6 @@
-package com.medicalcare.medicalcareappointments.business.impl.appointment;
+package com.medicalcare.medicalcareappointments.business.impl.account;
 
-import com.medicalcare.medicalcareappointments.domain.appointment.TimeSlot;
+import com.medicalcare.medicalcareappointments.domain.account.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 
 public class TimeSlotConverter {
