@@ -4,6 +4,7 @@ import com.medicalcare.medicalcareappointments.domain.account.Account;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -14,5 +15,5 @@ import java.util.Date;
 public class User extends Account {
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
+    private Timestamp dateOfBirth;
 }

@@ -1,5 +1,6 @@
-package com.medicalcare.medicalcareappointments.business.impl.appointment;
+package com.medicalcare.medicalcareappointments.business.impl.account;
 
+import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.business.impl.account.ReverseTimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.account.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
@@ -15,8 +16,10 @@ class ReverseTimeSlotConverterTest {
     void reverseConvertTimeSlotEntity_shouldReverseConvertToTimeSlot() {
         //Arrange
         TimeSlot timeSlot = TimeSlot.builder()
+                .timeSlotId(1L)
                 .startTime(new Timestamp(new Date(2011, 11, 11).getTime()))
                 .endTime(new Timestamp(new Date(2011, 11, 11).getTime()))
+                .doctor(AccountUtilClass.createDoctor())
                 .build();
 
         //Act

@@ -1,15 +1,22 @@
 package com.medicalcare.medicalcareappointments.business.impl.review;
 
+import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
+import com.medicalcare.medicalcareappointments.domain.account.Doctor;
+import com.medicalcare.medicalcareappointments.domain.account.User;
+import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.review.CreateReviewRequest;
 import com.medicalcare.medicalcareappointments.domain.review.CreateReviewResponse;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
+import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -32,18 +39,17 @@ class CreateReviewUseCaseImplTest {
         long id = 1;
         CreateReviewRequest request = CreateReviewRequest.builder()
                 .rating(4)
-                .doctorId(3L)
-                .date(new Date(2011, 11, 11))
-                .userId(3L)
+                .user(AccountUtilClass.createUser())
+                .doctor(AccountUtilClass.createDoctor())
+                .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .comment("nice appointment")
                 .build();
         ReviewEntity review = ReviewEntity.builder()
                 .reviewId(id)
-                .comment("nice appointment")
-                .date(new Date(2011, 11, 11))
                 .rating(4)
-                .userId(3L)
-                .doctorId(3L)
+                .user(AccountUtilClass.createUserEntity())
+                .doctor(AccountUtilClass.createDoctorEntity())
+                .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         when(reviewRepositoryMock.save(any(ReviewEntity.class))).thenReturn(review);
 

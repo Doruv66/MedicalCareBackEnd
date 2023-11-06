@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -23,5 +24,5 @@ public class CreateUserRequest extends CreateAccountRequest {
     private String lastName;
 
 
-    private Date dateOfBirth;
+    private Timestamp dateOfBirth;
 }

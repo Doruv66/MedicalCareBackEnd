@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -34,20 +35,20 @@ class GetAccountsUseCaseImplTest {
         UserEntity user1Enity = UserEntity.builder()
                 .username("user")
                 .accountType(AccountType.User)
-                .Email("user@gmail.com")
+                .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
-                .dateOfBirth(new Date(2011, 11,11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         UserEntity user2Enity = UserEntity.builder()
                 .username("user")
                 .accountType(AccountType.User)
-                .Email("user@gmail.com")
+                .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
-                .dateOfBirth(new Date(2011, 11,11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 
         when(accountRepositoryMock.findAll())
@@ -61,20 +62,20 @@ class GetAccountsUseCaseImplTest {
         User user1= User.builder()
                 .username("user")
                 .accountType(AccountType.User)
-                .Email("user@gmail.com")
+                .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
-                .dateOfBirth(new Date(2011, 11,11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         User user2 = User.builder()
                 .username("user")
                 .accountType(AccountType.User)
-                .Email("user@gmail.com")
+                .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
-                .dateOfBirth(new Date(2011, 11,11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 
         GetAccountsResponse expectedResult = GetAccountsResponse.builder().accounts(List.of(user1, user2)).build();
@@ -82,6 +83,4 @@ class GetAccountsUseCaseImplTest {
         assertEquals(actualResult, expectedResult);
         verify(accountRepositoryMock).findAll();
     }
-
-
 }

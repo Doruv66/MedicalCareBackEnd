@@ -20,7 +20,7 @@ public class CreateAccountRequest {
     private String password;
 
     @NotBlank
-    private String Email;
+    private String email;
 
 
     private AccountType accountType;

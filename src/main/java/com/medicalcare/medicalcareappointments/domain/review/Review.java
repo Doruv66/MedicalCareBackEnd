@@ -1,10 +1,13 @@
 package com.medicalcare.medicalcareappointments.domain.review;
 
+import com.medicalcare.medicalcareappointments.domain.account.Doctor;
+import com.medicalcare.medicalcareappointments.domain.account.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -13,9 +16,9 @@ import java.util.Date;
 @AllArgsConstructor
 public class Review {
     private Long reviewId;
-    private Date date;
+    private Timestamp date;
     private int rating;
     private String comment;
-    private Long userId;
-    private Long doctorId;
+    private User user;
+    private Doctor doctor;
 }

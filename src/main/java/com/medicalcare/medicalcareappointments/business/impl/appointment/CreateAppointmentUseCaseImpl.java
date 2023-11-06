@@ -1,10 +1,13 @@
 package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.CreateAppointmentUseCase;
+import com.medicalcare.medicalcareappointments.business.impl.account.ReverseAccountConverter;
 import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointmentResponse;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +29,8 @@ public class CreateAppointmentUseCaseImpl implements CreateAppointmentUseCase {
         AppointmentEntity newAppointment = AppointmentEntity.builder()
                 .appointmentStatus(request.getAppointmentStatus())
                 .dateTime(request.getDateTime())
-                .doctorId(request.getDoctorId())
-                .userId(request.getUserId())
+                .doctor((DoctorEntity) ReverseAccountConverter.convert(request.getDoctor()))
+                .user((UserEntity) ReverseAccountConverter.convert(request.getUser()))
                 .build();
         return appointmentRepository.save(newAppointment);
     }

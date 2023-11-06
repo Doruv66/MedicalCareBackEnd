@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ class DeleteAccountUseCaseImplTest {
         //Arrange
         long accountId = 1L;
 
-        when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.ofNullable(UserEntity.builder().username("user").accountType(AccountType.User).Email("user@gmail.com").password("12345").firstName("user").lastName("resu").dateOfBirth(new Date()).build()));
+        when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.ofNullable(UserEntity.builder().username("user").accountType(AccountType.User).email("user@gmail.com").password("12345").firstName("user").lastName("resu").dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime())).build()));
 
         //Act
         deleteAccountUseCase.deleteAccount(accountId);

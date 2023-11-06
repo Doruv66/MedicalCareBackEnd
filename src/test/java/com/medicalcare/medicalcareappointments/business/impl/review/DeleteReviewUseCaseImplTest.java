@@ -1,14 +1,20 @@
 package com.medicalcare.medicalcareappointments.business.impl.review;
 
+import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
+import com.medicalcare.medicalcareappointments.domain.account.Doctor;
+import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.exception.NotFoundReviewException;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
+import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Optional;
 
@@ -28,7 +34,11 @@ class DeleteReviewUseCaseImplTest {
         //Arrange
         long reviewId = 1L;
 
-        when(reviewRepositoryMock.findById(reviewId)).thenReturn(Optional.ofNullable(ReviewEntity.builder().comment("bad appointment").date(new Date(2011, 11, 11)).doctorId(1L).rating(1).userId(2L).build()));
+        when(reviewRepositoryMock.findById(reviewId)).thenReturn(Optional.ofNullable(ReviewEntity.builder().comment("bad appointment")
+                .user(AccountUtilClass.createUserEntity())
+                .doctor(AccountUtilClass.createDoctorEntity())
+                .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .rating(1).build()));
 
         //Act
         deleteReviewUseCase.deleteReview(reviewId);

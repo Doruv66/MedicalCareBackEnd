@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +37,7 @@ class GetDoctorsUseCaseImplTest {
         DoctorEntity doctorEntity1 = DoctorEntity.builder()
                 .username("doctor1")
                 .accountType(AccountType.Doctor)
-                .Email("doctor1@gamil.com")
+                .email("doctor1@gamil.com")
                 .description("A nice doctor with plenty of experience")
                 .password("secret")
                 .name("name")
@@ -47,7 +48,7 @@ class GetDoctorsUseCaseImplTest {
         DoctorEntity doctorEntity2 = DoctorEntity.builder()
                 .username("doctor2")
                 .accountType(AccountType.Doctor)
-                .Email("doctor2@gamil.com")
+                .email("doctor2@gamil.com")
                 .password("secret")
                 .name("name")
                 .description("A nice doctor with plenty of experience")
@@ -58,11 +59,11 @@ class GetDoctorsUseCaseImplTest {
         UserEntity userEnity = UserEntity.builder()
                 .username("user")
                 .accountType(AccountType.User)
-                .Email("user@gmail.com")
+                .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
-                .dateOfBirth(new Date(2011, 11,11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 
         when(accountRepositoryMock.findAll())
@@ -75,7 +76,7 @@ class GetDoctorsUseCaseImplTest {
         Doctor doctor1 = Doctor.builder()
                 .username("doctor1")
                 .accountType(AccountType.Doctor)
-                .Email("doctor1@gamil.com")
+                .email("doctor1@gamil.com")
                 .description("A nice doctor with plenty of experience")
                 .password("secret")
                 .name("name")
@@ -87,7 +88,7 @@ class GetDoctorsUseCaseImplTest {
                 .username("doctor2")
                 .accountType(AccountType.Doctor)
                 .description("A nice doctor with plenty of experience")
-                .Email("doctor2@gamil.com")
+                .email("doctor2@gamil.com")
                 .password("secret")
                 .name("name")
                 .fname("fname")

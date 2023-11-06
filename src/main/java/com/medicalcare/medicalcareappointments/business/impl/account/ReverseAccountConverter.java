@@ -4,18 +4,20 @@ import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.Admin;
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
 import com.medicalcare.medicalcareappointments.domain.account.User;
-import com.medicalcare.medicalcareappointments.persistence.entity.*;
+import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 
-public class AccountConverter {
+public class ReverseAccountConverter {
+    public ReverseAccountConverter(){}
 
-    private AccountConverter(){}
-
-    public static Account convert(AccountEntity acc){
+    public static AccountEntity convert(Account acc){
 
         return switch (acc.getAccountType()) {
             case Admin -> {
-                AdminEntity admin = (AdminEntity) acc;
-                yield Admin.builder()
+                Admin admin = (Admin) acc;
+                yield AdminEntity.builder()
                         .accountId(admin.getAccountId())
                         .accountType(admin.getAccountType())
                         .password(admin.getPassword())
@@ -25,8 +27,8 @@ public class AccountConverter {
                         .build();
             }
             case User -> {
-                UserEntity user = (UserEntity) acc;
-                yield User.builder()
+                User user = (User) acc;
+                yield UserEntity.builder()
                         .accountId(user.getAccountId())
                         .accountType(user.getAccountType())
                         .username(user.getUsername())
@@ -38,8 +40,8 @@ public class AccountConverter {
                         .build();
             }
             case Doctor -> {
-                DoctorEntity doctor = (DoctorEntity) acc;
-                yield Doctor.builder()
+                Doctor doctor = (Doctor) acc;
+                yield DoctorEntity.builder()
                         .accountId(doctor.getAccountId())
                         .photo(doctor.getPhoto())
                         .name(doctor.getName())
@@ -51,11 +53,11 @@ public class AccountConverter {
                         .username(doctor.getUsername())
                         .specialization(doctor.getSpecialization())
                         .availableTimeSlots(doctor.getAvailableTimeSlots().stream()
-                                .map(TimeSlotConverter::convert)
+                                .map(ReverseTimeSlotConverter::convert)
                                 .toList())
                         .build();
             }
-            default -> Account.builder()
+            default -> AccountEntity.builder()
                     .accountId(acc.getAccountId())
                     .email(acc.getEmail())
                     .password(acc.getPassword())
@@ -63,7 +65,5 @@ public class AccountConverter {
                     .accountType(acc.getAccountType())
                     .build();
         };
-
     }
-
 }

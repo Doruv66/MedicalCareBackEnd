@@ -5,6 +5,7 @@ import com.medicalcare.medicalcareappointments.business.impl.account.AccountConv
 import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.GetAccountsResponse;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class GetAccountsUseCaseImpl implements GetAccountsUsecase {
 
     private AccountRepository accountRepository;
 
+    @Transactional
     @Override
     public GetAccountsResponse getAll() {
         final GetAccountsResponse response = new GetAccountsResponse();

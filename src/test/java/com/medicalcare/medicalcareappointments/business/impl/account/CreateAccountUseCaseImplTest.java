@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,20 +37,20 @@ class CreateAccountUseCaseImplTest {
                 .accountType(AccountType.User)
                 .username("vasile")
                 .password("1234")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .firstName("vasile")
                 .lastName("sofroni")
-                .dateOfBirth(new Date(2011, 11, 11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         UserEntity user = UserEntity.builder()
                 .accountId(id)
                 .accountType(AccountType.User)
                 .username("vasile")
                 .password("1234")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .firstName("vasile")
                 .lastName("sofroni")
-                .dateOfBirth(new Date(2011, 11, 11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         when(accountRepositoryMock.save(any(AccountEntity.class))).thenReturn(user);
 
@@ -70,7 +71,7 @@ class CreateAccountUseCaseImplTest {
                 .accountType(AccountType.Admin)
                 .username("vasile")
                 .password("1234")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .position("position")
                 .build();
         AdminEntity doctor = AdminEntity.builder()
@@ -78,7 +79,7 @@ class CreateAccountUseCaseImplTest {
                 .accountType(AccountType.Admin)
                 .username("vasile")
                 .password("1234")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .position("position")
                 .build();
         when(accountRepositoryMock.save(any(AccountEntity.class))).thenReturn(doctor);
@@ -104,7 +105,7 @@ class CreateAccountUseCaseImplTest {
                 .photo("doctor.jpg")
                 .name("vasile")
                 .fname("sofroni")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
                 .build();
@@ -117,7 +118,7 @@ class CreateAccountUseCaseImplTest {
                 .photo("doctor.jpg")
                 .name("vasile")
                 .fname("sofroni")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
                 .build();

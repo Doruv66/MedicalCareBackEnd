@@ -1,5 +1,7 @@
 package com.medicalcare.medicalcareappointments.domain.review;
 
+import com.medicalcare.medicalcareappointments.domain.account.Doctor;
+import com.medicalcare.medicalcareappointments.domain.account.User;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -9,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
@@ -24,11 +27,11 @@ public class UpdateReviewRequest {
     private String comment;
 
     @NotNull
-    private Long userId;
+    private User user;
 
     @NotNull
-    private Date date;
+    private Timestamp date;
 
     @NotNull
-    private Long doctorId;
+    private Doctor doctor;
 }

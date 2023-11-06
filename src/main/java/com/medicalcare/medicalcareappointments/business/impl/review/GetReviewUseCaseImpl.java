@@ -3,6 +3,7 @@ package com.medicalcare.medicalcareappointments.business.impl.review;
 import com.medicalcare.medicalcareappointments.business.GetReviewUseCase;
 import com.medicalcare.medicalcareappointments.domain.review.Review;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ public class GetReviewUseCaseImpl implements GetReviewUseCase {
 
     private final ReviewRepository reviewRepository;
 
+    @Transactional
     @Override
     public Optional<Review> getReview(long id) {
         return reviewRepository.findById(id).map(ReviewConverter::convert);

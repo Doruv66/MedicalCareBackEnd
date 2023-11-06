@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
@@ -35,10 +36,10 @@ class UpdateAccountUseCaseImplTest {
                 .firstName("vasile")
                 .lastName("sofroni")
                 .accountType(AccountType.User)
-                .Email("vasileSofroni9@gmail.com")
+                .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .username("username")
-                .dateOfBirth(new Date(2011, 11, 11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         UserEntity existingUser = UserEntity.builder()
                 .accountId(1L)
@@ -46,9 +47,9 @@ class UpdateAccountUseCaseImplTest {
                 .lastName("mella")
                 .accountType(AccountType.User)
                 .username("alex123")
-                .dateOfBirth(new Date(2011, 11, 11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .password("12344")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .build();
 
         when(accountRepositoryMock.findById(id)).thenReturn(Optional.of(existingUser));
@@ -75,7 +76,7 @@ class UpdateAccountUseCaseImplTest {
         long id = 1;
         UpdateAdminRequest request = UpdateAdminRequest.builder()
                 .accountType(AccountType.Admin)
-                .Email("vasileSofroni9@gmail.com")
+                .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .username("username")
                 .position("boss")
@@ -86,7 +87,7 @@ class UpdateAccountUseCaseImplTest {
                 .username("alex123")
                 .password("12344")
                 .position("not boss")
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .build();
 
         when(accountRepositoryMock.findById(id)).thenReturn(Optional.of(existingDoctor));
@@ -111,7 +112,7 @@ class UpdateAccountUseCaseImplTest {
         long id = 1;
         UpdateDoctorRequest request = UpdateDoctorRequest.builder()
                 .accountType(AccountType.Doctor)
-                .Email("vasileSofroni9@gmail.com")
+                .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .photo("doctor.jpg")
                 .name("vasile")
@@ -132,7 +133,7 @@ class UpdateAccountUseCaseImplTest {
                 .fname("sofroni")
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
-                .Email("vasile@gmail.com")
+                .email("vasile@gmail.com")
                 .build();
 
         when(accountRepositoryMock.findById(id)).thenReturn(Optional.of(existingDoctor));
@@ -162,7 +163,7 @@ class UpdateAccountUseCaseImplTest {
         long id = 1L;
         UpdateAccountRequest request = UpdateAccountRequest.builder()
                 .accountType(AccountType.Admin)
-                .Email("vasileSofroni9@gmail.com")
+                .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .username("username")
                 .build();

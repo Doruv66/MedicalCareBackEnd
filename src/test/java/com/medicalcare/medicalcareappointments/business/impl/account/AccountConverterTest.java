@@ -6,6 +6,7 @@ import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,11 +20,10 @@ class AccountConverterTest {
         UserEntity userEntity = UserEntity.builder()
                 .accountId(1L)
                 .accountType(AccountType.User)
-                .Email("user@email.com")
+                .email("user@email.com")
                 .username("username")
                 .password("password")
-                .dateOfBirth(new Date(2011, 11, 11))
-                .firstName("firstname")
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))                .firstName("firstname")
                 .lastName("lastname")
                 .build();
 
@@ -48,7 +48,7 @@ class AccountConverterTest {
         AdminEntity adminEntity = AdminEntity.builder()
                 .accountId(1L)
                 .accountType(AccountType.Admin)
-                .Email("user@email.com")
+                .email("user@email.com")
                 .username("username")
                 .password("password")
                 .position("boss")
@@ -73,7 +73,7 @@ class AccountConverterTest {
         DoctorEntity doctorEntity = DoctorEntity.builder()
                 .accountId(1L)
                 .accountType(AccountType.Doctor)
-                .Email("user@email.com")
+                .email("user@email.com")
                 .description("A nice doctor with plenty of experience")
                 .photo("doctor.jpg")
                 .name("vasile")

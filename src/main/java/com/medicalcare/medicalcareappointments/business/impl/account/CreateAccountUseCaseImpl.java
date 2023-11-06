@@ -31,7 +31,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                 CreateAdminRequest adminRequest = (CreateAdminRequest) request;
                 yield AdminEntity.builder()
                         .accountType(adminRequest.getAccountType())
-                        .Email(adminRequest.getEmail())
+                        .email(adminRequest.getEmail())
                         .username(adminRequest.getUsername())
                         .password(adminRequest.getPassword())
                         .position(adminRequest.getPosition()).build();
@@ -45,7 +45,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .description(doctorRequest.getDescription())
                         .name(doctorRequest.getName())
                         .fname(doctorRequest.getFname())
-                        .Email(doctorRequest.getEmail())
+                        .email(doctorRequest.getEmail())
                         .password(doctorRequest.getPassword())
                         .specialization(doctorRequest.getSpecialization())
                         .availableTimeSlots(doctorRequest.getAvailableTimeSlots()
@@ -58,7 +58,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                 CreateUserRequest userRequest = (CreateUserRequest) request;
                 yield UserEntity.builder()
                         .accountType(userRequest.getAccountType())
-                        .Email(userRequest.getEmail())
+                        .email(userRequest.getEmail())
                         .username(userRequest.getUsername())
                         .password(userRequest.getPassword())
                         .firstName(userRequest.getFirstName())

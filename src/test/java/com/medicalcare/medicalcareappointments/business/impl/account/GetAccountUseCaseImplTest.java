@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Optional;
 
@@ -34,11 +35,11 @@ class GetAccountUseCaseImplTest {
                 .accountId(1L)
                 .username("user")
                 .accountType(AccountType.User)
-                .Email("user@gmail.com")
+                .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
-                .dateOfBirth(new Date(2011, 11, 11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         when(accountRepositoryMock.findById(1L))
                 .thenReturn(Optional.ofNullable(accountEntity));
@@ -52,11 +53,11 @@ class GetAccountUseCaseImplTest {
                 .accountId(1L)
                 .username("user")
                 .accountType(AccountType.User)
-                .Email("user@gmail.com")
+                .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
-                .dateOfBirth(new Date(2011, 11, 11))
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 
         assertEquals(actualResult, expectedResult);
