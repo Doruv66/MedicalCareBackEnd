@@ -11,7 +11,7 @@ import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 
 public class ReverseAccountConverter {
-    // This constructor is intentionally left empty. It can be used for default initialization
+    // This constructor is intentionally left empty. It can be used for default initialization.
     private ReverseAccountConverter(){}
 
     public static AccountEntity convert(Account acc){
