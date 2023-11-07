@@ -31,7 +31,15 @@ class DeleteAccountUseCaseImplTest {
         //Arrange
         long accountId = 1L;
 
-        when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.ofNullable(UserEntity.builder().username("user").accountType(AccountType.User).email("user@gmail.com").password("12345").firstName("user").lastName("resu").dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime())).build()));
+        when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.ofNullable(UserEntity.builder()
+                .username("user")
+                .accountType(AccountType.USER)
+                .email("user@gmail.com")
+                .password("12345")
+                .firstName("user")
+                .lastName("resu")
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .build()));
 
         //Act
         deleteAccountUseCase.deleteAccount(accountId);

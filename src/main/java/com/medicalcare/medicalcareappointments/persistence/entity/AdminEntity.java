@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Data
 @SuperBuilder
-@DiscriminatorValue("Admin")
+@DiscriminatorValue("ADMIN")
 @Table(name = "admin")
 @NoArgsConstructor
 @AllArgsConstructor

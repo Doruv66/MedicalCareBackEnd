@@ -1,7 +1,7 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
 public enum AccountType {
-    User,
-    Doctor,
-    Admin
+    USER,
+    DOCTOR,
+    ADMIN
 }

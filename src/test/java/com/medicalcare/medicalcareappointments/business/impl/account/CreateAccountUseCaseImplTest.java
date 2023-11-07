@@ -34,7 +34,7 @@ class CreateAccountUseCaseImplTest {
         //Arrange
         long id = 1;
         CreateUserRequest request = CreateUserRequest.builder()
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .username("vasile")
                 .password("1234")
                 .email("vasile@gmail.com")
@@ -44,7 +44,7 @@ class CreateAccountUseCaseImplTest {
                 .build();
         UserEntity user = UserEntity.builder()
                 .accountId(id)
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .username("vasile")
                 .password("1234")
                 .email("vasile@gmail.com")
@@ -68,7 +68,7 @@ class CreateAccountUseCaseImplTest {
         //Arrange
         long id = 1;
         CreateAdminRequest request = CreateAdminRequest.builder()
-                .accountType(AccountType.Admin)
+                .accountType(AccountType.ADMIN)
                 .username("vasile")
                 .password("1234")
                 .email("vasile@gmail.com")
@@ -76,7 +76,7 @@ class CreateAccountUseCaseImplTest {
                 .build();
         AdminEntity doctor = AdminEntity.builder()
                 .accountId(id)
-                .accountType(AccountType.Admin)
+                .accountType(AccountType.ADMIN)
                 .username("vasile")
                 .password("1234")
                 .email("vasile@gmail.com")
@@ -98,7 +98,7 @@ class CreateAccountUseCaseImplTest {
         //Arrange
         long id = 1;
         CreateDoctorRequest request = CreateDoctorRequest.builder()
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .username("vasile")
                 .password("1234")
                 .description("A nice doctor with plenty of experience")
@@ -111,7 +111,7 @@ class CreateAccountUseCaseImplTest {
                 .build();
         DoctorEntity doctor = DoctorEntity.builder()
                 .accountId(id)
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .username("vasile")
                 .description("A nice doctor with plenty of experience")
                 .password("1234")

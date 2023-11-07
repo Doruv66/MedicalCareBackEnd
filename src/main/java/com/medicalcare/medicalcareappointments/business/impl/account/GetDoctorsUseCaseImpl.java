@@ -22,7 +22,7 @@ public class GetDoctorsUseCaseImpl implements GetDoctorsUseCase {
     public GetAccountsResponse getDoctors() {
         final GetAccountsResponse response = new GetAccountsResponse();
         List<Account> doctors = accountRepository.findAll().stream()
-                .filter(account -> account.getAccountType() == AccountType.Doctor)
+                .filter(account -> account.getAccountType() == AccountType.DOCTOR)
                 .map(AccountConverter::convert)
                 .toList();
         response.setAccounts(doctors);

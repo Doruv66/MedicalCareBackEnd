@@ -22,10 +22,10 @@ class AppointmentConverterTest {
         //Arrange
         AppointmentEntity appointmentEntity = AppointmentEntity.builder()
                 .appointmentId(1L)
-                .appointmentStatus(AppointmentStatus.Confirmed)
+                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .user(AccountUtilClass.createUserEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
-                .appointmentStatus(AppointmentStatus.Pending)
+                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 

@@ -16,7 +16,7 @@ import java.util.Objects;
 @Entity
 @Data
 @SuperBuilder
-@DiscriminatorValue("Doctor")
+@DiscriminatorValue("DOCTOR")
 @Table(name = "doctor")
 @NoArgsConstructor
 @AllArgsConstructor

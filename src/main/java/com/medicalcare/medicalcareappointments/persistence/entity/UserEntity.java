@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @Entity
 @Data
 @SuperBuilder
-@DiscriminatorValue("User")
+@DiscriminatorValue("USER")
 @Table(name = "user")
 @NoArgsConstructor
 @AllArgsConstructor

@@ -34,7 +34,7 @@ class GetAccountsUseCaseImplTest {
         //Arrange
         UserEntity user1Enity = UserEntity.builder()
                 .username("user")
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -43,7 +43,7 @@ class GetAccountsUseCaseImplTest {
                 .build();
         UserEntity user2Enity = UserEntity.builder()
                 .username("user")
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -61,7 +61,7 @@ class GetAccountsUseCaseImplTest {
         //Assert
         User user1= User.builder()
                 .username("user")
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -70,7 +70,7 @@ class GetAccountsUseCaseImplTest {
                 .build();
         User user2 = User.builder()
                 .username("user")
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")

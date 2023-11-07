@@ -14,7 +14,7 @@ public class AccountConverter {
     public static Account convert(AccountEntity acc){
 
         return switch (acc.getAccountType()) {
-            case Admin -> {
+            case ADMIN -> {
                 AdminEntity admin = (AdminEntity) acc;
                 yield Admin.builder()
                         .accountId(admin.getAccountId())
@@ -25,7 +25,7 @@ public class AccountConverter {
                         .username(admin.getUsername())
                         .build();
             }
-            case User -> {
+            case USER -> {
                 UserEntity user = (UserEntity) acc;
                 yield User.builder()
                         .accountId(user.getAccountId())
@@ -38,7 +38,7 @@ public class AccountConverter {
                         .dateOfBirth(user.getDateOfBirth())
                         .build();
             }
-            case Doctor -> {
+            case DOCTOR -> {
                 DoctorEntity doctor = (DoctorEntity) acc;
                 yield Doctor.builder()
                         .accountId(doctor.getAccountId())

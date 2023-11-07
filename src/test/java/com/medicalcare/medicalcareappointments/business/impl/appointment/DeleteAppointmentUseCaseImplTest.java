@@ -37,7 +37,7 @@ class DeleteAppointmentUseCaseImplTest {
         long appointmentId = 1L;
 
         when(appointmentRepositoryMock.findById(appointmentId)).thenReturn(Optional.ofNullable(AppointmentEntity.builder()
-                .appointmentStatus(AppointmentStatus.Confirmed)
+                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .user(AccountUtilClass.createUserEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))

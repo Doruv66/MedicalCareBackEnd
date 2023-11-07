@@ -21,7 +21,7 @@ class ReverseAccountConverterTest {
         //Arrange
         User user = User.builder()
                 .accountId(1L)
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("user@email.com")
                 .username("username")
                 .password("password")
@@ -49,7 +49,7 @@ class ReverseAccountConverterTest {
         //Arrange
         Admin admin = Admin.builder()
                 .accountId(1L)
-                .accountType(AccountType.Admin)
+                .accountType(AccountType.ADMIN)
                 .email("user@email.com")
                 .username("username")
                 .password("password")
@@ -74,7 +74,7 @@ class ReverseAccountConverterTest {
         //Arrange
         Doctor doctor = Doctor.builder()
                 .accountId(1L)
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .email("user@email.com")
                 .description("A nice doctor with plenty of experience")
                 .photo("doctor.jpg")

@@ -37,7 +37,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
 
     private void updateFields(UpdateAccountRequest request, AccountEntity account){
         switch (account.getAccountType()) {
-            case Admin -> {
+            case ADMIN -> {
                 UpdateAdminRequest adminRequest = (UpdateAdminRequest) request;
                 AdminEntity admin = (AdminEntity) account;
                 admin.setAccountType(adminRequest.getAccountType());
@@ -46,7 +46,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 admin.setPassword(adminRequest.getPassword());
                 admin.setPosition(adminRequest.getPosition());
             }
-            case Doctor -> {
+            case DOCTOR -> {
                 UpdateDoctorRequest doctorRequest = (UpdateDoctorRequest) request;
                 DoctorEntity doctor = (DoctorEntity) account;
                 doctor.setAccountType(doctorRequest.getAccountType());
@@ -63,7 +63,7 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                         .map(ReverseTimeSlotConverter::convert)
                         .toList());
             }
-            case User -> {
+            case USER -> {
                 UpdateUserRequest userRequest = (UpdateUserRequest) request;
                 UserEntity user = (UserEntity) account;
                 user.setAccountType(userRequest.getAccountType());

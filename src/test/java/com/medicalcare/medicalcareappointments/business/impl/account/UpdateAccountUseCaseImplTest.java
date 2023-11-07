@@ -36,7 +36,7 @@ class UpdateAccountUseCaseImplTest {
         UpdateUserRequest request = UpdateUserRequest.builder()
                 .firstName("vasile")
                 .lastName("sofroni")
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .username("username")
@@ -46,7 +46,7 @@ class UpdateAccountUseCaseImplTest {
                 .accountId(1L)
                 .firstName("alex")
                 .lastName("mella")
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .username("alex123")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .password("12344")
@@ -76,7 +76,7 @@ class UpdateAccountUseCaseImplTest {
         //Arrange
         long id = 1;
         UpdateAdminRequest request = UpdateAdminRequest.builder()
-                .accountType(AccountType.Admin)
+                .accountType(AccountType.ADMIN)
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .username("username")
@@ -84,7 +84,7 @@ class UpdateAccountUseCaseImplTest {
                 .build();
         AdminEntity existingDoctor = AdminEntity.builder()
                 .accountId(1L)
-                .accountType(AccountType.Admin)
+                .accountType(AccountType.ADMIN)
                 .username("alex123")
                 .password("12344")
                 .position("not boss")
@@ -112,7 +112,7 @@ class UpdateAccountUseCaseImplTest {
         //Arrange
         long id = 1;
         UpdateDoctorRequest request = UpdateDoctorRequest.builder()
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .photo("doctor.jpg")
@@ -125,7 +125,7 @@ class UpdateAccountUseCaseImplTest {
                 .build();
         DoctorEntity existingDoctor = DoctorEntity.builder()
                 .accountId(1L)
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .username("alex123")
                 .password("12344")
                 .photo("doctor.jpg")
@@ -163,7 +163,7 @@ class UpdateAccountUseCaseImplTest {
         //Arrange
         long id = 1L;
         UpdateAccountRequest request = UpdateAccountRequest.builder()
-                .accountType(AccountType.Admin)
+                .accountType(AccountType.ADMIN)
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .username("username")

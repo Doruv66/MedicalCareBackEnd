@@ -37,14 +37,14 @@ class GetAppointmentsUseCaseImplTest {
         //Arrange
         AppointmentEntity appointment1Entity = AppointmentEntity.builder()
                 .appointmentId(1L)
-                .appointmentStatus(AppointmentStatus.Pending)
+                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .user(AccountUtilClass.createUserEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         AppointmentEntity appointment2Entity = AppointmentEntity.builder()
                 .appointmentId(2L)
-                .appointmentStatus(AppointmentStatus.Pending)
+                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .user(AccountUtilClass.createUserEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
@@ -58,14 +58,14 @@ class GetAppointmentsUseCaseImplTest {
         //Assert
         Appointment appointment1 = Appointment.builder()
                 .appointmentId(1L)
-                .appointmentStatus(AppointmentStatus.Pending)
+                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .user(AccountUtilClass.createUser())
                 .doctor(AccountUtilClass.createDoctor())
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
         Appointment appointment2 = Appointment.builder()
                 .appointmentId(2L)
-                .appointmentStatus(AppointmentStatus.Pending)
+                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .user(AccountUtilClass.createUser())
                 .doctor(AccountUtilClass.createDoctor())
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))

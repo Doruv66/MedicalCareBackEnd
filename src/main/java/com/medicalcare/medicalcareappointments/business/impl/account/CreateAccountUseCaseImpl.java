@@ -28,7 +28,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
 
     private AccountEntity saveNewAccount(CreateAccountRequest request){
         AccountEntity newAccount = switch (request.getAccountType()) {
-            case Admin -> {
+            case ADMIN -> {
                 CreateAdminRequest adminRequest = (CreateAdminRequest) request;
                 yield AdminEntity.builder()
                         .accountType(adminRequest.getAccountType())
@@ -37,7 +37,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .password(adminRequest.getPassword())
                         .position(adminRequest.getPosition()).build();
             }
-            case Doctor -> {
+            case DOCTOR -> {
                 CreateDoctorRequest doctorRequest = (CreateDoctorRequest) request;
                 yield DoctorEntity.builder()
                         .accountType(doctorRequest.getAccountType())
@@ -55,7 +55,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                                 .toList())
                         .build();
             }
-            case User -> {
+            case USER -> {
                 CreateUserRequest userRequest = (CreateUserRequest) request;
                 yield UserEntity.builder()
                         .accountType(userRequest.getAccountType())

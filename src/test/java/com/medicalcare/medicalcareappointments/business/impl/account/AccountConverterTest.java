@@ -20,7 +20,7 @@ class AccountConverterTest {
         //Arrange
         UserEntity userEntity = UserEntity.builder()
                 .accountId(1L)
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("user@email.com")
                 .username("username")
                 .password("password")
@@ -48,7 +48,7 @@ class AccountConverterTest {
         //Arrange
         AdminEntity adminEntity = AdminEntity.builder()
                 .accountId(1L)
-                .accountType(AccountType.Admin)
+                .accountType(AccountType.ADMIN)
                 .email("user@email.com")
                 .username("username")
                 .password("password")
@@ -73,7 +73,7 @@ class AccountConverterTest {
         //Arrange
         DoctorEntity doctorEntity = DoctorEntity.builder()
                 .accountId(1L)
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .email("user@email.com")
                 .description("A nice doctor with plenty of experience")
                 .photo("doctor.jpg")

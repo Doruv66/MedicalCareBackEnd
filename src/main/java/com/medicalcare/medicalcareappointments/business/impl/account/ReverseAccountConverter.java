@@ -17,7 +17,7 @@ public class ReverseAccountConverter {
     public static AccountEntity convert(Account acc){
 
         return switch (acc.getAccountType()) {
-            case Admin -> {
+            case ADMIN -> {
                 Admin admin = (Admin) acc;
                 yield AdminEntity.builder()
                         .accountId(admin.getAccountId())
@@ -28,7 +28,7 @@ public class ReverseAccountConverter {
                         .username(admin.getUsername())
                         .build();
             }
-            case User -> {
+            case USER -> {
                 User user = (User) acc;
                 yield UserEntity.builder()
                         .accountId(user.getAccountId())
@@ -41,7 +41,7 @@ public class ReverseAccountConverter {
                         .dateOfBirth(user.getDateOfBirth())
                         .build();
             }
-            case Doctor -> {
+            case DOCTOR -> {
                 Doctor doctor = (Doctor) acc;
                 yield DoctorEntity.builder()
                         .accountId(doctor.getAccountId())

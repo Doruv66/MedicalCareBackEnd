@@ -36,7 +36,7 @@ class GetDoctorsUseCaseImplTest {
         //Arrange
         DoctorEntity doctorEntity1 = DoctorEntity.builder()
                 .username("doctor1")
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .email("doctor1@gamil.com")
                 .description("A nice doctor with plenty of experience")
                 .password("secret")
@@ -47,7 +47,7 @@ class GetDoctorsUseCaseImplTest {
                 .build();
         DoctorEntity doctorEntity2 = DoctorEntity.builder()
                 .username("doctor2")
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .email("doctor2@gamil.com")
                 .password("secret")
                 .name("name")
@@ -58,7 +58,7 @@ class GetDoctorsUseCaseImplTest {
                 .build();
         UserEntity userEnity = UserEntity.builder()
                 .username("user")
-                .accountType(AccountType.User)
+                .accountType(AccountType.USER)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -75,7 +75,7 @@ class GetDoctorsUseCaseImplTest {
         //Assert
         Doctor doctor1 = Doctor.builder()
                 .username("doctor1")
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .email("doctor1@gamil.com")
                 .description("A nice doctor with plenty of experience")
                 .password("secret")
@@ -86,7 +86,7 @@ class GetDoctorsUseCaseImplTest {
                 .build();
         Doctor doctor2 = Doctor.builder()
                 .username("doctor2")
-                .accountType(AccountType.Doctor)
+                .accountType(AccountType.DOCTOR)
                 .description("A nice doctor with plenty of experience")
                 .email("doctor2@gamil.com")
                 .password("secret")
