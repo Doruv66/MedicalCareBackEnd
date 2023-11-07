@@ -1,7 +1,6 @@
 package com.medicalcare.medicalcareappointments.domain.appointment;
 
 
-import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

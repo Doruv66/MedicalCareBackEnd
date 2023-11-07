@@ -8,7 +8,7 @@ import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.persistence.entity.*;
 
 public class AccountConverter {
-
+    // This constructor is intentionally left empty. It can be used for default initialization
     private AccountConverter(){}
 
     public static Account convert(AccountEntity acc){
