@@ -1,8 +1,8 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
-import com.medicalcare.medicalcareappointments.business.impl.account.TimeSlotConverter;
-import com.medicalcare.medicalcareappointments.domain.account.TimeSlot;
+import com.medicalcare.medicalcareappointments.business.impl.timeslot.TimeSlotConverter;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 import org.junit.jupiter.api.Test;
 

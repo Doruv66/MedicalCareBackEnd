@@ -1,12 +1,10 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
-import com.medicalcare.medicalcareappointments.domain.account.TimeSlot;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
 @Table(name = "time_slot")

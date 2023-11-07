@@ -1,6 +1,7 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
 import com.medicalcare.medicalcareappointments.business.UpdateAccountUseCase;
+import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.account.*;
 import com.medicalcare.medicalcareappointments.exception.NotFoundAccountException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;

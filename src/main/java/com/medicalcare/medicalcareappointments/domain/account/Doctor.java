@@ -1,5 +1,6 @@
 package com.medicalcare.medicalcareappointments.domain.account;
 
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

@@ -36,10 +36,13 @@ class DeleteAppointmentUseCaseImplTest {
         //Arrange
         long appointmentId = 1L;
 
-        when(appointmentRepositoryMock.findById(appointmentId)).thenReturn(Optional.ofNullable(AppointmentEntity.builder().appointmentStatus(AppointmentStatus.Confirmed)
+        when(appointmentRepositoryMock.findById(appointmentId)).thenReturn(Optional.ofNullable(AppointmentEntity.builder()
+                .appointmentStatus(AppointmentStatus.Confirmed)
                 .user(AccountUtilClass.createUserEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime())).build()));
+                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .build()
+        ));
 
         //Act
         deleteAppointmentUseCase.deleteAppointment(appointmentId);

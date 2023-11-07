@@ -1,11 +1,8 @@
-package com.medicalcare.medicalcareappointments.business.impl.account;
+package com.medicalcare.medicalcareappointments.business.impl.timeslot;
 
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.TimeSlot;
-import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
-
-import javax.print.Doc;
 
 public class TimeSlotConverter {
 

@@ -1,5 +1,6 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
+import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.Admin;
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
