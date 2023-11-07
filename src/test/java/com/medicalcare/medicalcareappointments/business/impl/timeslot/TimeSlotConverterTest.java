@@ -1,6 +1,7 @@
-package com.medicalcare.medicalcareappointments.business.impl.account;
+package com.medicalcare.medicalcareappointments.business.impl.timeslot;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
+import com.medicalcare.medicalcareappointments.business.impl.account.AccountConverter;
 import com.medicalcare.medicalcareappointments.business.impl.timeslot.TimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
@@ -26,6 +27,8 @@ class TimeSlotConverterTest {
         TimeSlot timeSlot = TimeSlotConverter.convert(timeSlotEntity);
 
         //Assert
+        assertEquals(timeSlotEntity.getTimeSlotId(), timeSlot.getTimeSlotId());
+        assertEquals(AccountConverter.convert(timeSlotEntity.getDoctor()), timeSlot.getDoctor());
         assertEquals(timeSlotEntity.getStartTime(), timeSlot.getStartTime());
         assertEquals(timeSlotEntity.getEndTime(), timeSlot.getEndTime());
     }
