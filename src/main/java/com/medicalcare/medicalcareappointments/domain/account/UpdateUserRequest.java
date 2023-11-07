@@ -1,6 +1,5 @@
 package com.medicalcare.medicalcareappointments.domain.account;
 
-import com.medicalcare.medicalcareappointments.domain.account.UpdateAccountRequest;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

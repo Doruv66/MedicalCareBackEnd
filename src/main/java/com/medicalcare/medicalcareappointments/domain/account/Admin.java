@@ -1,6 +1,5 @@
 package com.medicalcare.medicalcareappointments.domain.account;
 
-import com.medicalcare.medicalcareappointments.domain.account.Account;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

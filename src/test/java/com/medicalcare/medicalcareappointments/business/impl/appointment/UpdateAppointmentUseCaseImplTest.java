@@ -38,7 +38,7 @@ class UpdateAppointmentUseCaseImplTest {
     private UpdateAppointmentUseCaseImpl updateAppointmentUseCase;
 
     @Test
-    public void updateAppointment_shouldUpdateAppoointment() {
+    void updateAppointment_shouldUpdateAppoointment() {
         // Arrange
         long id = 1L;
         UpdateAppointmentRequest request = UpdateAppointmentRequest.builder()
@@ -73,7 +73,7 @@ class UpdateAppointmentUseCaseImplTest {
     }
 
     @Test
-    public void updateAppointment_shouldThrowNotFoundException() {
+    void updateAppointment_shouldThrowNotFoundException() {
         // Arrange
         long id = 1L;
         UpdateAppointmentRequest request = UpdateAppointmentRequest.builder()

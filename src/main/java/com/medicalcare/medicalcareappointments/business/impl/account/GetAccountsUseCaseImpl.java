@@ -1,7 +1,6 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
 import com.medicalcare.medicalcareappointments.business.GetAccountsUsecase;
-import com.medicalcare.medicalcareappointments.business.impl.account.AccountConverter;
 import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.GetAccountsResponse;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;

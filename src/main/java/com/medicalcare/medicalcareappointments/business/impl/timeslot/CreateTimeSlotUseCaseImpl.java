@@ -1,7 +1,6 @@
 package com.medicalcare.medicalcareappointments.business.impl.timeslot;
 
 import com.medicalcare.medicalcareappointments.business.CreateTimeSlotUseCase;
-import com.medicalcare.medicalcareappointments.business.impl.account.AccountConverter;
 import com.medicalcare.medicalcareappointments.business.impl.account.ReverseAccountConverter;
 import com.medicalcare.medicalcareappointments.domain.timeslot.CreateTimeSlotRequest;
 import com.medicalcare.medicalcareappointments.domain.timeslot.CreateTimeSlotResponse;

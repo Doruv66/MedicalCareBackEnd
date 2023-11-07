@@ -1,7 +1,6 @@
 package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.GetAppointmentUseCase;
-import com.medicalcare.medicalcareappointments.business.impl.appointment.AppointmentConverter;
 import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import lombok.AllArgsConstructor;

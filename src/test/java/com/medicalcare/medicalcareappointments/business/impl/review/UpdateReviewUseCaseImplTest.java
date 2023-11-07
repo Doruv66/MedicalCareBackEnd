@@ -33,7 +33,7 @@ class UpdateReviewUseCaseImplTest {
     private UpdateReviewUseCaseImpl updateReviewUseCase;
 
     @Test
-    public void updateReview_shouldUpdateReview() {
+    void updateReview_shouldUpdateReview() {
         // Arrange
         long id = 1L;
         UpdateReviewRequest request = UpdateReviewRequest.builder().rating(4)
@@ -65,7 +65,7 @@ class UpdateReviewUseCaseImplTest {
     }
 
     @Test
-    public void updateReview_shouldThrowNotFoundException() {
+    void updateReview_shouldThrowNotFoundException() {
         // Arrange
         long id = 1L;
         UpdateReviewRequest request = UpdateReviewRequest.builder().rating(4)

@@ -1,6 +1,5 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
-import com.medicalcare.medicalcareappointments.domain.account.Doctor;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

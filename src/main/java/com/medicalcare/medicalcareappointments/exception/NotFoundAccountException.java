@@ -1,6 +1,5 @@
 package com.medicalcare.medicalcareappointments.exception;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
