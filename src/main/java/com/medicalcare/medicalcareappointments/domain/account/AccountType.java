@@ -1,7 +1,7 @@
 package com.medicalcare.medicalcareappointments.domain.account;
 
 public enum AccountType {
-    USER,
+    PATIENT,
     DOCTOR,
     ADMIN
 }

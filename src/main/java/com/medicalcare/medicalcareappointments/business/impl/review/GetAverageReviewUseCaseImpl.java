@@ -20,14 +20,10 @@ public class GetAverageReviewUseCaseImpl implements GetAverageReviewUseCase {
     @Transactional
     @Override
     public GetAverageReviewResponse getAverageReview(long doctorId) {
-        OptionalDouble averageReview = reviewRepository.findAll().stream()
-                .filter(review -> review.getDoctor().getAccountId().equals(doctorId))
-                .map(ReviewConverter::convert)
-                .mapToDouble(Review::getRating)
-                .average();
-        if(averageReview.isPresent()){
+        Double averageReview = reviewRepository.getAverageRatingForDoctor(doctorId);
+        if(averageReview != null){
             return GetAverageReviewResponse.builder()
-                    .averageReview(averageReview.getAsDouble())
+                    .averageReview(averageReview)
                     .build();
         }
         return null;

@@ -7,7 +7,7 @@ import com.medicalcare.medicalcareappointments.domain.review.CreateReviewRespons
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class CreateReviewUseCaseImpl implements CreateReviewUseCase {
                 .rating(request.getRating())
                 .comment(request.getComment())
                 .date(request.getDate())
-                .user((UserEntity) ReverseAccountConverter.convert(request.getUser()))
+                .patient((PatientEntity) ReverseAccountConverter.convert(request.getPatient()))
                 .doctor((DoctorEntity) ReverseAccountConverter.convert(request.getDoctor()))
                 .build();
         return reviewRepository.save(newReview);

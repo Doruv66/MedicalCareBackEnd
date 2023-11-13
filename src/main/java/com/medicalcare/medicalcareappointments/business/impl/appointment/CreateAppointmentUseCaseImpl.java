@@ -7,7 +7,7 @@ import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointm
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class CreateAppointmentUseCaseImpl implements CreateAppointmentUseCase {
                 .appointmentStatus(request.getAppointmentStatus())
                 .dateTime(request.getDateTime())
                 .doctor((DoctorEntity) ReverseAccountConverter.convert(request.getDoctor()))
-                .user((UserEntity) ReverseAccountConverter.convert(request.getUser()))
+                .patient((PatientEntity) ReverseAccountConverter.convert(request.getPatient()))
                 .build();
         return appointmentRepository.save(newAppointment);
     }

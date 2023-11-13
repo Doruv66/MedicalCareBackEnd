@@ -1,9 +1,8 @@
 package com.medicalcare.medicalcareappointments.business;
 
-import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
+import com.medicalcare.medicalcareappointments.domain.appointment.GetAppointmentResponse;
 
-import java.util.Optional;
 
 public interface GetAppointmentUseCase {
-    Optional<Appointment> getAppointment(long id);
+    GetAppointmentResponse getAppointment(long id);
 }

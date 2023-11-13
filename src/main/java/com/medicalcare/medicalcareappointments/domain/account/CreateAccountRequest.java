@@ -16,6 +16,12 @@ public class CreateAccountRequest {
     private String username;
 
     @NotBlank
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
+
+    @NotBlank
     private String password;
 
     @NotBlank

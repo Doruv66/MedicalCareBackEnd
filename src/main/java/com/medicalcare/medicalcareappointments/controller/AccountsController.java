@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/accounts")
@@ -23,12 +22,9 @@ public class AccountsController {
     private final GetDoctorsUseCase getDoctorsUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<Account> getAccount(@PathVariable(value = "id") final long id) {
-        final Optional<Account> accountOptional = getAccountUseCase.getAccount(id);
-        if(accountOptional.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(accountOptional.get());
+    public ResponseEntity<GetAccountResponse> getAccount(@PathVariable(value = "id") final long id) {
+        final GetAccountResponse response = getAccountUseCase.getAccount(id);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("doctors")
@@ -57,7 +53,7 @@ public class AccountsController {
     }
 
     @PostMapping("create-user")
-    public ResponseEntity<CreateAccountResponse> createUser(@RequestBody @Valid CreateUserRequest request){
+    public ResponseEntity<CreateAccountResponse> createUser(@RequestBody @Valid CreatePatientRequest request){
         CreateAccountResponse response = createAccountUseCase.createAccount(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -70,7 +66,7 @@ public class AccountsController {
 
     @PutMapping("update-user/{id}")
     public ResponseEntity<UpdateAccountResponse> updateUser(@PathVariable(value = "id") long id,
-                                                            @RequestBody @Valid UpdateUserRequest request){
+                                                            @RequestBody @Valid UpdatePatientRequest request){
         UpdateAccountResponse response = updateAccountUseCase.updateAccount(request, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

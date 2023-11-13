@@ -4,11 +4,11 @@ import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTim
 import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.Admin;
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
+import com.medicalcare.medicalcareappointments.domain.account.Patient;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 
 public class ReverseAccountConverter {
     // This constructor is intentionally left empty. It can be used for default initialization.
@@ -22,23 +22,25 @@ public class ReverseAccountConverter {
                 yield AdminEntity.builder()
                         .accountId(admin.getAccountId())
                         .accountType(admin.getAccountType())
+                        .firstName(admin.getFirstName())
+                        .lastName(admin.getLastName())
                         .password(admin.getPassword())
                         .email(admin.getEmail())
                         .position(admin.getPosition())
                         .username(admin.getUsername())
                         .build();
             }
-            case USER -> {
-                User user = (User) acc;
-                yield UserEntity.builder()
-                        .accountId(user.getAccountId())
-                        .accountType(user.getAccountType())
-                        .username(user.getUsername())
-                        .email(user.getEmail())
-                        .password(user.getPassword())
-                        .firstName(user.getFirstName())
-                        .lastName(user.getLastName())
-                        .dateOfBirth(user.getDateOfBirth())
+            case PATIENT -> {
+                Patient patient = (Patient) acc;
+                yield PatientEntity.builder()
+                        .accountId(patient.getAccountId())
+                        .accountType(patient.getAccountType())
+                        .username(patient.getUsername())
+                        .email(patient.getEmail())
+                        .password(patient.getPassword())
+                        .firstName(patient.getFirstName())
+                        .lastName(patient.getLastName())
+                        .dateOfBirth(patient.getDateOfBirth())
                         .build();
             }
             case DOCTOR -> {
@@ -46,8 +48,8 @@ public class ReverseAccountConverter {
                 yield DoctorEntity.builder()
                         .accountId(doctor.getAccountId())
                         .photo(doctor.getPhoto())
-                        .name(doctor.getName())
-                        .fname(doctor.getFname())
+                        .firstName(doctor.getFirstName())
+                        .lastName(doctor.getLastName())
                         .description(doctor.getDescription())
                         .accountType(doctor.getAccountType())
                         .password(doctor.getPassword())
@@ -62,6 +64,8 @@ public class ReverseAccountConverter {
             default -> AccountEntity.builder()
                     .accountId(acc.getAccountId())
                     .email(acc.getEmail())
+                    .firstName(acc.getFirstName())
+                    .lastName(acc.getLastName())
                     .password(acc.getPassword())
                     .username(acc.getUsername())
                     .accountType(acc.getAccountType())

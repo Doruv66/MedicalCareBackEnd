@@ -12,7 +12,6 @@ import org.hibernate.validator.constraints.Length;
 import java.util.List;
 import java.util.Objects;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @SuperBuilder
@@ -30,17 +29,7 @@ public class DoctorEntity extends AccountEntity {
     @Column(name = "photo")
     private String photo;
 
-    @NotBlank
-    @Length(min = 2, max = 255)
-    @Column(name = "name")
-    private String name;
 
-    @NotBlank
-    @Length(min = 2, max = 255)
-    @Column(name = "fname")
-    private String fname;
-
-    @Lob
     @Column(name = "description")
     private String description;
 
@@ -54,15 +43,13 @@ public class DoctorEntity extends AccountEntity {
         DoctorEntity doctor = (DoctorEntity) o;
         return Objects.equals(specialization, doctor.specialization) &&
                 Objects.equals(photo, doctor.photo) &&
-                Objects.equals(name, doctor.name) &&
-                Objects.equals(fname, doctor.fname) &&
                 Objects.equals(description, doctor.description) &&
                 Objects.equals(availableTimeSlots, doctor.availableTimeSlots);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(specialization, photo, name, fname, description, availableTimeSlots);
+        return Objects.hash(specialization, photo, description, availableTimeSlots);
     }
 
 }

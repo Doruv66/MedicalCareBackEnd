@@ -21,8 +21,8 @@ public class GetDoctorsUseCaseImpl implements GetDoctorsUseCase {
     @Override
     public GetAccountsResponse getDoctors() {
         final GetAccountsResponse response = new GetAccountsResponse();
-        List<Account> doctors = accountRepository.findAll().stream()
-                .filter(account -> account.getAccountType() == AccountType.DOCTOR)
+        List<Account> doctors = accountRepository.findByAccountType(AccountType.DOCTOR)
+                .stream()
                 .map(AccountConverter::convert)
                 .toList();
         response.setAccounts(doctors);

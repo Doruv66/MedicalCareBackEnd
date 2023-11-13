@@ -12,6 +12,8 @@ import lombok.experimental.SuperBuilder;
 public class Account {
     private Long accountId;
     private String username;
+    private String firstName;
+    private String lastName;
     private String password;
     private String email;
     private AccountType accountType;

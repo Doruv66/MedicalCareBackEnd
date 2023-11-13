@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/reviews")
@@ -25,12 +24,9 @@ public class ReviewsController {
     private final GetDoctorReviewsUseCase getDoctorReviewsUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<Review> getReview(@PathVariable(value = "id") final long id) {
-        final Optional<Review> reviewOptional = getReviewUseCase.getReview(id);
-        if(reviewOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(reviewOptional.get());
+    public ResponseEntity<GetReviewResponse> getReview(@PathVariable(value = "id") final long id) {
+        final GetReviewResponse response = getReviewUseCase.getReview(id);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("doctors/{doctorid}")

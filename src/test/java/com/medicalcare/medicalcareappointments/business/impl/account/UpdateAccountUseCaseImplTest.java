@@ -6,7 +6,7 @@ import com.medicalcare.medicalcareappointments.exception.NotFoundAccountExceptio
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,20 +33,20 @@ class UpdateAccountUseCaseImplTest {
     void updateUser_shouldUpdateUser() {
         //Arrange
         long id = 1;
-        UpdateUserRequest request = UpdateUserRequest.builder()
+        UpdatePatientRequest request = UpdatePatientRequest.builder()
                 .firstName("vasile")
                 .lastName("sofroni")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .username("username")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
-        UserEntity existingUser = UserEntity.builder()
+        PatientEntity existingUser = PatientEntity.builder()
                 .accountId(1L)
                 .firstName("alex")
                 .lastName("mella")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .username("alex123")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .password("12344")
@@ -79,6 +79,8 @@ class UpdateAccountUseCaseImplTest {
                 .accountType(AccountType.ADMIN)
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .username("username")
                 .position("boss")
                 .build();
@@ -86,6 +88,8 @@ class UpdateAccountUseCaseImplTest {
                 .accountId(1L)
                 .accountType(AccountType.ADMIN)
                 .username("alex123")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .password("12344")
                 .position("not boss")
                 .email("vasile@gmail.com")
@@ -116,8 +120,8 @@ class UpdateAccountUseCaseImplTest {
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
                 .photo("doctor.jpg")
-                .name("vasile")
-                .fname("sofroni")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .description("A nice doctor with plenty of experience")
                 .username("username")
                 .specialization("health")
@@ -130,8 +134,8 @@ class UpdateAccountUseCaseImplTest {
                 .password("12344")
                 .photo("doctor.jpg")
                 .description("aaaaaa")
-                .name("vasile")
-                .fname("sofroni")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
                 .email("vasile@gmail.com")
@@ -147,8 +151,8 @@ class UpdateAccountUseCaseImplTest {
         assertEquals(request.getAccountType(), existingDoctor.getAccountType());
         assertEquals(request.getPhoto(), existingDoctor.getPhoto());
         assertEquals(request.getDescription(), existingDoctor.getDescription());
-        assertEquals(request.getName(), existingDoctor.getName());
-        assertEquals(request.getFname(), existingDoctor.getFname());
+        assertEquals(request.getFirstName(), existingDoctor.getFirstName());
+        assertEquals(request.getLastName(), existingDoctor.getLastName());
         assertEquals(request.getPassword(), existingDoctor.getPassword());
         assertEquals(request.getUsername(), existingDoctor.getUsername());
         assertEquals(request.getEmail(), existingDoctor.getEmail());
@@ -166,6 +170,8 @@ class UpdateAccountUseCaseImplTest {
                 .accountType(AccountType.ADMIN)
                 .email("vasileSofroni9@gmail.com")
                 .password("12345")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .username("username")
                 .build();
         when(accountRepositoryMock.findById(id)).thenReturn(Optional.empty());

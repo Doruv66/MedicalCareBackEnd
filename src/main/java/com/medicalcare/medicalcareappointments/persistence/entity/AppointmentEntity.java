@@ -25,8 +25,8 @@ public class AppointmentEntity {
     private Timestamp dateTime;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "patient_id")
+    private PatientEntity patient;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")

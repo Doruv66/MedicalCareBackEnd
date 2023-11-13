@@ -1,25 +1,17 @@
 package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
-import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointmentResponse;
-import com.medicalcare.medicalcareappointments.domain.review.CreateReviewRequest;
-import com.medicalcare.medicalcareappointments.domain.review.CreateReviewResponse;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.print.Doc;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -41,14 +33,14 @@ class CreateAppointmentUseCaseImplTest {
         //Arrange
         long id = 1;
         CreateAppointmentRequest request = CreateAppointmentRequest.builder()
-                        .user(AccountUtilClass.createUser())
+                        .patient(AccountUtilClass.createPatient())
                         .doctor(AccountUtilClass.createDoctor())
                         .appointmentStatus(AppointmentStatus.CONFIRMED)
                         .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                         .build();
         AppointmentEntity appointment = AppointmentEntity.builder()
                         .appointmentId(id)
-                        .user(AccountUtilClass.createUserEntity())
+                        .patient(AccountUtilClass.createPatientEntity())
                         .doctor(AccountUtilClass.createDoctorEntity())
                         .appointmentStatus(AppointmentStatus.CONFIRMED)
                         .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))

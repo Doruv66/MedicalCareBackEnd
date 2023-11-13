@@ -1,6 +1,9 @@
 package com.medicalcare.medicalcareappointments.domain.account;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.sql.Timestamp;
@@ -10,8 +13,6 @@ import java.sql.Timestamp;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends Account {
-    private String firstName;
-    private String lastName;
+public class CreatePatientRequest extends CreateAccountRequest {
     private Timestamp dateOfBirth;
 }

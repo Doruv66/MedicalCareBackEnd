@@ -4,7 +4,7 @@ import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTim
 import com.medicalcare.medicalcareappointments.domain.account.*;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Timestamp;
@@ -18,9 +18,9 @@ class AccountConverterTest {
     @Test
     void convertUser_shouldConvertUserEntity() {
         //Arrange
-        UserEntity userEntity = UserEntity.builder()
+        PatientEntity patientEntity = PatientEntity.builder()
                 .accountId(1L)
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@email.com")
                 .username("username")
                 .password("password")
@@ -29,18 +29,18 @@ class AccountConverterTest {
                 .build();
 
         //Act
-        Account user = AccountConverter.convert(userEntity);
+        Account user = AccountConverter.convert(patientEntity);
 
         //Assert
-        assertTrue(user instanceof User);
-        assertEquals(userEntity.getAccountId(), user.getAccountId());
-        assertEquals(userEntity.getEmail(), user.getEmail());
-        assertEquals(userEntity.getAccountType(), user.getAccountType());
-        assertEquals(userEntity.getUsername(), user.getUsername());
-        assertEquals(userEntity.getPassword(), user.getPassword());
-        assertEquals(userEntity.getFirstName(), ((User) user).getFirstName());
-        assertEquals(userEntity.getLastName(), ((User) user).getLastName());
-        assertEquals(userEntity.getDateOfBirth(), ((User) user).getDateOfBirth());
+        assertTrue(user instanceof Patient);
+        assertEquals(patientEntity.getAccountId(), user.getAccountId());
+        assertEquals(patientEntity.getEmail(), user.getEmail());
+        assertEquals(patientEntity.getAccountType(), user.getAccountType());
+        assertEquals(patientEntity.getUsername(), user.getUsername());
+        assertEquals(patientEntity.getPassword(), user.getPassword());
+        assertEquals(patientEntity.getFirstName(), ((Patient) user).getFirstName());
+        assertEquals(patientEntity.getLastName(), ((Patient) user).getLastName());
+        assertEquals(patientEntity.getDateOfBirth(), ((Patient) user).getDateOfBirth());
     }
 
     @Test
@@ -77,8 +77,8 @@ class AccountConverterTest {
                 .email("user@email.com")
                 .description("A nice doctor with plenty of experience")
                 .photo("doctor.jpg")
-                .name("vasile")
-                .fname("sofroni")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .username("username")
                 .password("password")
                 .availableTimeSlots(new ArrayList<>())
@@ -92,9 +92,9 @@ class AccountConverterTest {
         assertTrue(doctor instanceof Doctor);
         assertEquals(doctorEntity.getAccountId(), doctor.getAccountId());
         assertEquals(doctorEntity.getPhoto(), ((Doctor) doctor).getPhoto());
-        assertEquals(doctorEntity.getName(), ((Doctor) doctor).getName());
+        assertEquals(doctorEntity.getFirstName(), ((Doctor) doctor).getFirstName());
         assertEquals(doctorEntity.getDescription(), ((Doctor) doctor).getDescription());
-        assertEquals(doctorEntity.getFname(), ((Doctor) doctor).getFname());
+        assertEquals(doctorEntity.getLastName(), ((Doctor) doctor).getLastName());
         assertEquals(doctorEntity.getEmail(), doctor.getEmail());
         assertEquals(doctorEntity.getAccountType(), doctor.getAccountType());
         assertEquals(doctorEntity.getUsername(), doctor.getUsername());

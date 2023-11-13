@@ -15,8 +15,6 @@ import java.util.Objects;
 public class Doctor extends Account {
     private String specialization;
     private String photo;
-    private String name;
-    private String fname;
     private String description;
     private List<TimeSlot> availableTimeSlots;
 
@@ -27,15 +25,13 @@ public class Doctor extends Account {
         Doctor doctor = (Doctor) o;
         return Objects.equals(specialization, doctor.specialization) &&
                 Objects.equals(photo, doctor.photo) &&
-                Objects.equals(name, doctor.name) &&
-                Objects.equals(fname, doctor.fname) &&
                 Objects.equals(description, doctor.description) &&
                 Objects.equals(availableTimeSlots, doctor.availableTimeSlots);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(specialization, photo, name, fname, description, availableTimeSlots);
+        return Objects.hash(specialization, photo, description, availableTimeSlots);
     }
 }
 

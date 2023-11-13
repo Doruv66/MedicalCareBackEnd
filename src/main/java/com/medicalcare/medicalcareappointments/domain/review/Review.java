@@ -1,7 +1,7 @@
 package com.medicalcare.medicalcareappointments.domain.review;
 
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
+import com.medicalcare.medicalcareappointments.domain.account.Patient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +18,6 @@ public class Review {
     private Timestamp date;
     private int rating;
     private String comment;
-    private User user;
+    private Patient patient;
     private Doctor doctor;
 }

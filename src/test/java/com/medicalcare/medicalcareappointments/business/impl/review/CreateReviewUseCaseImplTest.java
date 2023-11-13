@@ -1,15 +1,10 @@
 package com.medicalcare.medicalcareappointments.business.impl.review;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
-import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
-import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.review.CreateReviewRequest;
 import com.medicalcare.medicalcareappointments.domain.review.CreateReviewResponse;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
-import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +33,7 @@ class CreateReviewUseCaseImplTest {
         long id = 1;
         CreateReviewRequest request = CreateReviewRequest.builder()
                 .rating(4)
-                .user(AccountUtilClass.createUser())
+                .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .comment("nice appointment")
@@ -47,7 +41,7 @@ class CreateReviewUseCaseImplTest {
         ReviewEntity review = ReviewEntity.builder()
                 .reviewId(id)
                 .rating(4)
-                .user(AccountUtilClass.createUserEntity())
+                .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();

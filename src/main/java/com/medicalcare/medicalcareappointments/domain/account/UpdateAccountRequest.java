@@ -19,6 +19,12 @@ public class UpdateAccountRequest {
     private String password;
 
     @NotBlank
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
+
+    @NotBlank
     private String email;
 
     private AccountType accountType;

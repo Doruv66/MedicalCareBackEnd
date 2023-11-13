@@ -1,9 +1,8 @@
 package com.medicalcare.medicalcareappointments.business;
 
-import com.medicalcare.medicalcareappointments.domain.review.Review;
+import com.medicalcare.medicalcareappointments.domain.review.GetReviewResponse;
 
-import java.util.Optional;
 
 public interface GetReviewUseCase {
-    Optional<Review> getReview(long id);
+    GetReviewResponse getReview(long id);
 }

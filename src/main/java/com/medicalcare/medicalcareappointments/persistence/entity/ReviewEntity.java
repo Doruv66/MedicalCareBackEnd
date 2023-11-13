@@ -31,8 +31,8 @@ public class ReviewEntity {
     private String comment;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "patient_id")
+    private PatientEntity patient;
 
     @ManyToOne
     @JoinColumn(name = "doctor_id")

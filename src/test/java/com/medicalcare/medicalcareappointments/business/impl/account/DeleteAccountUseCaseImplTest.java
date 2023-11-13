@@ -1,10 +1,9 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
-import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import com.medicalcare.medicalcareappointments.exception.NotFoundAccountException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,9 +30,9 @@ class DeleteAccountUseCaseImplTest {
         //Arrange
         long accountId = 1L;
 
-        when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.ofNullable(UserEntity.builder()
+        when(accountRepositoryMock.findById(accountId)).thenReturn(Optional.ofNullable(PatientEntity.builder()
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")

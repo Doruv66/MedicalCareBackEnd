@@ -1,11 +1,10 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
-import com.medicalcare.medicalcareappointments.business.impl.account.GetAccountsUseCaseImpl;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import com.medicalcare.medicalcareappointments.domain.account.GetAccountsResponse;
-import com.medicalcare.medicalcareappointments.domain.account.User;
+import com.medicalcare.medicalcareappointments.domain.account.Patient;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,18 +31,18 @@ class GetAccountsUseCaseImplTest {
     void getAccounts_shouldReturnAllAccountsConverted() {
 
         //Arrange
-        UserEntity user1Enity = UserEntity.builder()
+        PatientEntity user1Enity = PatientEntity.builder()
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
-        UserEntity user2Enity = UserEntity.builder()
+        PatientEntity user2Enity = PatientEntity.builder()
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -59,18 +58,18 @@ class GetAccountsUseCaseImplTest {
         GetAccountsResponse actualResult = getAccountsUseCase.getAll();
 
         //Assert
-        User user1= User.builder()
+        Patient patient1 = Patient.builder()
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
-        User user2 = User.builder()
+        Patient patient2 = Patient.builder()
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -78,7 +77,7 @@ class GetAccountsUseCaseImplTest {
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 
-        GetAccountsResponse expectedResult = GetAccountsResponse.builder().accounts(List.of(user1, user2)).build();
+        GetAccountsResponse expectedResult = GetAccountsResponse.builder().accounts(List.of(patient1, patient2)).build();
 
         assertEquals(actualResult, expectedResult);
         verify(accountRepositoryMock).findAll();

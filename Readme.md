@@ -1,7 +1,7 @@
 # Medical Care Appointment System 
 ### Context
 
-St Anna Ziekenhuis specialises in providing medical care services, and the aim of this project is to create a user-friendly web page for scheduling medical care appointments. This web page will streamline the appointment booking process for both patients and healthcare providers.
+St Anna Ziekenhuis specialises in providing medical care services, and the aim of this project is to create a patient-friendly web page for scheduling medical care appointments. This web page will streamline the appointment booking process for both patients and healthcare providers.
 
 
 ### Goal of the Project

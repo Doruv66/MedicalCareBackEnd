@@ -2,18 +2,12 @@ package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.business.impl.account.AccountConverter;
-import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentResponse;
-import com.medicalcare.medicalcareappointments.exception.InvalidAppointmentException;
 import com.medicalcare.medicalcareappointments.exception.NotFoundAppointmentException;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
-import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -42,7 +35,7 @@ class UpdateAppointmentUseCaseImplTest {
         // Arrange
         long id = 1L;
         UpdateAppointmentRequest request = UpdateAppointmentRequest.builder()
-                .user(AccountUtilClass.createUser())
+                .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
@@ -51,7 +44,7 @@ class UpdateAppointmentUseCaseImplTest {
 
         AppointmentEntity existingAppointment = AppointmentEntity.builder()
                 .appointmentId(id)
-                .user(AccountUtilClass.createUserEntity())
+                .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
@@ -65,7 +58,7 @@ class UpdateAppointmentUseCaseImplTest {
         // Assert
         assertEquals(id, response.getId());
         assertEquals(request.getDateTime(), existingAppointment.getDateTime());
-        assertEquals(request.getUser(), AccountConverter.convert(existingAppointment.getUser()));
+        assertEquals(request.getPatient(), AccountConverter.convert(existingAppointment.getPatient()));
         assertEquals(request.getDoctor(), AccountConverter.convert(existingAppointment.getDoctor()));
         assertEquals(request.getAppointmentStatus(), existingAppointment.getAppointmentStatus());
         verify(appointmentRepositoryMock, times(1)).findById(id);
@@ -77,7 +70,7 @@ class UpdateAppointmentUseCaseImplTest {
         // Arrange
         long id = 1L;
         UpdateAppointmentRequest request = UpdateAppointmentRequest.builder()
-                .user(AccountUtilClass.createUser())
+                .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .appointmentStatus(AppointmentStatus.CONFIRMED)

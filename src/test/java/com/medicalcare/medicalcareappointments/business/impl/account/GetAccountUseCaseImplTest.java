@@ -1,12 +1,12 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
-import com.medicalcare.medicalcareappointments.business.impl.account.GetAccountUseCaseImpl;
 import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
-import com.medicalcare.medicalcareappointments.domain.account.User;
+import com.medicalcare.medicalcareappointments.domain.account.GetAccountResponse;
+import com.medicalcare.medicalcareappointments.domain.account.Patient;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,10 +31,10 @@ class GetAccountUseCaseImplTest {
     @Test
     void getAccount_shouldReturnConvertedAccount() {
         //Arrange
-        AccountEntity accountEntity = UserEntity.builder()
+        AccountEntity accountEntity = PatientEntity.builder()
                 .accountId(1L)
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -45,20 +45,20 @@ class GetAccountUseCaseImplTest {
                 .thenReturn(Optional.ofNullable(accountEntity));
 
         //Act
-        Account actualResult = getAccountUseCase.getAccount(1L).get();
+        GetAccountResponse actualResult = getAccountUseCase.getAccount(1L);
 
 
         //Assert
-        Account expectedResult = User.builder()
+        GetAccountResponse expectedResult = GetAccountResponse.builder().account(Patient.builder()
                 .accountId(1L)
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
                 .lastName("resu")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
-                .build();
+                .build()).build();
 
         assertEquals(actualResult, expectedResult);
     }

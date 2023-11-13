@@ -1,14 +1,10 @@
 package com.medicalcare.medicalcareappointments.business.impl.review;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
-import com.medicalcare.medicalcareappointments.business.impl.review.GetReviewUseCaseImpl;
-import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
+import com.medicalcare.medicalcareappointments.domain.review.GetReviewResponse;
 import com.medicalcare.medicalcareappointments.domain.review.Review;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
-import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,7 +32,7 @@ class GetReviewUseCaseImplTest {
         ReviewEntity reviewEntity = ReviewEntity.builder()
                 .reviewId(1L)
                 .comment("nice appointment")
-                .user(AccountUtilClass.createUserEntity())
+                .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .rating(5)
@@ -45,17 +41,17 @@ class GetReviewUseCaseImplTest {
                 .thenReturn(Optional.ofNullable(reviewEntity));
 
         //Act
-        Review actualResult = getReviewUseCase.getReview(1L).get();
+        GetReviewResponse actualResult = getReviewUseCase.getReview(1L);
 
         //Assert
-        Review expectedResult = Review.builder()
+        GetReviewResponse expectedResult = GetReviewResponse.builder().review(Review.builder()
                 .reviewId(1L)
                 .comment("nice appointment")
-                .user(AccountUtilClass.createUser())
+                .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .rating(5)
-                .build();
+                .build()).build();
 
         assertEquals(actualResult, expectedResult);
     }

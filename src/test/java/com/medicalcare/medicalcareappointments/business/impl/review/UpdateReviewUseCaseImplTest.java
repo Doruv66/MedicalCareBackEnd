@@ -2,15 +2,11 @@ package com.medicalcare.medicalcareappointments.business.impl.review;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.business.impl.account.AccountConverter;
-import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.domain.review.UpdateReviewRequest;
 import com.medicalcare.medicalcareappointments.domain.review.UpdateReviewResponse;
 import com.medicalcare.medicalcareappointments.exception.NotFoundReviewException;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
-import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -37,13 +33,13 @@ class UpdateReviewUseCaseImplTest {
         // Arrange
         long id = 1L;
         UpdateReviewRequest request = UpdateReviewRequest.builder().rating(4)
-                .user(AccountUtilClass.createUser())
+                .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .comment("nice appointment")
                 .build();
         ReviewEntity existingReview = ReviewEntity.builder().reviewId(1L).comment("nice appointment").rating(5)
-                .user(AccountUtilClass.createUserEntity())
+                .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
@@ -59,7 +55,7 @@ class UpdateReviewUseCaseImplTest {
         assertEquals(request.getDate(), existingReview.getDate());
         assertEquals(request.getRating(), existingReview.getRating());
         assertEquals(request.getDoctor(), AccountConverter.convert(existingReview.getDoctor()));
-        assertEquals(request.getUser(), AccountConverter.convert(existingReview.getUser()));
+        assertEquals(request.getPatient(), AccountConverter.convert(existingReview.getPatient()));
         verify(reviewRepositoryMock, times(1)).findById(id);
         verify(reviewRepositoryMock, times(1)).save(existingReview);
     }
@@ -69,7 +65,7 @@ class UpdateReviewUseCaseImplTest {
         // Arrange
         long id = 1L;
         UpdateReviewRequest request = UpdateReviewRequest.builder().rating(4)
-                .user(AccountUtilClass.createUser())
+                .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .date(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .comment("nice appointment")

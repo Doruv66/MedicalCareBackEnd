@@ -8,7 +8,7 @@ import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +42,8 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 AdminEntity admin = (AdminEntity) account;
                 admin.setAccountType(adminRequest.getAccountType());
                 admin.setUsername(adminRequest.getUsername());
+                admin.setFirstName(adminRequest.getFirstName());
+                admin.setLastName(adminRequest.getLastName());
                 admin.setEmail(adminRequest.getEmail());
                 admin.setPassword(adminRequest.getPassword());
                 admin.setPosition(adminRequest.getPosition());
@@ -51,8 +53,8 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 DoctorEntity doctor = (DoctorEntity) account;
                 doctor.setAccountType(doctorRequest.getAccountType());
                 doctor.setUsername(doctorRequest.getUsername());
-                doctor.setName(doctorRequest.getName());
-                doctor.setFname(doctorRequest.getFname());
+                doctor.setFirstName(doctorRequest.getFirstName());
+                doctor.setLastName(doctorRequest.getLastName());
                 doctor.setDescription(doctorRequest.getDescription());
                 doctor.setPhoto(doctorRequest.getPhoto());
                 doctor.setEmail(doctorRequest.getEmail());
@@ -63,9 +65,9 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                         .map(ReverseTimeSlotConverter::convert)
                         .toList());
             }
-            case USER -> {
-                UpdateUserRequest userRequest = (UpdateUserRequest) request;
-                UserEntity user = (UserEntity) account;
+            case PATIENT -> {
+                UpdatePatientRequest userRequest = (UpdatePatientRequest) request;
+                PatientEntity user = (PatientEntity) account;
                 user.setAccountType(userRequest.getAccountType());
                 user.setUsername(userRequest.getUsername());
                 user.setEmail(userRequest.getEmail());
@@ -77,6 +79,8 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
             default -> {
                 account.setAccountType(request.getAccountType());
                 account.setEmail(request.getEmail());
+                account.setFirstName(request.getFirstName());
+                account.setLastName(request.getLastName());
                 account.setPassword(request.getPassword());
                 account.setUsername(request.getUsername());
             }

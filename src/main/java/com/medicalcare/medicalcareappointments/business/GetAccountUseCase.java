@@ -1,9 +1,9 @@
 package com.medicalcare.medicalcareappointments.business;
 
-import com.medicalcare.medicalcareappointments.domain.account.Account;
+import com.medicalcare.medicalcareappointments.domain.account.GetAccountResponse;
 
 import java.util.Optional;
 
 public interface GetAccountUseCase {
-    Optional<Account> getAccount(long accId);
+    GetAccountResponse getAccount(long accId);
 }

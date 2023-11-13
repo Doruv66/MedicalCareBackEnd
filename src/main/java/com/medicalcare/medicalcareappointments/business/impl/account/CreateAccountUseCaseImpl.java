@@ -7,7 +7,7 @@ import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +33,8 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                 yield AdminEntity.builder()
                         .accountType(adminRequest.getAccountType())
                         .email(adminRequest.getEmail())
+                        .firstName(adminRequest.getFirstName())
+                        .lastName(adminRequest.getLastName())
                         .username(adminRequest.getUsername())
                         .password(adminRequest.getPassword())
                         .position(adminRequest.getPosition()).build();
@@ -44,8 +46,8 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .username(doctorRequest.getUsername())
                         .photo(doctorRequest.getPhoto())
                         .description(doctorRequest.getDescription())
-                        .name(doctorRequest.getName())
-                        .fname(doctorRequest.getFname())
+                        .firstName(doctorRequest.getFirstName())
+                        .lastName(doctorRequest.getLastName())
                         .email(doctorRequest.getEmail())
                         .password(doctorRequest.getPassword())
                         .specialization(doctorRequest.getSpecialization())
@@ -55,9 +57,9 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                                 .toList())
                         .build();
             }
-            case USER -> {
-                CreateUserRequest userRequest = (CreateUserRequest) request;
-                yield UserEntity.builder()
+            case PATIENT -> {
+                CreatePatientRequest userRequest = (CreatePatientRequest) request;
+                yield PatientEntity.builder()
                         .accountType(userRequest.getAccountType())
                         .email(userRequest.getEmail())
                         .username(userRequest.getUsername())

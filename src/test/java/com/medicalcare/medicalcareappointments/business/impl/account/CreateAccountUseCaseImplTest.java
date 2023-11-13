@@ -5,7 +5,7 @@ import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -33,8 +33,8 @@ class CreateAccountUseCaseImplTest {
     void createUser_shouldCreateUser() {
         //Arrange
         long id = 1;
-        CreateUserRequest request = CreateUserRequest.builder()
-                .accountType(AccountType.USER)
+        CreatePatientRequest request = CreatePatientRequest.builder()
+                .accountType(AccountType.PATIENT)
                 .username("vasile")
                 .password("1234")
                 .email("vasile@gmail.com")
@@ -42,9 +42,9 @@ class CreateAccountUseCaseImplTest {
                 .lastName("sofroni")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
-        UserEntity user = UserEntity.builder()
+        PatientEntity user = PatientEntity.builder()
                 .accountId(id)
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .username("vasile")
                 .password("1234")
                 .email("vasile@gmail.com")
@@ -71,6 +71,8 @@ class CreateAccountUseCaseImplTest {
                 .accountType(AccountType.ADMIN)
                 .username("vasile")
                 .password("1234")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .email("vasile@gmail.com")
                 .position("position")
                 .build();
@@ -78,6 +80,8 @@ class CreateAccountUseCaseImplTest {
                 .accountId(id)
                 .accountType(AccountType.ADMIN)
                 .username("vasile")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .password("1234")
                 .email("vasile@gmail.com")
                 .position("position")
@@ -103,8 +107,8 @@ class CreateAccountUseCaseImplTest {
                 .password("1234")
                 .description("A nice doctor with plenty of experience")
                 .photo("doctor.jpg")
-                .name("vasile")
-                .fname("sofroni")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .email("vasile@gmail.com")
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
@@ -116,8 +120,8 @@ class CreateAccountUseCaseImplTest {
                 .description("A nice doctor with plenty of experience")
                 .password("1234")
                 .photo("doctor.jpg")
-                .name("vasile")
-                .fname("sofroni")
+                .firstName("vasile")
+                .lastName("sofroni")
                 .email("vasile@gmail.com")
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())

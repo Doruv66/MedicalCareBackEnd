@@ -2,15 +2,13 @@ package com.medicalcare.medicalcareappointments.business.impl.review;
 
 import com.medicalcare.medicalcareappointments.business.UpdateReviewUseCase;
 import com.medicalcare.medicalcareappointments.business.impl.account.ReverseAccountConverter;
-import com.medicalcare.medicalcareappointments.domain.account.User;
 import com.medicalcare.medicalcareappointments.domain.review.UpdateReviewRequest;
 import com.medicalcare.medicalcareappointments.domain.review.UpdateReviewResponse;
-import com.medicalcare.medicalcareappointments.exception.InvalidReviewException;
 import com.medicalcare.medicalcareappointments.exception.NotFoundReviewException;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +38,7 @@ public class UpdateReviewUseCaseImpl implements UpdateReviewUseCase {
         review.setRating(request.getRating());
         review.setDate(request.getDate());
         review.setDoctor((DoctorEntity) ReverseAccountConverter.convert(request.getDoctor()));
-        review.setUser((UserEntity) ReverseAccountConverter.convert(request.getUser()));
+        review.setPatient((PatientEntity) ReverseAccountConverter.convert(request.getPatient()));
         reviewRepository.save(review);
     }
 }

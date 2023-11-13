@@ -5,7 +5,7 @@ import com.medicalcare.medicalcareappointments.domain.account.Doctor;
 import com.medicalcare.medicalcareappointments.domain.account.GetAccountsResponse;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.UserEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -40,8 +40,8 @@ class GetDoctorsUseCaseImplTest {
                 .email("doctor1@gamil.com")
                 .description("A nice doctor with plenty of experience")
                 .password("secret")
-                .name("name")
-                .fname("fname")
+                .firstName("name")
+                .lastName("fname")
                 .availableTimeSlots(new ArrayList<>())
                 .specialization("neurolog")
                 .build();
@@ -50,15 +50,15 @@ class GetDoctorsUseCaseImplTest {
                 .accountType(AccountType.DOCTOR)
                 .email("doctor2@gamil.com")
                 .password("secret")
-                .name("name")
+                .firstName("name")
                 .description("A nice doctor with plenty of experience")
-                .fname("fname")
+                .lastName("fname")
                 .availableTimeSlots(new ArrayList<>())
                 .specialization("neurolog")
                 .build();
-        UserEntity userEnity = UserEntity.builder()
+        PatientEntity patientEnity = PatientEntity.builder()
                 .username("user")
-                .accountType(AccountType.USER)
+                .accountType(AccountType.PATIENT)
                 .email("user@gmail.com")
                 .password("12345")
                 .firstName("user")
@@ -66,8 +66,8 @@ class GetDoctorsUseCaseImplTest {
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 
-        when(accountRepositoryMock.findAll())
-                .thenReturn(List.of(doctorEntity1, doctorEntity2, userEnity));
+        when(accountRepositoryMock.findByAccountType(AccountType.DOCTOR))
+                .thenReturn(List.of(doctorEntity1, doctorEntity2));
 
         //Act
         GetAccountsResponse actualResult = getDoctorsUseCase.getDoctors();
@@ -79,8 +79,8 @@ class GetDoctorsUseCaseImplTest {
                 .email("doctor1@gamil.com")
                 .description("A nice doctor with plenty of experience")
                 .password("secret")
-                .name("name")
-                .fname("fname")
+                .firstName("name")
+                .lastName("fname")
                 .availableTimeSlots(new ArrayList<>())
                 .specialization("neurolog")
                 .build();
@@ -90,15 +90,15 @@ class GetDoctorsUseCaseImplTest {
                 .description("A nice doctor with plenty of experience")
                 .email("doctor2@gamil.com")
                 .password("secret")
-                .name("name")
-                .fname("fname")
+                .firstName("name")
+                .lastName("fname")
                 .availableTimeSlots(new ArrayList<>())
                 .specialization("neurolog")
                 .build();
 
         GetAccountsResponse expectedResult = GetAccountsResponse.builder().accounts(List.of(doctor1, doctor2)).build();
         assertEquals(actualResult, expectedResult);
-        verify(accountRepositoryMock).findAll();
+        verify(accountRepositoryMock).findByAccountType(AccountType.DOCTOR);
     }
 
 }

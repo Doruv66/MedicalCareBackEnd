@@ -1,7 +1,7 @@
 package com.medicalcare.medicalcareappointments.domain.appointment;
 
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
-import com.medicalcare.medicalcareappointments.domain.account.User;
+import com.medicalcare.medicalcareappointments.domain.account.Patient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.Date;
 public class Appointment {
     private Long appointmentId;
     private Date dateTime;
-    private User user;
+    private Patient patient;
     private Doctor doctor;
     private AppointmentStatus appointmentStatus;
 }

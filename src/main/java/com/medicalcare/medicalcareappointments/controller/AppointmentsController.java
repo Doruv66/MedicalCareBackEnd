@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/appointments")
@@ -26,12 +25,9 @@ public class AppointmentsController {
     private final UpdateAppointmentUseCase updateAppointmentUseCase;
 
     @GetMapping("{id}")
-    public ResponseEntity<Appointment> getAppointment(@PathVariable(value = "id") final long id) {
-        final Optional<Appointment> accountOptional = getAppointmentUseCase.getAppointment(id);
-        if(accountOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(accountOptional.get());
+    public ResponseEntity<GetAppointmentResponse> getAppointment(@PathVariable(value = "id") final long id) {
+        final GetAppointmentResponse response = getAppointmentUseCase.getAppointment(id);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping

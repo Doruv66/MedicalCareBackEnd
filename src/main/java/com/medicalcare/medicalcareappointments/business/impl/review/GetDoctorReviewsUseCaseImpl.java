@@ -16,12 +16,11 @@ public class GetDoctorReviewsUseCaseImpl implements GetDoctorReviewsUseCase {
 
     private ReviewRepository reviewRepository;
 
-
     @Transactional
     @Override
     public GetReviewsResponse getDoctorReviews(long id) {
-        List<Review> reviews = reviewRepository.findAll().stream()
-                .filter(review -> review.getDoctor().getAccountId().equals(id))
+        List<Review> reviews = reviewRepository.findByDoctor_AccountId(id)
+                .stream()
                 .map(ReviewConverter::convert)
                 .toList();
         return GetReviewsResponse.builder()
