@@ -15,4 +15,5 @@ public class TimeSlot {
     private Timestamp startTime;
     private Timestamp endTime;
     private Doctor doctor;
+    private TimeSlotType timeSlotType;
 }

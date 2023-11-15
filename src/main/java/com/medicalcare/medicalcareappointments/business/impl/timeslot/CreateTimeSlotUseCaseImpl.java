@@ -30,6 +30,7 @@ public class CreateTimeSlotUseCaseImpl implements CreateTimeSlotUseCase {
                 .startTime(request.getStartTime())
                 .endTime(request.getEndTime())
                 .doctor((DoctorEntity) ReverseAccountConverter.convert(request.getDoctor()))
+                .timeSlotType(request.getTimeSlotType())
                 .build();
         return timeSlotRepository.save(newTimeSlot);
     }

@@ -2,6 +2,8 @@ package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.UpdateAppointmentUseCase;
 import com.medicalcare.medicalcareappointments.business.impl.account.ReverseAccountConverter;
+import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTimeSlotConverter;
+import com.medicalcare.medicalcareappointments.business.impl.timeslot.TimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentResponse;
 import com.medicalcare.medicalcareappointments.exception.NotFoundAppointmentException;
@@ -36,7 +38,7 @@ public class UpdateAppointmentUseCaseImpl implements UpdateAppointmentUseCase {
 
     private void updateFields(UpdateAppointmentRequest request, AppointmentEntity appointment){
         appointment.setAppointmentStatus(request.getAppointmentStatus());
-        appointment.setDateTime(request.getDateTime());
+        appointment.setTimeSlot(ReverseTimeSlotConverter.convert(request.getTimeSlot()));
         appointment.setPatient((PatientEntity) ReverseAccountConverter.convert(request.getPatient()));
         appointment.setDoctor((DoctorEntity) ReverseAccountConverter.convert(request.getDoctor()));
         appointmentRepository.save(appointment);

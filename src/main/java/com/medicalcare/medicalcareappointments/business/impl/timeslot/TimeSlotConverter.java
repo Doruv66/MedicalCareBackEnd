@@ -27,6 +27,7 @@ public class TimeSlotConverter {
                         .build())
                 .startTime(timeSlot.getStartTime())
                 .endTime(timeSlot.getEndTime())
+                .timeSlotType(timeSlot.getTimeSlotType())
                 .build();
     }
 }

@@ -2,9 +2,11 @@ package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.exception.NotFoundAppointmentException;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,7 +37,10 @@ class DeleteAppointmentUseCaseImplTest {
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlotEntity.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .build())
                 .build()
         ));
 

@@ -1,7 +1,7 @@
 package com.medicalcare.medicalcareappointments.domain.appointment;
 
 public enum AppointmentStatus {
-    CONFIRMED,
+    BOOKED,
     CANCELLED,
-    DONE
+    COMPLETED
 }

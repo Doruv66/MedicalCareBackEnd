@@ -1,5 +1,7 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
+import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlotType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -28,4 +30,8 @@ public class TimeSlotEntity {
     @ManyToOne
     @JoinColumn(name = "doctor_id")
     private DoctorEntity doctor;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "timeslot_type")
+    private TimeSlotType timeSlotType;
 }

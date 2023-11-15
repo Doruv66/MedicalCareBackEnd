@@ -4,8 +4,10 @@ import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.appointment.GetAppointmentsResponse;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,14 +37,22 @@ class GetAppointmentsUseCaseImplTest {
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlotEntity.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .doctor(AccountUtilClass.createDoctorEntity())
+                        .build())
                 .build();
         AppointmentEntity appointment2Entity = AppointmentEntity.builder()
                 .appointmentId(2L)
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlotEntity.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .doctor(AccountUtilClass.createDoctorEntity())
+                        .build())
                 .build();
         when(appointmentRepositoryMock.findAll())
                 .thenReturn(List.of(appointment1Entity, appointment2Entity));
@@ -56,14 +66,22 @@ class GetAppointmentsUseCaseImplTest {
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlot.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .doctor(AccountUtilClass.createDoctor())
+                        .build())
                 .build();
         Appointment appointment2 = Appointment.builder()
                 .appointmentId(2L)
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlot.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .doctor(AccountUtilClass.createDoctor())
+                        .build())
                 .build();
 
         GetAppointmentsResponse expectedResult = GetAppointmentsResponse.builder()

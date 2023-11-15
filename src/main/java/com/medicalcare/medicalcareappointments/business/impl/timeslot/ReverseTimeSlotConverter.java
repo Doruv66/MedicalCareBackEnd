@@ -26,6 +26,7 @@ public class ReverseTimeSlotConverter {
                         .build())
                 .startTime(timeSlot.getStartTime())
                 .endTime(timeSlot.getEndTime())
+                .timeSlotType(timeSlot.getTimeSlotType())
                 .build();
     }
 }

@@ -1,7 +1,9 @@
 package com.medicalcare.medicalcareappointments.persistence.entity;
 
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,8 +23,10 @@ public class AppointmentEntity {
     @Column(name = "appointment_id")
     private Long appointmentId;
 
-    @Column(name = "date_time", nullable = false)
-    private Timestamp dateTime;
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "timeslot_id")
+    private TimeSlotEntity timeSlot;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")

@@ -1,0 +1,1 @@
+ALTER TABLE time_slot ADD COLUMN timeslot_type VARCHAR(255) NOT NULL;

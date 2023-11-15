@@ -27,4 +27,7 @@ public class CreateTimeSlotRequest {
 
     @NotBlank
     private Doctor doctor;
+
+    @NotNull
+    private TimeSlotType timeSlotType;
 }

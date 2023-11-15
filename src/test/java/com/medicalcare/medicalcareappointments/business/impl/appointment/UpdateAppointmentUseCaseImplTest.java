@@ -2,12 +2,15 @@ package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.business.impl.account.AccountConverter;
+import com.medicalcare.medicalcareappointments.business.impl.timeslot.TimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentResponse;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.exception.NotFoundAppointmentException;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -38,7 +41,11 @@ class UpdateAppointmentUseCaseImplTest {
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlot.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .doctor(AccountUtilClass.createDoctor())
+                        .build())
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .build();
 
@@ -46,7 +53,11 @@ class UpdateAppointmentUseCaseImplTest {
                 .appointmentId(id)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlotEntity.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .doctor(AccountUtilClass.createDoctorEntity())
+                        .build())
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .build();
 
@@ -57,7 +68,7 @@ class UpdateAppointmentUseCaseImplTest {
 
         // Assert
         assertEquals(id, response.getId());
-        assertEquals(request.getDateTime(), existingAppointment.getDateTime());
+        assertEquals(request.getTimeSlot(), TimeSlotConverter.convert(existingAppointment.getTimeSlot()));
         assertEquals(request.getPatient(), AccountConverter.convert(existingAppointment.getPatient()));
         assertEquals(request.getDoctor(), AccountConverter.convert(existingAppointment.getDoctor()));
         assertEquals(request.getAppointmentStatus(), existingAppointment.getAppointmentStatus());
@@ -72,7 +83,11 @@ class UpdateAppointmentUseCaseImplTest {
         UpdateAppointmentRequest request = UpdateAppointmentRequest.builder()
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
-                .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .timeSlot(TimeSlot.builder()
+                        .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .doctor(AccountUtilClass.createDoctor())
+                        .build())
                 .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .build();
 

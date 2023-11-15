@@ -4,8 +4,10 @@ import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointmentResponse;
+import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,14 +38,21 @@ class CreateAppointmentUseCaseImplTest {
                         .patient(AccountUtilClass.createPatient())
                         .doctor(AccountUtilClass.createDoctor())
                         .appointmentStatus(AppointmentStatus.CONFIRMED)
-                        .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
-                        .build();
+                        .timeSlot(TimeSlot.builder()
+                                .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                                .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                                .doctor(AccountUtilClass.createDoctor())
+                        .build()).build();
         AppointmentEntity appointment = AppointmentEntity.builder()
                         .appointmentId(id)
                         .patient(AccountUtilClass.createPatientEntity())
                         .doctor(AccountUtilClass.createDoctorEntity())
                         .appointmentStatus(AppointmentStatus.CONFIRMED)
-                        .dateTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                        .timeSlot(TimeSlotEntity.builder()
+                                .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                                .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                                .doctor(AccountUtilClass.createDoctorEntity())
+                                .build())
                         .build();
 
 
