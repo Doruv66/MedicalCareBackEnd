@@ -6,6 +6,7 @@ import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointm
 import com.medicalcare.medicalcareappointments.domain.appointment.CreateAppointmentResponse;
 import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository;
+import com.medicalcare.medicalcareappointments.persistence.TimeSlotRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,9 @@ class CreateAppointmentUseCaseImplTest {
     @Mock
     private AppointmentRepository appointmentRepositoryMock;
 
+    @Mock
+    private TimeSlotRepository timeSlotRepository;
+
     @InjectMocks
     private CreateAppointmentUseCaseImpl createAppointmentUseCase;
 
@@ -37,7 +41,7 @@ class CreateAppointmentUseCaseImplTest {
         CreateAppointmentRequest request = CreateAppointmentRequest.builder()
                         .patient(AccountUtilClass.createPatient())
                         .doctor(AccountUtilClass.createDoctor())
-                        .appointmentStatus(AppointmentStatus.CONFIRMED)
+                        .appointmentStatus(AppointmentStatus.BOOKED)
                         .timeSlot(TimeSlot.builder()
                                 .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                                 .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
@@ -47,7 +51,7 @@ class CreateAppointmentUseCaseImplTest {
                         .appointmentId(id)
                         .patient(AccountUtilClass.createPatientEntity())
                         .doctor(AccountUtilClass.createDoctorEntity())
-                        .appointmentStatus(AppointmentStatus.CONFIRMED)
+                        .appointmentStatus(AppointmentStatus.BOOKED)
                         .timeSlot(TimeSlotEntity.builder()
                                 .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                                 .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
@@ -58,6 +62,7 @@ class CreateAppointmentUseCaseImplTest {
 
 
         when(appointmentRepositoryMock.save(any(AppointmentEntity.class))).thenReturn(appointment);
+        when(timeSlotRepository.save(any(TimeSlotEntity.class))).thenReturn(null);
 
         //Act
         CreateAppointmentResponse actualResult = createAppointmentUseCase.createAppointment(request);

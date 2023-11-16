@@ -35,7 +35,7 @@ class GetAppointmentUseCaseImplTest {
         long id = 1L;
         AppointmentEntity appointmentEntity = AppointmentEntity.builder()
                 .appointmentId(id)
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .timeSlot(TimeSlotEntity.builder()
@@ -55,7 +55,7 @@ class GetAppointmentUseCaseImplTest {
         //Assert
         GetAppointmentResponse expectedResult = GetAppointmentResponse.builder().appointment(Appointment.builder()
                 .appointmentId(id)
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .timeSlot(TimeSlot.builder()

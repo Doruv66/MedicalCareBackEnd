@@ -34,7 +34,7 @@ class GetAppointmentsUseCaseImplTest {
         //Arrange
         AppointmentEntity appointment1Entity = AppointmentEntity.builder()
                 .appointmentId(1L)
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .timeSlot(TimeSlotEntity.builder()
@@ -45,7 +45,7 @@ class GetAppointmentsUseCaseImplTest {
                 .build();
         AppointmentEntity appointment2Entity = AppointmentEntity.builder()
                 .appointmentId(2L)
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
                 .timeSlot(TimeSlotEntity.builder()
@@ -63,7 +63,7 @@ class GetAppointmentsUseCaseImplTest {
         //Assert
         Appointment appointment1 = Appointment.builder()
                 .appointmentId(1L)
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .timeSlot(TimeSlot.builder()
@@ -74,7 +74,7 @@ class GetAppointmentsUseCaseImplTest {
                 .build();
         Appointment appointment2 = Appointment.builder()
                 .appointmentId(2L)
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
                 .timeSlot(TimeSlot.builder()

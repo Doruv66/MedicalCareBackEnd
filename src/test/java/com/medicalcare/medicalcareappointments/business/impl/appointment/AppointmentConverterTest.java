@@ -21,10 +21,9 @@ class AppointmentConverterTest {
         //Arrange
         AppointmentEntity appointmentEntity = AppointmentEntity.builder()
                 .appointmentId(1L)
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .patient(AccountUtilClass.createPatientEntity())
                 .doctor(AccountUtilClass.createDoctorEntity())
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
                 .timeSlot(TimeSlotEntity.builder()
                         .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                         .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))

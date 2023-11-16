@@ -40,13 +40,13 @@ class UpdateAppointmentUseCaseImplTest {
         UpdateAppointmentRequest request = UpdateAppointmentRequest.builder()
                 .patient(AccountUtilClass.createPatient())
                 .doctor(AccountUtilClass.createDoctor())
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .timeSlot(TimeSlot.builder()
                         .startTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                         .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                         .doctor(AccountUtilClass.createDoctor())
                         .build())
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .build();
 
         AppointmentEntity existingAppointment = AppointmentEntity.builder()
@@ -58,7 +58,7 @@ class UpdateAppointmentUseCaseImplTest {
                         .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                         .doctor(AccountUtilClass.createDoctorEntity())
                         .build())
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .build();
 
         when(appointmentRepositoryMock.findById(id)).thenReturn(Optional.ofNullable(existingAppointment));
@@ -88,7 +88,7 @@ class UpdateAppointmentUseCaseImplTest {
                         .endTime(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                         .doctor(AccountUtilClass.createDoctor())
                         .build())
-                .appointmentStatus(AppointmentStatus.CONFIRMED)
+                .appointmentStatus(AppointmentStatus.BOOKED)
                 .build();
 
         when(appointmentRepositoryMock.findById(id)).thenReturn(Optional.empty());
