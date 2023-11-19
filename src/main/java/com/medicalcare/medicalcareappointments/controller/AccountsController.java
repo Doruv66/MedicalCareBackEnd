@@ -2,8 +2,10 @@ package com.medicalcare.medicalcareappointments.controller;
 
 import com.medicalcare.medicalcareappointments.business.*;
 import com.medicalcare.medicalcareappointments.domain.account.*;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/accounts")
 @CrossOrigin(origins = "http://localhost:5173")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class AccountsController {
     private final GetAccountUseCase getAccountUseCase;
     private final GetAccountsUsecase getAccountsUsecase;
@@ -52,8 +54,8 @@ public class AccountsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PostMapping("create-user")
-    public ResponseEntity<CreateAccountResponse> createUser(@RequestBody @Valid CreatePatientRequest request){
+    @PostMapping("create-patient")
+    public ResponseEntity<CreateAccountResponse> createPatient(@RequestBody @Valid CreatePatientRequest request){
         CreateAccountResponse response = createAccountUseCase.createAccount(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -64,8 +66,8 @@ public class AccountsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @PutMapping("update-user/{id}")
-    public ResponseEntity<UpdateAccountResponse> updateUser(@PathVariable(value = "id") long id,
+    @PutMapping("update-patient/{id}")
+    public ResponseEntity<UpdateAccountResponse> updatePatient(@PathVariable(value = "id") long id,
                                                             @RequestBody @Valid UpdatePatientRequest request){
         UpdateAccountResponse response = updateAccountUseCase.updateAccount(request, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);

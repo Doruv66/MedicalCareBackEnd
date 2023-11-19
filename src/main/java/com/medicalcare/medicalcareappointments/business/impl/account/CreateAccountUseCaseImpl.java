@@ -9,6 +9,7 @@ import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
 
     private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public CreateAccountResponse createAccount(CreateAccountRequest request) {
@@ -27,6 +29,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
     }
 
     private AccountEntity saveNewAccount(CreateAccountRequest request){
+        String encodedPassword = passwordEncoder.encode(request.getPassword());
         AccountEntity newAccount = switch (request.getAccountType()) {
             case ADMIN -> {
                 CreateAdminRequest adminRequest = (CreateAdminRequest) request;
@@ -36,7 +39,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .firstName(adminRequest.getFirstName())
                         .lastName(adminRequest.getLastName())
                         .username(adminRequest.getUsername())
-                        .password(adminRequest.getPassword())
+                        .password(encodedPassword)
                         .position(adminRequest.getPosition()).build();
             }
             case DOCTOR -> {
@@ -49,7 +52,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .firstName(doctorRequest.getFirstName())
                         .lastName(doctorRequest.getLastName())
                         .email(doctorRequest.getEmail())
-                        .password(doctorRequest.getPassword())
+                        .password(encodedPassword)
                         .specialization(doctorRequest.getSpecialization())
                         .availableTimeSlots(doctorRequest.getAvailableTimeSlots()
                                 .stream()
@@ -63,7 +66,7 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
                         .accountType(userRequest.getAccountType())
                         .email(userRequest.getEmail())
                         .username(userRequest.getUsername())
-                        .password(userRequest.getPassword())
+                        .password(encodedPassword)
                         .firstName(userRequest.getFirstName())
                         .lastName(userRequest.getLastName())
                         .dateOfBirth(userRequest.getDateOfBirth())
