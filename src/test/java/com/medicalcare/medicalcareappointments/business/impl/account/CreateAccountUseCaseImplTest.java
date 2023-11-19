@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -26,8 +27,13 @@ class CreateAccountUseCaseImplTest {
     @Mock
     private AccountRepository accountRepositoryMock;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @InjectMocks
     private CreateAccountUseCaseImpl createAccountUseCase;
+
+
 
     @Test
     void createUser_shouldCreateUser() {
@@ -42,17 +48,19 @@ class CreateAccountUseCaseImplTest {
                 .lastName("sofroni")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
-        PatientEntity user = PatientEntity.builder()
+        String encodedPassword = "encodedPassword123";
+        PatientEntity patient = PatientEntity.builder()
                 .accountId(id)
                 .accountType(AccountType.PATIENT)
                 .username("vasile")
-                .password("1234")
+                .password(encodedPassword)
                 .email("vasile@gmail.com")
                 .firstName("vasile")
                 .lastName("sofroni")
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
-        when(accountRepositoryMock.save(any(AccountEntity.class))).thenReturn(user);
+        when(passwordEncoder.encode(request.getPassword())).thenReturn(encodedPassword);
+        when(accountRepositoryMock.save(any(AccountEntity.class))).thenReturn(patient);
 
         //Act
         CreateAccountResponse actualResult = createAccountUseCase.createAccount(request);
@@ -76,16 +84,18 @@ class CreateAccountUseCaseImplTest {
                 .email("vasile@gmail.com")
                 .position("position")
                 .build();
+        String encodedPassword = "encodedPassword123";
         AdminEntity doctor = AdminEntity.builder()
                 .accountId(id)
                 .accountType(AccountType.ADMIN)
                 .username("vasile")
                 .firstName("vasile")
                 .lastName("sofroni")
-                .password("1234")
+                .password(encodedPassword)
                 .email("vasile@gmail.com")
                 .position("position")
                 .build();
+        when(passwordEncoder.encode(request.getPassword())).thenReturn(encodedPassword);
         when(accountRepositoryMock.save(any(AccountEntity.class))).thenReturn(doctor);
 
         //Act
@@ -113,12 +123,13 @@ class CreateAccountUseCaseImplTest {
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
                 .build();
+        String encodedPassword = "encodedPassword123";
         DoctorEntity doctor = DoctorEntity.builder()
                 .accountId(id)
                 .accountType(AccountType.DOCTOR)
                 .username("vasile")
                 .description("A nice doctor with plenty of experience")
-                .password("1234")
+                .password(encodedPassword)
                 .photo("doctor.jpg")
                 .firstName("vasile")
                 .lastName("sofroni")
@@ -126,6 +137,7 @@ class CreateAccountUseCaseImplTest {
                 .specialization("teeth")
                 .availableTimeSlots(new ArrayList<>())
                 .build();
+        when(passwordEncoder.encode(request.getPassword())).thenReturn(encodedPassword);
         when(accountRepositoryMock.save(any(AccountEntity.class))).thenReturn(doctor);
 
         //Act
