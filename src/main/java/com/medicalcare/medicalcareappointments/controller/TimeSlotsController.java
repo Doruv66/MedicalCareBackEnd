@@ -6,6 +6,7 @@ import com.medicalcare.medicalcareappointments.business.GetTimeSlotsByDateUseCas
 import com.medicalcare.medicalcareappointments.domain.timeslot.CreateTimeSlotRequest;
 import com.medicalcare.medicalcareappointments.domain.timeslot.CreateTimeSlotResponse;
 import com.medicalcare.medicalcareappointments.domain.timeslot.GetTimeSlotsResponse;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -38,6 +39,7 @@ public class TimeSlotsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @RolesAllowed({"PATIENT", "DOCTOR"})
     @GetMapping("/{doctorId}/{timestamp}")
     public ResponseEntity<GetTimeSlotsResponse> getTimeSlotsByDate(
             @PathVariable("doctorId") long doctorId,

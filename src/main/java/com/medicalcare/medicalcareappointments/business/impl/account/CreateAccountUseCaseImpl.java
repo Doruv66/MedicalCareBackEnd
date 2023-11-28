@@ -3,6 +3,8 @@ package com.medicalcare.medicalcareappointments.business.impl.account;
 import com.medicalcare.medicalcareappointments.business.CreateAccountUseCase;
 import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.account.*;
+import com.medicalcare.medicalcareappointments.exception.EmailAlreadyExistsException;
+import com.medicalcare.medicalcareappointments.exception.UsernameAlreadyExistsException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
@@ -21,6 +23,15 @@ public class CreateAccountUseCaseImpl implements CreateAccountUseCase {
 
     @Override
     public CreateAccountResponse createAccount(CreateAccountRequest request) {
+
+        if(accountRepository.findByUsername(request.getUsername()).isPresent()) {
+            throw new UsernameAlreadyExistsException();
+        }
+
+        if(accountRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new EmailAlreadyExistsException();
+        }
+
         AccountEntity savedAccount = saveNewAccount(request);
 
         return CreateAccountResponse.builder()

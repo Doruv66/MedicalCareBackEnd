@@ -71,7 +71,6 @@ public class UpdateAccountUseCaseImpl implements UpdateAccountUseCase {
                 user.setAccountType(userRequest.getAccountType());
                 user.setUsername(userRequest.getUsername());
                 user.setEmail(userRequest.getEmail());
-                user.setPassword(userRequest.getPassword());
                 user.setFirstName(userRequest.getFirstName());
                 user.setLastName(userRequest.getLastName());
                 user.setDateOfBirth(userRequest.getDateOfBirth());

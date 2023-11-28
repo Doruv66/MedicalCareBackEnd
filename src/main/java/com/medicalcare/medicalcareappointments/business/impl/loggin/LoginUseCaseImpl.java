@@ -5,6 +5,8 @@ import com.medicalcare.medicalcareappointments.configuration.security.token.Acce
 import com.medicalcare.medicalcareappointments.configuration.security.token.impl.AccessTokenImpl;
 import com.medicalcare.medicalcareappointments.domain.login.LoginRequest;
 import com.medicalcare.medicalcareappointments.domain.login.LoginResponse;
+import com.medicalcare.medicalcareappointments.exception.PasswordsDontMatchException;
+import com.medicalcare.medicalcareappointments.exception.UserNameNotFoundException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
@@ -26,10 +28,10 @@ public class LoginUseCaseImpl implements LoginUseCase {
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         AccountEntity account = accountRepository.findByUsername(loginRequest.getUsername())
-                .orElseThrow(() -> new NoSuchElementException("USER NOT FOUND"));
+                .orElseThrow(UserNameNotFoundException::new);
 
         if (!matchesPassword(loginRequest.getPassword(), account.getPassword())) {
-            throw new IllegalArgumentException("PASSWORDS DON'T MATCH");
+            throw new PasswordsDontMatchException();
         }
 
         String accessToken = generateAccessToken(account);

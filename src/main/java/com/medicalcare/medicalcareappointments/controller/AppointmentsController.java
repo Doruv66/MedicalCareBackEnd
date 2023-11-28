@@ -6,6 +6,7 @@ import com.medicalcare.medicalcareappointments.business.DeleteAppointmentUseCase
 import com.medicalcare.medicalcareappointments.business.GetAppointmentsUseCase;
 import com.medicalcare.medicalcareappointments.business.UpdateAppointmentUseCase;
 import com.medicalcare.medicalcareappointments.domain.appointment.*;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,7 @@ public class AppointmentsController {
         return ResponseEntity.noContent().build();
     }
 
+    @RolesAllowed({"PATIENT"})
     @PostMapping
     public ResponseEntity<CreateAppointmentResponse> createAppointment(@RequestBody @Valid CreateAppointmentRequest request) {
         CreateAppointmentResponse response = createAppointmentUseCase.createAppointment(request);

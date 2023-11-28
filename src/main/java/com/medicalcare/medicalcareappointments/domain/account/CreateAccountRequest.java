@@ -15,10 +15,8 @@ public class CreateAccountRequest {
     @NotBlank
     private String username;
 
-    @NotBlank
     private String firstName;
 
-    @NotBlank
     private String lastName;
 
     @NotBlank

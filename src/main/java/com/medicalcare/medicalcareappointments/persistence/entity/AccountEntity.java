@@ -23,12 +23,10 @@ public class AccountEntity {
     @Column(name = "account_id")
     private Long accountId;
 
-    @NotBlank
     @Length(min = 2, max = 50)
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank
     @Length(min = 2, max = 50)
     @Column(name = "last_name")
     private String lastName;
@@ -38,7 +36,6 @@ public class AccountEntity {
     @Column(name = "username")
     private String username;
 
-    @NotBlank
     @Length(min = 2, max = 255)
     @Column(name = "password")
     private String password;

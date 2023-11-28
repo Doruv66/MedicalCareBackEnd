@@ -61,7 +61,6 @@ class UpdateAccountUseCaseImplTest {
         //Assert
         assertEquals(id, response.getId());
         assertEquals(request.getAccountType(), existingUser.getAccountType());
-        assertEquals(request.getPassword(), existingUser.getPassword());
         assertEquals(request.getLastName(), existingUser.getLastName());
         assertEquals(request.getFirstName(), existingUser.getFirstName());
         assertEquals(request.getUsername(), existingUser.getUsername());

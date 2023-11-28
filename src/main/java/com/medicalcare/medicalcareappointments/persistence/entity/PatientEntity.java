@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Data
 @SuperBuilder
 @DiscriminatorValue("PATIENT")
-@Table(name = "user")
+@Table(name = "patient")
 @NoArgsConstructor
 @AllArgsConstructor
 public class PatientEntity extends AccountEntity {

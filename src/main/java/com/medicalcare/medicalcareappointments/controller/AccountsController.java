@@ -2,6 +2,8 @@ package com.medicalcare.medicalcareappointments.controller;
 
 import com.medicalcare.medicalcareappointments.business.*;
 import com.medicalcare.medicalcareappointments.domain.account.*;
+import com.medicalcare.medicalcareappointments.exception.EmailAlreadyExistsException;
+import com.medicalcare.medicalcareappointments.exception.UsernameAlreadyExistsException;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -49,23 +51,36 @@ public class AccountsController {
 
 
     @PostMapping("create-doctor")
-    public ResponseEntity<CreateAccountResponse> createDoctor(@RequestBody @Valid CreateDoctorRequest request){  
-        CreateAccountResponse response = createAccountUseCase.createAccount(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<?> createDoctor(@RequestBody @Valid CreateDoctorRequest request){
+        try {
+            CreateAccountResponse response = createAccountUseCase.createAccount(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (UsernameAlreadyExistsException | EmailAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getReason());
+        }
     }
 
     @PostMapping("create-patient")
-    public ResponseEntity<CreateAccountResponse> createPatient(@RequestBody @Valid CreatePatientRequest request){
-        CreateAccountResponse response = createAccountUseCase.createAccount(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<?> createPatient(@RequestBody @Valid CreatePatientRequest request){
+        try {
+            CreateAccountResponse response = createAccountUseCase.createAccount(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (UsernameAlreadyExistsException | EmailAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getReason());
+        }
     }
 
     @PostMapping("create-admin")
-    public ResponseEntity<CreateAccountResponse> createAdmin(@RequestBody @Valid CreateAdminRequest request){
-        CreateAccountResponse response = createAccountUseCase.createAccount(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<?> createAdmin(@RequestBody @Valid CreateAdminRequest request){
+        try {
+            CreateAccountResponse response = createAccountUseCase.createAccount(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (UsernameAlreadyExistsException | EmailAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getReason());
+        }
     }
 
+    @RolesAllowed({"PATIENT"})
     @PutMapping("update-patient/{id}")
     public ResponseEntity<UpdateAccountResponse> updatePatient(@PathVariable(value = "id") long id,
                                                             @RequestBody @Valid UpdatePatientRequest request){

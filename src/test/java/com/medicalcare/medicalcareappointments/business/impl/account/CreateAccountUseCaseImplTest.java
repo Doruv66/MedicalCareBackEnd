@@ -1,6 +1,9 @@
 package com.medicalcare.medicalcareappointments.business.impl.account;
 
+import com.medicalcare.medicalcareappointments.business.impl.AccountUtilClass;
 import com.medicalcare.medicalcareappointments.domain.account.*;
+import com.medicalcare.medicalcareappointments.exception.EmailAlreadyExistsException;
+import com.medicalcare.medicalcareappointments.exception.UsernameAlreadyExistsException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
@@ -16,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,10 +37,8 @@ class CreateAccountUseCaseImplTest {
     @InjectMocks
     private CreateAccountUseCaseImpl createAccountUseCase;
 
-
-
     @Test
-    void createUser_shouldCreateUser() {
+    void createPatient_shouldCreatePatient() {
         //Arrange
         long id = 1;
         CreatePatientRequest request = CreatePatientRequest.builder()
@@ -147,5 +149,55 @@ class CreateAccountUseCaseImplTest {
         CreateAccountResponse expectedResult = CreateAccountResponse.builder().accountId(id).build();
         assertEquals(actualResult, expectedResult);
         verify(accountRepositoryMock).save(any(AccountEntity.class));
+    }
+
+
+    @Test
+    void createPatientWithExistingUsername_shouldThrowExistingUsernameException() {
+        // Arrange
+        CreatePatientRequest request = CreatePatientRequest.builder()
+                .accountType(AccountType.PATIENT)
+                .username("existingUsername")
+                .password("1234")
+                .email("newemail@gmail.com")
+                .firstName("John")
+                .lastName("Doe")
+                .dateOfBirth(new Timestamp(new Date(1990 - 1900, 5 - 1, 15).getTime()))
+                .build();
+
+        when(accountRepositoryMock.findByUsername(request.getUsername()))
+                .thenReturn(Optional.of(AccountUtilClass.createPatientEntity()));
+
+        // Act and Assert
+        assertThrows(UsernameAlreadyExistsException.class, () -> {
+            createAccountUseCase.createAccount(request);
+        });
+    }
+
+    @Test
+    void createPatientWithExistingEmail_shouldThrowExistingEmailException() {
+        // Arrange
+        CreatePatientRequest request = CreatePatientRequest.builder()
+                .accountType(AccountType.PATIENT)
+                .username("newusername")
+                .password("1234")
+                .email("existingemail@gmail.com")
+                .firstName("John")
+                .lastName("Doe")
+                .dateOfBirth(new Timestamp(new Date(1990 - 1900, 5 - 1, 15).getTime()))
+                .build();
+
+        when(accountRepositoryMock.findByEmail(request.getEmail()))
+                .thenReturn(Optional.of(AccountUtilClass.createPatientEntity()));
+
+        when(accountRepositoryMock.findByUsername(request.getUsername()))
+                .thenReturn(Optional.empty());
+
+        //Act and Assert
+        assertThrows(EmailAlreadyExistsException.class, () -> {
+            createAccountUseCase.createAccount(request);
+        });
+
+        verify(accountRepositoryMock).findByUsername(request.getUsername());
     }
 }

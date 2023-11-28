@@ -24,7 +24,8 @@ class AccountConverterTest {
                 .email("user@email.com")
                 .username("username")
                 .password("password")
-                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))                .firstName("firstname")
+                .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
+                .firstName("firstname")
                 .lastName("lastname")
                 .build();
 

@@ -35,7 +35,7 @@ public class ReviewsController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("doctor/{doctorid}")
+    @GetMapping("average/{doctorid}")
     public ResponseEntity<GetAverageReviewResponse> getAverageReview(@PathVariable(value = "doctorid") final long doctorid) {
         GetAverageReviewResponse response = getAverageReviewUseCase.getAverageReview(doctorid);
         return ResponseEntity.ok(response);

@@ -1,8 +1,8 @@
 CREATE TABLE account (
          account_id BIGINT AUTO_INCREMENT PRIMARY KEY,
-         username VARCHAR(50) NOT NULL,
+         username VARCHAR(50) NOT NULL UNIQUE,
          password VARCHAR(255) NOT NULL,
-         email VARCHAR(100) NOT NULL,
+         email VARCHAR(100) NOT NULL UNIQUE,
          account_type VARCHAR(255) NOT NULL
 );
 
