@@ -24,6 +24,8 @@ public class AccountsController {
     private final CreateAccountUseCase createAccountUseCase;
     private final UpdateAccountUseCase updateAccountUseCase;
     private final GetDoctorsUseCase getDoctorsUseCase;
+    private final GetDoctorsByKeywordUseCase getDoctorsByKeywordUseCase;
+    private final GetTop3DoctorsByRatingUseCase getTop3DoctorsByRatingUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<GetAccountResponse> getAccount(@PathVariable(value = "id") final long id) {
@@ -34,6 +36,19 @@ public class AccountsController {
     @GetMapping("doctors")
     public ResponseEntity<GetAccountsResponse> getDoctors() {
         GetAccountsResponse response = getDoctorsUseCase.getDoctors();
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("doctors-top")
+    public ResponseEntity<GetAccountsResponse> getTop3Doctors() {
+        GetAccountsResponse response = getTop3DoctorsByRatingUseCase.getTop3DoctorsByRating();
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("doctors/{keyword}")
+    public ResponseEntity<GetAccountsResponse>
+    getDoctorsByKeyword(@PathVariable(value = "keyword") final String keyword) {
+        GetAccountsResponse response = getDoctorsByKeywordUseCase.getDoctorsByKeyword(keyword);
         return ResponseEntity.ok(response);
     }
 

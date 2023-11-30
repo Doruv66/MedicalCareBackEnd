@@ -15,5 +15,4 @@ public interface ReviewRepository extends JpaRepository<ReviewEntity, Long> {
     Double getAverageRatingForDoctor(@Param("doctorAccountId") Long doctorAccountId);
 
     List<ReviewEntity> findByDoctor_AccountId(Long doctorAccountId);
-
 }
