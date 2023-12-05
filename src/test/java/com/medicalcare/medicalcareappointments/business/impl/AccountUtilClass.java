@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class AccountUtilClass {
-
     public static Patient createPatient() {
         return Patient.builder()
                 .accountId(5L)

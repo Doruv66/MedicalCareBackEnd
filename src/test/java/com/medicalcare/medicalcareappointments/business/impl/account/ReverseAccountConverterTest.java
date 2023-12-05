@@ -18,6 +18,7 @@ class ReverseAccountConverterTest {
 
     @Test
     void convertUser_shouldConvertUser() {
+
         //Arrange
         Patient patient = Patient.builder()
                 .accountId(1L)
@@ -31,18 +32,18 @@ class ReverseAccountConverterTest {
                 .build();
 
         //Act
-        AccountEntity userEntity = ReverseAccountConverter.convert(patient);
+        AccountEntity patientEntity = ReverseAccountConverter.convert(patient);
 
         //Assert
-        assertTrue(userEntity instanceof PatientEntity);
-        assertEquals(patient.getAccountId(), userEntity.getAccountId());
-        assertEquals(patient.getEmail(), userEntity.getEmail());
-        assertEquals(patient.getAccountType(), userEntity.getAccountType());
-        assertEquals(patient.getUsername(), userEntity.getUsername());
-        assertEquals(patient.getPassword(), userEntity.getPassword());
-        assertEquals(patient.getFirstName(), ((PatientEntity) userEntity).getFirstName());
-        assertEquals(patient.getLastName(), ((PatientEntity) userEntity).getLastName());
-        assertEquals(patient.getDateOfBirth(), ((PatientEntity) userEntity).getDateOfBirth());
+        assertTrue(patientEntity instanceof PatientEntity);
+        assertEquals(patient.getAccountId(), patientEntity.getAccountId());
+        assertEquals(patient.getEmail(), patientEntity.getEmail());
+        assertEquals(patient.getAccountType(), patientEntity.getAccountType());
+        assertEquals(patient.getUsername(), patientEntity.getUsername());
+        assertEquals(patient.getPassword(), patientEntity.getPassword());
+        assertEquals(patient.getFirstName(), patientEntity.getFirstName());
+        assertEquals(patient.getLastName(), patientEntity.getLastName());
+        assertEquals(patient.getDateOfBirth(), ((PatientEntity) patientEntity).getDateOfBirth());
     }
 
     @Test
@@ -98,9 +99,9 @@ class ReverseAccountConverterTest {
         assertTrue(doctorEntity instanceof DoctorEntity);
         assertEquals(doctor.getAccountId(), doctorEntity.getAccountId());
         assertEquals(doctor.getPhoto(), ((DoctorEntity) doctorEntity).getPhoto());
-        assertEquals(doctor.getFirstName(), ((DoctorEntity) doctorEntity).getFirstName());
+        assertEquals(doctor.getFirstName(), doctorEntity.getFirstName());
         assertEquals(doctor.getDescription(), ((DoctorEntity) doctorEntity).getDescription());
-        assertEquals(doctor.getLastName(), ((DoctorEntity) doctorEntity).getLastName());
+        assertEquals(doctor.getLastName(), doctorEntity.getLastName());
         assertEquals(doctor.getEmail(), doctorEntity.getEmail());
         assertEquals(doctor.getAccountType(), doctorEntity.getAccountType());
         assertEquals(doctor.getUsername(), doctorEntity.getUsername());

@@ -14,7 +14,6 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AccountConverterTest {
-
     @Test
     void convertUser_shouldConvertUserEntity() {
         //Arrange

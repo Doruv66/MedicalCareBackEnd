@@ -24,19 +24,11 @@ public class GetTop3DoctorsByRatingUseCaseImpl implements GetTop3DoctorsByRating
     @Transactional
     @Override
     public GetAccountsResponse getTop3DoctorsByRating() {
-        List<Account> doctors = accountRepository.findByAccountType(AccountType.DOCTOR).stream()
+        List<Account> doctors = accountRepository.findTop3DoctorsByRating().stream()
                 .map(AccountConverter::convert)
                 .toList();
         return GetAccountsResponse.builder()
-                .accounts(doctors.stream()
-                        .sorted(Comparator.comparingDouble(this::calculateAverageRatingForDoctor).reversed())
-                        .limit(3)
-                        .collect(Collectors.toList())
-                ).build();
-    }
-
-    private Double calculateAverageRatingForDoctor(Account doctor) {
-        Long doctorAccountId = doctor.getAccountId();
-        return reviewRepository.getAverageRatingForDoctor(doctorAccountId);
+                .accounts(doctors)
+                .build();
     }
 }

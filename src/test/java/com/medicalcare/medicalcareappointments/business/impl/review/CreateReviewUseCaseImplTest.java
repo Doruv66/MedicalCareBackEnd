@@ -23,7 +23,6 @@ import static org.mockito.Mockito.when;
 class CreateReviewUseCaseImplTest {
     @Mock
     private ReviewRepository reviewRepositoryMock;
-
     @InjectMocks
     private CreateReviewUseCaseImpl createReviewUseCase;
 

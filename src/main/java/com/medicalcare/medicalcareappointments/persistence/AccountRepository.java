@@ -20,4 +20,12 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
             "OR LOWER(d.firstName) LIKE %:keyword% " +
             "OR LOWER(d.lastName) LIKE %:keyword%")
     List<AccountEntity> findByKeyword(@Param("keyword") String keyword);
+
+    @Query("SELECT a FROM AccountEntity a " +
+            "JOIN ReviewEntity r ON a.accountId = r.doctor.accountId " +
+            "WHERE a.accountType = 'DOCTOR' " +
+            "GROUP BY a.accountId " +
+            "ORDER BY AVG(r.rating) DESC " +
+            "LIMIT 3")
+    List<AccountEntity> findTop3DoctorsByRating();
 }

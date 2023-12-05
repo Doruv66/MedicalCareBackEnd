@@ -23,9 +23,6 @@ class GetTop3DoctorsByRatingUseCaseImplTest {
     @Mock
     private AccountRepository accountRepository;
 
-    @Mock
-    private ReviewRepository reviewRepository;
-
     @InjectMocks
     private GetTop3DoctorsByRatingUseCaseImpl getTop3DoctorsByRatingUseCase;
 
@@ -79,11 +76,8 @@ class GetTop3DoctorsByRatingUseCaseImplTest {
         doctorsList.add(doctor2);
         doctorsList.add(doctor3);
 
-        when(accountRepository.findByAccountType(AccountType.DOCTOR)).thenReturn(doctorsList);
+        when(accountRepository.findTop3DoctorsByRating()).thenReturn(doctorsList);
 
-        when(reviewRepository.getAverageRatingForDoctor(1L)).thenReturn(4.5);
-        when(reviewRepository.getAverageRatingForDoctor(2L)).thenReturn(3.8);
-        when(reviewRepository.getAverageRatingForDoctor(3L)).thenReturn(4.0);
 
         // Act
         GetAccountsResponse response = getTop3DoctorsByRatingUseCase.getTop3DoctorsByRating();
@@ -91,9 +85,9 @@ class GetTop3DoctorsByRatingUseCaseImplTest {
         // Assert
         assertEquals(3, response.getAccounts().size());
         assertEquals(1L, response.getAccounts().get(0).getAccountId());
-        assertEquals(3L, response.getAccounts().get(1).getAccountId());
-        assertEquals(2L, response.getAccounts().get(2).getAccountId());
-        verify(accountRepository, times(1)).findByAccountType(AccountType.DOCTOR);
+        assertEquals(2L, response.getAccounts().get(1).getAccountId());
+        assertEquals(3L, response.getAccounts().get(2).getAccountId());
+        verify(accountRepository, times(1)).findTop3DoctorsByRating();
     }
 
 }
