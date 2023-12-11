@@ -2,6 +2,7 @@ package com.medicalcare.medicalcareappointments.domain.review;
 
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
 import com.medicalcare.medicalcareappointments.domain.account.Patient;
+import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -31,4 +32,7 @@ public class CreateReviewRequest {
 
     @NotNull
     private Doctor doctor;
+
+    @NotNull
+    private Appointment appointment;
 }

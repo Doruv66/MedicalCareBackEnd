@@ -7,7 +7,7 @@ import com.medicalcare.medicalcareappointments.domain.account.Patient;
 import com.medicalcare.medicalcareappointments.domain.appointment.Appointment;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 
-final class AppointmentConverter {
+public final class AppointmentConverter {
     private AppointmentConverter(){}
 
     public static Appointment convert(AppointmentEntity appointment){
@@ -19,4 +19,5 @@ final class AppointmentConverter {
                 .timeSlot(TimeSlotConverter.convert(appointment.getTimeSlot()))
                 .build();
     }
+
 }

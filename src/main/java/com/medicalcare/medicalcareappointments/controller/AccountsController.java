@@ -65,6 +65,7 @@ public class AccountsController {
     }
 
 
+    @RolesAllowed({"ADMIN"})
     @PostMapping("create-doctor")
     public ResponseEntity<?> createDoctor(@RequestBody @Valid CreateDoctorRequest request){
         try {

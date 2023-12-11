@@ -2,6 +2,7 @@ package com.medicalcare.medicalcareappointments.controller;
 
 import com.medicalcare.medicalcareappointments.business.*;
 import com.medicalcare.medicalcareappointments.domain.review.*;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -53,6 +54,7 @@ public class ReviewsController {
         return ResponseEntity.noContent().build();
     }
 
+    @RolesAllowed({"PATIENT"})
     @PostMapping
     public ResponseEntity<CreateReviewResponse> createReview(@RequestBody @Valid CreateReviewRequest request) {
         CreateReviewResponse response = createReviewUseCase.createReview(request);

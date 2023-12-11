@@ -1,10 +1,6 @@
 package com.medicalcare.medicalcareappointments.controller;
 
-import com.medicalcare.medicalcareappointments.business.GetAppointmentUseCase;
-import com.medicalcare.medicalcareappointments.business.CreateAppointmentUseCase;
-import com.medicalcare.medicalcareappointments.business.DeleteAppointmentUseCase;
-import com.medicalcare.medicalcareappointments.business.GetAppointmentsUseCase;
-import com.medicalcare.medicalcareappointments.business.UpdateAppointmentUseCase;
+import com.medicalcare.medicalcareappointments.business.*;
 import com.medicalcare.medicalcareappointments.domain.appointment.*;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -24,10 +20,26 @@ public class AppointmentsController {
     private final CreateAppointmentUseCase createAppointmentUseCase;
     private final DeleteAppointmentUseCase deleteAppointmentUseCase;
     private final UpdateAppointmentUseCase updateAppointmentUseCase;
+    private final GetUpcomingAppointmentsUseCase getUpcomingAppointmentsUseCase;
+    private final GetPreviousAppointmentsUseCase getPreviousAppointmentsUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<GetAppointmentResponse> getAppointment(@PathVariable(value = "id") final long id) {
         final GetAppointmentResponse response = getAppointmentUseCase.getAppointment(id);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @RolesAllowed({"PATIENT"})
+    @GetMapping("/previous/{accId}")
+    public ResponseEntity<GetAppointmentsResponse> getPreviousAppointment(@PathVariable(value = "accId") final long accId) {
+        final GetAppointmentsResponse response = getPreviousAppointmentsUseCase.getPreviousAppointments(accId);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @RolesAllowed({"PATIENT"})
+    @GetMapping("/upcoming/{accId}")
+    public ResponseEntity<GetAppointmentsResponse> getUpcomingAppointment(@PathVariable(value = "accId") final long accId) {
+        final GetAppointmentsResponse response = getUpcomingAppointmentsUseCase.getUpcomingAppointments(accId);
         return ResponseEntity.ok().body(response);
     }
 
@@ -37,6 +49,7 @@ public class AppointmentsController {
         return ResponseEntity.ok(response);
     }
 
+    @RolesAllowed({"PATIENT"})
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable(value = "id") final long id){
         deleteAppointmentUseCase.deleteAppointment(id);
