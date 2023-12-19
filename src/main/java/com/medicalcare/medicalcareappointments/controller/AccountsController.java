@@ -45,9 +45,9 @@ public class AccountsController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("doctors/{keyword}")
+    @GetMapping("doctors/search")
     public ResponseEntity<GetAccountsResponse>
-    getDoctorsByKeyword(@PathVariable(value = "keyword") final String keyword) {
+    getDoctorsByKeyword(@RequestParam("keyword") final String keyword) {
         GetAccountsResponse response = getDoctorsByKeywordUseCase.getDoctorsByKeyword(keyword);
         return ResponseEntity.ok(response);
     }

@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface AppointmentRepository extends JpaRepository<AppointmentEntity, Long> {
 
+    List<AppointmentEntity> getAppointmentEntitiesByDoctorAccountId(long doctorId);
+
     @Query("SELECT a FROM AppointmentEntity a " +
             "JOIN FETCH a.timeSlot ts " +
             "WHERE a.patient.accountId = :patientId " +

@@ -22,6 +22,7 @@ public class AppointmentsController {
     private final UpdateAppointmentUseCase updateAppointmentUseCase;
     private final GetUpcomingAppointmentsUseCase getUpcomingAppointmentsUseCase;
     private final GetPreviousAppointmentsUseCase getPreviousAppointmentsUseCase;
+    private final GetDoctorAppointmentsUseCase getDoctorAppointmentsUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<GetAppointmentResponse> getAppointment(@PathVariable(value = "id") final long id) {
@@ -49,6 +50,14 @@ public class AppointmentsController {
         return ResponseEntity.ok(response);
     }
 
+    @RolesAllowed({"DOCTOR"})
+    @GetMapping("doctor/{doctorId}")
+    public ResponseEntity<GetAppointmentsResponse>
+    getDoctorAppointments (@PathVariable(value = "doctorId") final long doctorId) {
+        GetAppointmentsResponse response = getDoctorAppointmentsUseCase.getDoctorAppointments(doctorId);
+        return ResponseEntity.ok(response);
+    }
+
     @RolesAllowed({"PATIENT"})
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteAppointment(@PathVariable(value = "id") final long id){
@@ -63,6 +72,8 @@ public class AppointmentsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+
+    @RolesAllowed({"DOCTOR"})
     @PutMapping("{id}")
     public ResponseEntity<UpdateAppointmentResponse> updateAppointment(@PathVariable(value = "id") final long id,
                                                   @RequestBody @Valid UpdateAppointmentRequest request){

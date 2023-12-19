@@ -13,11 +13,6 @@ java {
 	sourceCompatibility = '17'
 }
 
-jacoco {
-	toolVersion = "0.8.9"
-	reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-}
-
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -34,6 +29,7 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'org.flywaydb:flyway-mysql'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
@@ -54,7 +50,6 @@ sonar {
 		property "sonar.qualitygate.wait", true
 		property "sonar.host.url", "http://localhost:9000"
 		property "sonar.token", "sqp_1b20b40fe8410399f198a41e488f95213f4aab83"
-		property "sonar.coverage.jacoco.xmlReportPath", "${buildDir}/reports/jacoco.xml"
 		property "sonar.exclusions", "**/generated/**, **/lombok/**"
 	}
 }
@@ -62,16 +57,15 @@ sonar {
 test {
 	useJUnitPlatform()
 	finalizedBy jacocoTestReport
-	jacoco {
-		destinationFile = layout.buildDirectory.file('jacoco/jacocoTest.exec').get().asFile
-		classDumpDir = layout.buildDirectory.dir('jacoco/classpathdumps').get().asFile
-	}
 }
+
 jacocoTestReport {
-	dependsOn test // tests are required to run before generating the report
+	dependsOn test
 	reports {
 		xml.required = true
-		csv.required = false
-		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
 	}
+}
+
+tasks.named('sonar').configure {
+	dependsOn test
 }
