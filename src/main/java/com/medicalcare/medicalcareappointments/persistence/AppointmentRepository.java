@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AppointmentRepository extends JpaRepository<AppointmentEntity, Long> {
@@ -27,4 +28,11 @@ public interface AppointmentRepository extends JpaRepository<AppointmentEntity, 
             "AND ts.startTime < :today " +
             "ORDER BY ts.startTime DESC")
     List<AppointmentEntity> findPreviousAppointmentsForPatient(@Param("patientId") Long patientId, @Param("today") Timestamp today);
+
+    @Query("SELECT COUNT(a) FROM AppointmentEntity a " +
+            "JOIN a.timeSlot ts " +
+            "WHERE DATE(ts.startTime) = DATE(:day)")
+    Optional<Integer> getCountOfAppointmentsByDay(
+            @Param("day") Timestamp day
+    );
 }

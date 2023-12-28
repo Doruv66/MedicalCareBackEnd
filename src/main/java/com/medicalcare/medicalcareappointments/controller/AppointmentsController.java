@@ -23,6 +23,8 @@ public class AppointmentsController {
     private final GetUpcomingAppointmentsUseCase getUpcomingAppointmentsUseCase;
     private final GetPreviousAppointmentsUseCase getPreviousAppointmentsUseCase;
     private final GetDoctorAppointmentsUseCase getDoctorAppointmentsUseCase;
+    private final GetAppointmentsCountCurrentDateUseCase getAppointmentsCountCurrentDateUseCase;
+    private final GetAppointmentsCountPerMonthUseCase getAppointmentsCountPerMonthUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<GetAppointmentResponse> getAppointment(@PathVariable(value = "id") final long id) {
@@ -47,6 +49,20 @@ public class AppointmentsController {
     @GetMapping
     public ResponseEntity<GetAppointmentsResponse> getAppointments() {
         GetAppointmentsResponse response = getAppointmentsUseCase.getAppointments();
+        return ResponseEntity.ok(response);
+    }
+
+    @RolesAllowed({"ADMIN"})
+    @GetMapping("/dashboard/donghut")
+    public ResponseEntity<GetAppointmentCountResponse> getAppointmentsCount() {
+        GetAppointmentCountResponse response = getAppointmentsCountCurrentDateUseCase.getAppointmentCount();
+        return ResponseEntity.ok(response);
+    }
+
+    @RolesAllowed({"ADMIN"})
+    @GetMapping("/dashboard/barchart")
+    public ResponseEntity<GetCountPerMonthResponse> getCountPerMonth() {
+        GetCountPerMonthResponse response = getAppointmentsCountPerMonthUseCase.getCountPerMonth();
         return ResponseEntity.ok(response);
     }
 

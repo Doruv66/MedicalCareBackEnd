@@ -25,6 +25,5 @@ public class CreateAccountRequest {
     @NotBlank
     private String email;
 
-
     private AccountType accountType;
 }
