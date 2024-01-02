@@ -10,7 +10,7 @@ group = 'com.medicalcare'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '19'
+	sourceCompatibility = '17'
 }
 
 configurations {
