@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 public class CreateAppointmentUseCaseImpl implements CreateAppointmentUseCase {
     private final AppointmentRepository appointmentRepository;
     private final TimeSlotRepository timeSlotRepository;
-
     @Override
     public CreateAppointmentResponse createAppointment(CreateAppointmentRequest request) {
         AppointmentEntity savedAppointment = saveNewAppointment(request);
