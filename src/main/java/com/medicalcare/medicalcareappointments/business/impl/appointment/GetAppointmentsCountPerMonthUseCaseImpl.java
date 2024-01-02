@@ -19,7 +19,6 @@ import java.util.Map;
 @AllArgsConstructor
 public class GetAppointmentsCountPerMonthUseCaseImpl implements GetAppointmentsCountPerMonthUseCase {
     private final AppointmentRepository appointmentRepository;
-
     @Transactional
     @Override
     public GetCountPerMonthResponse getCountPerMonth() {
