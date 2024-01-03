@@ -45,6 +45,7 @@ class AccountConverterTest {
 
     @Test
     void convertAdmin_shouldConvertAdminEntity() {
+        
         //Arrange
         AdminEntity adminEntity = AdminEntity.builder()
                 .accountId(1L)

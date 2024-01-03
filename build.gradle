@@ -49,7 +49,7 @@ sonar {
 		property "sonar.projectName", "MedicalCare"
 		property "sonar.qualitygate.wait", true
 		property "sonar.host.url", "http://localhost:9000"
-		property "sonar.token", "sqp_1b20b40fe8410399f198a41e488f95213f4aab83"
+		property "sonar.token", "sqp_54ef42b7467a7baf20f62327a2173597a767acf9"
 		property "sonar.exclusions", "**/generated/**, **/lombok/**"
 	}
 }
