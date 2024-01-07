@@ -61,15 +61,6 @@ public class ReverseAccountConverter {
                                 .toList())
                         .build();
             }
-            default -> AccountEntity.builder()
-                    .accountId(acc.getAccountId())
-                    .email(acc.getEmail())
-                    .firstName(acc.getFirstName())
-                    .lastName(acc.getLastName())
-                    .password(acc.getPassword())
-                    .username(acc.getUsername())
-                    .accountType(acc.getAccountType())
-                    .build();
         };
     }
 }
