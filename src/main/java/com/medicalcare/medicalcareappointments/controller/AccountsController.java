@@ -104,6 +104,8 @@ public class AccountsController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+
+    @RolesAllowed({"ADMIN"})
     @PutMapping("update-doctor/{id}")
     public ResponseEntity<UpdateAccountResponse> updateDoctor(@PathVariable(value = "id") long id,
                                               @RequestBody @Valid UpdateDoctorRequest request){

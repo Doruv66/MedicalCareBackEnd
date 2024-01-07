@@ -15,19 +15,9 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateTimeSlotRequest {
+    @NotNull
+    private Timestamp date;
 
     @NotNull
-    private Long timeSlotId;
-
-    @NotNull
-    private Timestamp startTime;
-
-    @NotNull
-    private Timestamp endTime;
-
-    @NotBlank
     private Doctor doctor;
-
-    @NotNull
-    private TimeSlotType timeSlotType;
 }

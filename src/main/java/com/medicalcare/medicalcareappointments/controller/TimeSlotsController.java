@@ -33,6 +33,7 @@ public class TimeSlotsController {
     }
 
 
+    @RolesAllowed({"DOCTOR"})
     @PostMapping
     public ResponseEntity<CreateTimeSlotResponse> createTimeSlot(@RequestBody @Valid CreateTimeSlotRequest request) {
         CreateTimeSlotResponse response = createTimeSlotUseCase.createTimeSlot(request);
