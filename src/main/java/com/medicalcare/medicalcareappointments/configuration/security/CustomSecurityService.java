@@ -7,12 +7,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class CustomSecurityService {
 
-    @Autowired
-    private AccessToken accessToken;
+    private final AccessToken accessToken;
 
+    public CustomSecurityService(AccessToken accessToken) {
+        this.accessToken = accessToken;
+    }
+    
     public boolean isAccountIdMatching(Long accId, Authentication authentication) {
 
         //check for null
