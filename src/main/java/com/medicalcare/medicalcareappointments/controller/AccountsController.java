@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -98,6 +99,7 @@ public class AccountsController {
 
     @RolesAllowed({"PATIENT"})
     @PutMapping("update-patient/{id}")
+    @PreAuthorize("@customSecurityService.isAccountIdMatching(#id, authentication)")
     public ResponseEntity<UpdateAccountResponse> updatePatient(@PathVariable(value = "id") long id,
                                                             @RequestBody @Valid UpdatePatientRequest request){
         UpdateAccountResponse response = updateAccountUseCase.updateAccount(request, id);
