@@ -1,7 +1,6 @@
 package com.medicalcare.medicalcareappointments.business.impl.appointment;
 
 import com.medicalcare.medicalcareappointments.business.GetAppointmentsCountCurrentDateUseCase;
-import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import com.medicalcare.medicalcareappointments.domain.appointment.GetAppointmentCountResponse;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;

@@ -2,7 +2,6 @@ package com.medicalcare.medicalcareappointments.business.impl.review;
 
 import com.medicalcare.medicalcareappointments.business.CreateReviewUseCase;
 import com.medicalcare.medicalcareappointments.business.impl.account.ReverseAccountConverter;
-import com.medicalcare.medicalcareappointments.business.impl.appointment.AppointmentConverter;
 import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.appointment.AppointmentStatus;
 import com.medicalcare.medicalcareappointments.domain.review.CreateReviewRequest;
@@ -11,8 +10,8 @@ import com.medicalcare.medicalcareappointments.persistence.AppointmentRepository
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AppointmentEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -5,7 +5,10 @@ import com.medicalcare.medicalcareappointments.domain.account.Account;
 import com.medicalcare.medicalcareappointments.domain.account.Admin;
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
 import com.medicalcare.medicalcareappointments.domain.account.Patient;
-import com.medicalcare.medicalcareappointments.persistence.entity.*;
+import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.AdminEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 
 public class AccountConverter {
     // This constructor is intentionally left empty. It can be used for default initialization

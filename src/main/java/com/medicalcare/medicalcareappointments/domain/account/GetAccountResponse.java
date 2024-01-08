@@ -1,6 +1,5 @@
 package com.medicalcare.medicalcareappointments.domain.account;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -7,8 +7,8 @@ import com.medicalcare.medicalcareappointments.domain.review.UpdateReviewRespons
 import com.medicalcare.medicalcareappointments.exception.NotFoundReviewException;
 import com.medicalcare.medicalcareappointments.persistence.ReviewRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
-import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
+import com.medicalcare.medicalcareappointments.persistence.entity.ReviewEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

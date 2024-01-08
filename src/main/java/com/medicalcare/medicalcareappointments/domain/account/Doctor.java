@@ -1,7 +1,9 @@
 package com.medicalcare.medicalcareappointments.domain.account;
 
 import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;

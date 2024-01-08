@@ -2,7 +2,6 @@ package com.medicalcare.medicalcareappointments.business.impl.timeslot;
 
 import com.medicalcare.medicalcareappointments.business.GetTimeSlotsByDateUseCase;
 import com.medicalcare.medicalcareappointments.domain.timeslot.GetTimeSlotsResponse;
-import com.medicalcare.medicalcareappointments.domain.timeslot.TimeSlot;
 import com.medicalcare.medicalcareappointments.persistence.TimeSlotRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.TimeSlotEntity;
 import lombok.AllArgsConstructor;

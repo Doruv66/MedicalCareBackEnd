@@ -3,19 +3,17 @@ package com.medicalcare.medicalcareappointments.business.impl.loggin;
 import com.medicalcare.medicalcareappointments.business.LoginUseCase;
 import com.medicalcare.medicalcareappointments.configuration.security.token.AccessTokenEncoder;
 import com.medicalcare.medicalcareappointments.configuration.security.token.impl.AccessTokenImpl;
+import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import com.medicalcare.medicalcareappointments.domain.login.LoginRequest;
 import com.medicalcare.medicalcareappointments.domain.login.LoginResponse;
 import com.medicalcare.medicalcareappointments.exception.PasswordsDontMatchException;
 import com.medicalcare.medicalcareappointments.exception.UserNameNotFoundException;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
-import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @AllArgsConstructor

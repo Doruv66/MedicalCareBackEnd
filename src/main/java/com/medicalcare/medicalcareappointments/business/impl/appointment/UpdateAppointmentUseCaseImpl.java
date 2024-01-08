@@ -3,7 +3,6 @@ package com.medicalcare.medicalcareappointments.business.impl.appointment;
 import com.medicalcare.medicalcareappointments.business.UpdateAppointmentUseCase;
 import com.medicalcare.medicalcareappointments.business.impl.account.ReverseAccountConverter;
 import com.medicalcare.medicalcareappointments.business.impl.timeslot.ReverseTimeSlotConverter;
-import com.medicalcare.medicalcareappointments.business.impl.timeslot.TimeSlotConverter;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentRequest;
 import com.medicalcare.medicalcareappointments.domain.appointment.UpdateAppointmentResponse;
 import com.medicalcare.medicalcareappointments.exception.NotFoundAppointmentException;

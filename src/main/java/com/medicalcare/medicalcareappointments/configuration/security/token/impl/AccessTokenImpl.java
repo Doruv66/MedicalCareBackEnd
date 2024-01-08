@@ -5,10 +5,6 @@ import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-
 @Getter
 @EqualsAndHashCode
 public class AccessTokenImpl implements AccessToken {
