@@ -3,7 +3,9 @@ package com.medicalcare.medicalcareappointments.business.impl.account;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import com.medicalcare.medicalcareappointments.domain.account.Doctor;
 import com.medicalcare.medicalcareappointments.domain.account.GetAccountsResponse;
+import com.medicalcare.medicalcareappointments.domain.account.GetDoctorsResponse;
 import com.medicalcare.medicalcareappointments.persistence.AccountRepository;
+import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.DoctorEntity;
 import com.medicalcare.medicalcareappointments.persistence.entity.PatientEntity;
 import org.junit.jupiter.api.Test;
@@ -11,6 +13,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -34,6 +40,11 @@ class GetDoctorsUseCaseImplTest {
     void getDoctors_shouldReturnAllDoctorsConverted() {
 
         //Arrange
+        int pageNumber = 0;
+        int pageSize = 10;
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
         DoctorEntity doctorEntity1 = DoctorEntity.builder()
                 .username("doctor1")
                 .accountType(AccountType.DOCTOR)
@@ -66,12 +77,14 @@ class GetDoctorsUseCaseImplTest {
                 .dateOfBirth(new Timestamp(new Date(2011 - 1900, 11 - 1, 11).getTime()))
                 .build();
 
-        when(accountRepositoryMock.findByAccountType(AccountType.DOCTOR))
-                .thenReturn(List.of(doctorEntity1, doctorEntity2));
+        Page<AccountEntity> doctorEntitiesPage = new PageImpl<>(List.of(doctorEntity1, doctorEntity2));
+
+        when(accountRepositoryMock.findByAccountType(AccountType.DOCTOR, pageable))
+                .thenReturn(doctorEntitiesPage);
+
 
         //Act
-        GetAccountsResponse actualResult = getDoctorsUseCase.getDoctors();
-
+        GetDoctorsResponse actualResult = getDoctorsUseCase.getDoctors(pageNumber, pageSize);
         //Assert
         Doctor doctor1 = Doctor.builder()
                 .username("doctor1")
@@ -96,9 +109,13 @@ class GetDoctorsUseCaseImplTest {
                 .specialization("neurolog")
                 .build();
 
-        GetAccountsResponse expectedResult = GetAccountsResponse.builder().accounts(List.of(doctor1, doctor2)).build();
+        GetDoctorsResponse expectedResult = GetDoctorsResponse.builder()
+                .accounts(List.of(doctor1, doctor2))
+                .accountsCount(2)
+                .build();
+
         assertEquals(actualResult, expectedResult);
-        verify(accountRepositoryMock).findByAccountType(AccountType.DOCTOR);
+        verify(accountRepositoryMock).findByAccountType(AccountType.DOCTOR, pageable);
     }
 
 }

@@ -2,6 +2,8 @@ package com.medicalcare.medicalcareappointments.persistence;
 
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import com.medicalcare.medicalcareappointments.persistence.entity.AccountEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,8 +16,8 @@ import java.util.Optional;
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
 
     Optional<Integer> countAccountEntitiesByAccountType(AccountType accountType);
-    
-    List<AccountEntity> findByAccountType(AccountType accountType);
+
+    Page<AccountEntity> findByAccountType(AccountType accountType, Pageable pageable);
     Optional<AccountEntity> findByEmail(String email);
     Optional<AccountEntity> findByUsername(String username);
     @Query("SELECT DISTINCT d FROM DoctorEntity d " +

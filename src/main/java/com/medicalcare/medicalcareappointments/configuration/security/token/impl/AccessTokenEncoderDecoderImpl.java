@@ -3,6 +3,7 @@ package com.medicalcare.medicalcareappointments.configuration.security.token.imp
 import com.medicalcare.medicalcareappointments.configuration.security.token.AccessToken;
 import com.medicalcare.medicalcareappointments.configuration.security.token.AccessTokenDecoder;
 import com.medicalcare.medicalcareappointments.configuration.security.token.AccessTokenEncoder;
+import com.medicalcare.medicalcareappointments.configuration.security.token.RefreshTokenEnconder;
 import com.medicalcare.medicalcareappointments.configuration.security.token.exception.InvalidAccessTokenException;
 import com.medicalcare.medicalcareappointments.domain.account.AccountType;
 import io.jsonwebtoken.Claims;
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AccessTokenEncoderDecoderImpl implements AccessTokenDecoder, AccessTokenEncoder {
+public class AccessTokenEncoderDecoderImpl implements AccessTokenDecoder, AccessTokenEncoder, RefreshTokenEnconder {
     private final Key key;
 
     public AccessTokenEncoderDecoderImpl (@Value("${jwt.secret}") String secretKey) {
@@ -59,7 +60,23 @@ public class AccessTokenEncoderDecoderImpl implements AccessTokenDecoder, Access
         return Jwts.builder()
                 .setSubject(accessToken.getSubject())
                 .setIssuedAt(Date.from(now))
-                .setExpiration(Date.from(now.plus(30, ChronoUnit.MINUTES)))
+                .setExpiration(Date.from(now.plus(10, ChronoUnit.SECONDS)))
+                .addClaims(claimsMap)
+                .signWith(key)
+                .compact();
+    }
+
+    @Override
+    public String refreshTokenEncode(AccessToken accessToken) {
+        Map<String, Object> claimsMap = new HashMap<>();
+        if ((accessToken.getRole()) != null) {
+            claimsMap.put("role", accessToken.getRole());
+        }
+        Instant now = Instant.now();
+        return Jwts.builder()
+                .setSubject(accessToken.getSubject())
+                .setIssuedAt(Date.from(now))
+                .setExpiration(Date.from(now.plus(2, ChronoUnit.HOURS)))
                 .addClaims(claimsMap)
                 .signWith(key)
                 .compact();

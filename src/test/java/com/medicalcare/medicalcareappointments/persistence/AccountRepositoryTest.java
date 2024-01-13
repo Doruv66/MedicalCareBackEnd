@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.sql.Timestamp;
@@ -67,9 +68,9 @@ class AccountRepositoryTest {
 
         accountRepository.saveAll(List.of(doctorAccount, patientAccount, adminAccount));
 
-        List<AccountEntity> foundDoctors = accountRepository.findByAccountType(AccountType.DOCTOR);
-        List<AccountEntity> foundPatients = accountRepository.findByAccountType(AccountType.PATIENT);
-        List<AccountEntity> foundAdmins = accountRepository.findByAccountType(AccountType.ADMIN);
+        List<AccountEntity> foundDoctors = accountRepository.findByAccountType(AccountType.DOCTOR, Pageable.unpaged()).getContent();
+        List<AccountEntity> foundPatients = accountRepository.findByAccountType(AccountType.PATIENT, Pageable.unpaged()).getContent();
+        List<AccountEntity> foundAdmins = accountRepository.findByAccountType(AccountType.ADMIN, Pageable.unpaged()).getContent();
 
         assertEquals(1, foundDoctors.size());
         assertEquals(1, foundPatients.size());

@@ -1,7 +1,8 @@
 package com.medicalcare.medicalcareappointments.business;
 
 import com.medicalcare.medicalcareappointments.domain.account.GetAccountsResponse;
+import com.medicalcare.medicalcareappointments.domain.account.GetDoctorsResponse;
 
 public interface GetDoctorsUseCase {
-    GetAccountsResponse getDoctors();
+    GetDoctorsResponse getDoctors(int pageNumber, int PageSize);
 }
