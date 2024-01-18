@@ -7,6 +7,8 @@ import com.medicalcare.medicalcareappointments.exception.UsernameAlreadyExistsEx
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,11 +26,19 @@ public class DoctorController {
     private final GetDoctorsByKeywordUseCase getDoctorsByKeywordUseCase;
     private final CreateAccountUseCase createAccountUseCase;
     private final UpdateAccountUseCase updateAccountUseCase;
+    private final GetDoctorsBySpecializationUseCase getDoctorsBySpecializationUseCase;
 
     @GetMapping("{id}")
     public ResponseEntity<GetAccountResponse> getAccount(@PathVariable(value = "id") final long id) {
         final GetAccountResponse response = getAccountUseCase.getAccount(id);
         return ResponseEntity.ok().body(response);
+    }
+
+    @RolesAllowed({"PATIENT"})
+    @GetMapping("/speciality")
+    public ResponseEntity<GetAccountsResponse> getDoctorsBySpeciality(@RequestParam String speciality) {
+        GetAccountsResponse response = getDoctorsBySpecializationUseCase.getDoctorsBySpecialization(AccountType.DOCTOR, speciality);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/doctors")

@@ -18,6 +18,11 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
     Optional<Integer> countAccountEntitiesByAccountType(AccountType accountType);
 
     Page<AccountEntity> findByAccountType(AccountType accountType, Pageable pageable);
+    @Query("SELECT a FROM AccountEntity a " +
+            "LEFT JOIN DoctorEntity d ON a.accountId = d.accountId " +
+            "WHERE a.accountType = :accountType " +
+            "AND (LOWER(d.specialization) LIKE %:specialization%)")
+    List<AccountEntity> findByAccountTypeAndSpecialization(@Param("accountType") AccountType accountType, @Param("specialization") String specialization);
     Optional<AccountEntity> findByEmail(String email);
     Optional<AccountEntity> findByUsername(String username);
     @Query("SELECT DISTINCT d FROM DoctorEntity d " +
